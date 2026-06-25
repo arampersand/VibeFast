@@ -1,36 +1,31 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { SendHorizontal } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { AlertCircle } from "lucide-react"
+import Message from "./Message"
+import ChatInput from "./ChatInput"
 
-// Chat con la IA. Consume el stream de texto plano de /api/ai/chat
-// (Session B/C) y va pintando la respuesta token a token.
-//
-// Manda todo el historial en cada request para preservar el contexto
-// de la conversación. La persistencia en ai_conversations/ai_messages
-// la hace la route del lado server (best-effort), aquí no la tocamos.
+// Chat con streaming. POST /api/ai/chat → stream de texto plano;
+// leemos el body con un reader y vamos concatenando al último mensaje
+// del assistant en tiempo real.
 export default function Chat() {
-  const [messages, setMessages] = useState([]) // { role, content }
-  const [input, setInput] = useState("")
+  const [messages, setMessages] = useState([])
   const [streaming, setStreaming] = useState(false)
   const [error, setError] = useState(null)
   const scrollRef = useRef(null)
 
   useEffect(() => {
-    const el = scrollRef.current
-    if (el) el.scrollTop = el.scrollHeight
-  }, [messages, streaming])
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
+  }, [messages])
 
-  async function send(e) {
-    e.preventDefault()
-    const text = input.trim()
-    if (!text || streaming) return
-
+  async function handleSubmit(text) {
     setError(null)
-    const history = [...messages, { role: "user", content: text }]
-    // Agrega el mensaje del usuario + un placeholder de assistant vacío.
+
+    const userMessage = { role: "user", content: text }
+    // Historial que mandamos al backend (sin el placeholder del assistant).
+    const history = [...messages, userMessage]
+    // Pintamos el mensaje del usuario + un placeholder vacío del assistant.
     setMessages([...history, { role: "assistant", content: "" }])
-    setInput("")
     setStreaming(true)
 
     try {
@@ -41,31 +36,31 @@ export default function Chat() {
       })
 
       if (!res.ok || !res.body) {
-        const body = await res.json().catch(() => ({}))
-        throw new Error(body.error || "No pudimos responder.")
+        throw new Error(`El servidor respondió ${res.status}`)
       }
 
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
+
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
         const chunk = decoder.decode(value, { stream: true })
-        setMessages((m) => {
-          const copy = [...m]
-          const last = copy[copy.length - 1]
-          copy[copy.length - 1] = { ...last, content: last.content + chunk }
-          return copy
+        setMessages((prev) => {
+          const next = [...prev]
+          const last = next[next.length - 1]
+          next[next.length - 1] = { ...last, content: last.content + chunk }
+          return next
         })
       }
     } catch (err) {
-      setError(err.message)
-      // Quita el placeholder vacío si no llegó nada.
-      setMessages((m) => {
-        const last = m[m.length - 1]
-        if (last?.role === "assistant" && last.content === "") return m.slice(0, -1)
-        return m
-      })
+      // Quitamos el placeholder del assistant y mostramos el error.
+      setMessages((prev) => prev.slice(0, -1))
+      setError(
+        err?.message
+          ? `No pudimos completar la respuesta: ${err.message}`
+          : "Algo salió mal al contactar al asistente. Intenta de nuevo."
+      )
     } finally {
       setStreaming(false)
     }
@@ -73,61 +68,28 @@ export default function Chat() {
 
   return (
     <div className="flex h-[70vh] flex-col rounded-box border border-base-200 bg-base-100">
-      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
-        {messages.length === 0 && (
-          <div className="flex h-full items-center justify-center text-center text-base-content/50">
-            <p>Escribe un mensaje para empezar a chatear con la IA.</p>
+      <div ref={scrollRef} className="flex-1 space-y-2 overflow-y-auto p-4">
+        {messages.length === 0 ? (
+          <div className="flex h-full items-center justify-center text-center text-sm text-base-content/60">
+            Empieza la conversación escribiendo un mensaje abajo.
           </div>
+        ) : (
+          messages.map((m, i) => (
+            <Message key={i} role={m.role} content={m.content} />
+          ))
         )}
 
-        {messages.map((m, i) => (
-          <div
-            key={i}
-            className={`chat ${m.role === "user" ? "chat-end" : "chat-start"}`}
-          >
-            <div
-              className={`chat-bubble ${
-                m.role === "user" ? "chat-bubble-primary" : ""
-              }`}
-            >
-              {m.content || (
-                <span className="loading loading-dots loading-sm align-middle" />
-              )}
-            </div>
+        {error && (
+          <div role="alert" className="alert alert-error">
+            <AlertCircle className="size-5" />
+            <span>{error}</span>
           </div>
-        ))}
+        )}
       </div>
 
-      {error && (
-        <div className="border-t border-base-200 px-4 py-2 text-sm text-error">
-          {error}
-        </div>
-      )}
-
-      <form
-        onSubmit={send}
-        className="flex items-center gap-2 border-t border-base-200 p-3"
-      >
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Escribe tu mensaje…"
-          className="input input-bordered flex-1"
-          disabled={streaming}
-        />
-        <button
-          type="submit"
-          className="btn btn-primary btn-square"
-          disabled={streaming || !input.trim()}
-          aria-label="Enviar"
-        >
-          {streaming ? (
-            <span className="loading loading-spinner loading-sm" />
-          ) : (
-            <SendHorizontal className="size-4" />
-          )}
-        </button>
-      </form>
+      <div className="border-t border-base-200 p-4">
+        <ChatInput onSubmit={handleSubmit} disabled={streaming} />
+      </div>
     </div>
   )
 }
