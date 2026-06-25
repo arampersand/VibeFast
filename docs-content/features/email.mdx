@@ -1,19 +1,87 @@
 ---
 title: Email (Resend)
-description: Templates en React, envío transaccional.
+description: Templates en React Email, envío transaccional con Resend.
 order: 3
 ---
 
 <StackBadge tech={["resend"]} />
 
+VibeFast manda emails transaccionales con [Resend](https://resend.com) y
+templates escritos en [React Email](https://react.email). Todo el copy y el
+remitente salen de `config.js`.
+
+## Activar
+
+1. Crea una cuenta en [resend.com](https://resend.com) y saca un API key.
+2. En `web/.env.local` pon:
+   ```bash
+   RESEND_API_KEY=re_...
+   ```
+3. En `web/config.js` deja `features.resend: true` (default).
+4. (Opcional pero recomendado) verifica tu dominio en Resend y cambia
+   `config.email.from` a un correo de ese dominio. En desarrollo puedes
+   enviar desde `onboarding@resend.dev` a tu propio correo.
+
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 2.
+Si `features.resend` está en `false` o falta `RESEND_API_KEY`, los envíos
+hacen **no-op silencioso**: la app sigue funcionando, simplemente no manda
+correos. Útil mientras no configuras Resend.
 </Callout>
 
-## Templates incluidos
+## Cómo está implementado
 
-- `WaitlistConfirm` — confirma signup al waitlist.
-- `Welcome` — bienvenida después de primer login.
-- `MagicLink` — opcional, para email login.
+- `lib/resend/client.js` — cliente único, devuelve `null` si email está off.
+- `lib/resend/templates/` — componentes React Email:
+  - `WaitlistConfirm` — confirma el alta al waitlist (Sem 1).
+  - `Welcome` — bienvenida en el primer login.
+- `lib/resend/send.js` — helpers `sendWaitlistConfirm(to)` y
+  `sendWelcome(to, name)`. Devuelven `{ ok, skipped?, error? }`.
 
-Activación: `features.resend: true` + `RESEND_API_KEY` en `.env.local`.
+Los envíos se disparan con `after()` de Next (después de responder), así que
+**nunca bloquean la UI**:
+
+- `/api/waitlist` → manda `WaitlistConfirm` al anotarse.
+- `/auth/callback` → manda `Welcome` solo en el primer login.
+
+## Agregar un template nuevo
+
+1. Crea `lib/resend/templates/MiTemplate.js` (copia uno existente).
+2. Agrega un helper en `lib/resend/send.js`:
+   ```js
+   import MiTemplate from "@/lib/resend/templates/MiTemplate"
+
+   export async function sendMiTemplate(to, props) {
+     const resend = getResend()
+     if (!resend) return { ok: false, skipped: true }
+     const { error } = await resend.emails.send({
+       from: config.email.from,
+       to,
+       subject: "Asunto",
+       react: <MiTemplate {...props} />,
+     })
+     return error ? { ok: false, error: error.message } : { ok: true }
+   }
+   ```
+3. Llámalo donde lo necesites (idealmente con `after()`).
+
+## Webhook de eventos (opcional)
+
+`/api/webhooks/resend` recibe eventos de Resend (`delivered`, `bounced`…).
+Resend los firma con Svix:
+
+1. En Resend → Webhooks, apunta a `https://TU-DOMINIO/api/webhooks/resend`.
+2. Copia el signing secret a `web/.env.local`:
+   ```bash
+   RESEND_WEBHOOK_SECRET=whsec_...
+   ```
+
+Sin el secret, en desarrollo el webhook acepta el payload sin verificar (con
+warning). En producción **siempre** configura el secret.
+
+## Errores comunes
+
+- **No llega el correo**: revisa que `RESEND_API_KEY` esté en `.env.local` y
+  que `config.email.from` use un dominio verificado (o `onboarding@resend.dev`
+  enviando a tu propio correo).
+- **`react` no renderiza**: ya viene `@react-email/components`. No mezcles
+  HTML crudo con componentes de React Email en el mismo template.

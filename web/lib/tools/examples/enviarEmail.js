@@ -1,7 +1,8 @@
-// Tool de ejemplo: enviar email.
-// Stub por ahora: cuando Fase 2 (Resend) esté integrada, conectar a
-// lib/resend/send.js. Lo dejamos desacoplado para no depender de ese
-// trabajo mientras se integra.
+import { sendEmail } from "@/lib/resend/send"
+
+// Tool de ejemplo: enviar email vía Resend (lib/resend/send.js).
+// Si Resend no está configurado (features.resend off o sin
+// RESEND_API_KEY), devuelve skipped sin romper el flujo del agente.
 export const enviarEmail = {
   name: "enviar_email",
   description: "Envía un email transaccional al destinatario indicado.",
@@ -16,8 +17,11 @@ export const enviarEmail = {
     additionalProperties: false,
   },
   async execute({ to, subject, body }) {
-    // TODO Fase 2: conectar a lib/resend/send.js
-    console.log("[enviar_email] stub:", { to, subject, body })
-    return { ok: true, stub: true }
+    const result = await sendEmail({ to, subject, body })
+    if (result.skipped) {
+      return { ok: false, reason: "Resend no está configurado." }
+    }
+    if (!result.ok) throw new Error(result.error || "No se pudo enviar el email.")
+    return { ok: true }
   },
 }
