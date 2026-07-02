@@ -1,14 +1,18 @@
 ---
 title: Qué instalar (checklist)
-description: Todo lo que necesitas tener antes de correr el repo, en una lista.
+description: Todo lo que necesitas tener antes de clonar el repo, en una lista.
 order: 0
 ---
 
 <StackBadge tech={["github", "yarn", "cursor", "supabase", "vercel", "openai", "resend"]} />
 
-Ya tienes el repo clonado. Antes de correr `yarn dev`, revisa esta lista. Marca cada casilla; cuando estén todas, estás listo.
+Esta es la checklist de todo lo que necesitas **antes de clonar el repo** (eso lo haces en el [Quick start](/docs/setup/quick-start)). Marca cada casilla; cuando estén todas, estás listo para clonar.
 
-Si prefieres el recorrido guiado paso a paso, ve a [Quick start](/docs/setup/quick-start). Esta página es la **lista de verificación** para tenerlo todo a la mano.
+<Callout type="success" title="¿Ya pasaste por Fundamentos?">
+Si ya seguiste [Prepara tu compu](/docs/fundamentos/prepara-tu-compu), ya deberías tener instalados **Node, yarn, Git y Cursor** (y Homebrew/Supabase CLI si aplica) — no hace falta reinstalar nada. Esta página es solo para confirmar que no te falta nada suelto (sobre todo las cuentas) antes de arrancar el Quick start.
+</Callout>
+
+Si prefieres el recorrido guiado paso a paso, ve directo a [Quick start](/docs/setup/quick-start). Esta página es la **lista de verificación** para tenerlo todo a la mano.
 
 ## 1 · Programas en tu computadora
 
@@ -40,9 +44,9 @@ Este repo usa **yarn** (hay un `yarn.lock`). Instala siempre con `yarn install`,
 
 ## 2 · Cuentas en servicios externos
 
-Todas tienen tier gratuito. Crea las tres primeras hoy; las otras dos cuando lleguen en el temario.
+Todas tienen versión gratuita. Crea las tres primeras hoy; las otras dos cuando lleguen en el temario.
 
-- [ ] **[GitHub](https://github.com)** — donde vive tu repo. (Ya lo tienes si clonaste.)
+- [ ] **[GitHub](https://github.com)** — ahí vas a crear tu repo en el Quick start.
 - [ ] **[Supabase](https://supabase.com)** — base de datos + auth. Login con GitHub.
 - [ ] **[Vercel](https://vercel.com)** — para publicar tu app. Login con GitHub.
 - [ ] **[OpenAI](https://platform.openai.com)** — para las features de IA (Sem 3+). Opcional ahora.
@@ -50,50 +54,13 @@ Todas tienen tier gratuito. Crea las tres primeras hoy; las otras dos cuando lle
 
 Detalle de qué es cada una: [Cuentas que necesitas](/docs/setup/cuentas).
 
-## 3 · Dependencias del proyecto
-
-Desde la raíz del repo:
-
-```bash
-yarn install
-```
-
-- [ ] `yarn install` terminó sin errores (tarda 1–2 min la primera vez).
-
-## 4 · Variables de entorno
-
-```bash
-cp web/.env.example web/.env.local
-```
-
-- [ ] Creaste `web/.env.local` copiando el ejemplo.
-- [ ] Pegaste las 3 keys de Supabase (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`).
-
-De dónde sale cada key: [Variables de entorno](/docs/setup/variables-de-entorno).
-
-<Callout type="danger" title="Nunca subas .env.local a git">
-Ya está en `.gitignore`. La `service_role` key es como la llave maestra de tu base de datos: no la compartas ni la pegues en el navegador.
-</Callout>
-
-## 5 · Corre el proyecto
-
-```bash
-yarn dev
-```
-
-- [ ] Abre [localhost:3000](http://localhost:3000) — ves tu landing.
-- [ ] Abre [localhost:3000/docs](http://localhost:3000/docs) — ves estas docs.
-
 <Checkpoint>
 ✅ Node, yarn y Cursor instalados.
 ✅ Cuentas de GitHub, Supabase y Vercel creadas.
-✅ `yarn install` corrió sin errores.
-✅ `web/.env.local` con las keys de Supabase.
-✅ `yarn dev` levanta la landing en localhost:3000.
 
 ¿Algo falla? → [Troubleshooting](/docs/troubleshooting/errores-comunes).
 </Checkpoint>
 
 ## ¿Y ahora?
 
-→ Sigue con el [Quick start](/docs/setup/quick-start) para personalizar tu producto y hacer tu primer deploy.
+Con esto listo, ya puedes clonar el repo. El resto (instalar dependencias, configurar `.env.local`, correr el proyecto y hacer tu primer deploy) lo cubre el [Quick start](/docs/setup/quick-start) paso a paso.
