@@ -19,17 +19,24 @@ Si en un tutorial aparece una palabra que no entiendes, búscala aquí. Si no es
 | **Terminal** | Una ventana donde escribes órdenes con texto. | Mandarle instrucciones a la compu por escrito. |
 | **Comando** | Una orden que escribes en la terminal. | “Prende la luz”, pero para la compu. |
 | **Cursor** | El editor donde construyes, con IA integrada. | Tu mesa de trabajo con un asistente al lado. |
+| **CLI** | Un programa que se maneja escribiendo comandos en la terminal (ej. Supabase CLI). | El control remoto por texto de un servicio. |
+| **Prompt** | La instrucción que le escribes a la IA para que haga algo. | El brief que le das a un empleado nuevo. |
+| **Placeholder** | Un texto de relleno que debes cambiar por tu valor real (ej. `<tu-project-ref>`). | El “Fulano de Tal” de un contrato de ejemplo. |
 | **localhost:3000** | Tu proyecto corriendo en **tu** compu, aún no público. | Un ensayo a puerta cerrada antes del estreno. |
+| **Dashboard** | El panel de control web de un servicio (Supabase, Vercel, Stripe…), donde configuras todo con clicks. | El tablero del carro: todo a la vista y al alcance. |
 
 ## Guardar y publicar
 
 | Palabra | Qué es (en simple) | Analogía |
 |---------|--------------------|----------|
+| **Fork** | Tu propia copia de un repo ajeno, para trabajarla sin tocar el original. | Fotocopiar un libro para rayarlo sin dañar el original. |
 | **Commit** | Un “punto de guardado” de tus cambios. | Guardar partida en un videojuego. |
 | **Push** | Subir tus cambios guardados a GitHub. | Sincronizar tu Drive. |
 | **Rama** (branch) | Una copia paralela para experimentar sin romper lo bueno. | Un borrador aparte del documento final. |
 | **Deploy** | Publicar tu proyecto para que el mundo lo vea. | Estrenar la obra, ya con público. |
 | **Vercel** | El servicio que publica tu web y le da una URL. | La sala de cine donde se estrena. |
+| **Dominio** | El nombre de tu sitio en internet (ej. `tuproducto.com`). | La dirección de tu local en la ciudad. |
+| **DNS** | El sistema que traduce tu dominio a la dirección real del servidor. | La agenda de contactos: del nombre al número de teléfono. |
 
 ## Las piezas del producto
 
@@ -39,7 +46,18 @@ Si en un tutorial aparece una palabra que no entiendes, búscala aquí. Si no es
 | **Backend** | La lógica y los datos, detrás de cámaras. | La cocina del restaurante. |
 | **Base de datos** | Donde se guarda la información (usuarios, items…). | Un archivero ordenado. |
 | **Supabase** | La base de datos + login que trae VibeFast. | El archivero + el portero. |
+| **Schema** | El plano de tu base de datos: qué tablas hay y qué guarda cada una. | El plano de los cajones y etiquetas del archivero. |
+| **Migración** (de base de datos) | Un archivo con instrucciones para crear o cambiar tablas de tu base de datos. | La lista de reformas para remodelar el archivero. |
+| **SQL** | El idioma para pedirle cosas a una base de datos. Tu IA lo escribe por ti. | El idioma oficial del archivero. |
+| **CRUD** | Las 4 operaciones básicas sobre datos: crear, leer, editar y borrar registros. | Meter, consultar, corregir y tirar fichas del archivero. |
+| **RLS** (Row Level Security) | Reglas de Supabase para que cada usuario solo vea y toque sus propios datos. | Cada quien tiene llave solo de su casillero. |
 | **API** | La forma en que dos programas se hablan. | El mesero que lleva pedidos entre salón y cocina. |
+| **Webhook** | Un aviso automático que otro servicio le manda a tu app cuando pasa algo (ej. un pago). | El timbre: te avisan al momento, sin estar preguntando. |
+| **OAuth** | Entrar con una cuenta que ya tienes (“Continuar con Google”) sin crear otra contraseña. | Entrar a un club mostrando la credencial de otro club de confianza. |
+| **Provider** (de login) | Cada servicio con el que tus usuarios pueden entrar a tu app (Google, GitHub…). | Las credenciales que acepta la puerta del club. |
+| **Callback URL** | La dirección de regreso: a dónde te devuelve un servicio cuando termina un proceso (ej. el login con Google). | La dirección de retorno escrita en el sobre. |
+| **Scope** | Los permisos concretos que tu app le pide a un servicio en nombre del usuario (ej. “ver tu email”). | La lista de habitaciones a las que la visita puede pasar. |
+| **Checkout** | La pantalla de pago donde el usuario pone su tarjeta (en el curso, esa pantalla la pone Stripe). | La caja del supermercado. |
 | **API key** | Una contraseña secreta para usar un servicio (ej. OpenAI). | La llave de tu casa: no la regales. |
 | **Variable de entorno** | Un dato secreto o de config que vive en `.env.local`. | La caja fuerte de las llaves. |
 
@@ -52,6 +70,16 @@ Si en un tutorial aparece una palabra que no entiendes, búscala aquí. Si no es
 | **Paquete / dependencia** | Código de terceros que tu proyecto reutiliza. | Un ingrediente comprado, no hecho a mano. |
 | **yarn install** | El comando que baja todos esos ingredientes. | Ir al súper por la lista de la receta. |
 | **Endpoint** | Una dirección del backend que hace algo (ej. `/api/waitlist`). | Una ventanilla específica de un banco. |
+| **Monorepo** | Un solo repo que contiene varias partes del proyecto (ej. `web/` y `firmware/`). | Un edificio con varios departamentos bajo el mismo techo. |
+| **SDK** | El paquete oficial de un servicio para usarlo desde tu código (ej. el SDK de Stripe). | El kit de conexión oficial que te da la marca. |
+
+## De la IA
+
+| Palabra | Qué es (en simple) | Analogía |
+|---------|--------------------|----------|
+| **MCP** | Un estándar para conectar la IA con herramientas y datos externos. | El enchufe universal entre la IA y tus apps. |
+| **RAG** | Técnica donde la IA primero busca en tus documentos y responde con esa información. | Un examen a libro abierto en vez de contestar de memoria. |
+| **Embedding** | Una lista de números que representa el significado de un texto, para buscar por parecido. | La huella digital del significado de una frase. |
 
 <Callout type="success" title="No tienes que saberlas todas hoy">
 Con entender **repo, terminal, commit, push, deploy y API key** ya arrancas. El resto se pega solo con la práctica.

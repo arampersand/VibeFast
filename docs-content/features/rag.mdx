@@ -7,12 +7,17 @@ order: 8
 <StackBadge tech={["pgvector", "openai"]} />
 
 <Callout type="info">
-Feature opcional. Documentación completa cuando termine Fase 5.
+Feature opcional — la vas a usar si eliges la receta [Chatbot con RAG](/docs/recetas/chatbot-con-rag).
 </Callout>
 
-Activación: `features.rag: true`. Requiere extensión `pgvector` en Supabase (viene en la migration 005).
+**RAG** (Retrieval-Augmented Generation) significa que la IA busca primero en tus propios documentos y responde usando lo que encontró — en vez de inventar de memoria. Para buscar usa **embeddings**: una forma de convertir texto en números que capturan su significado, de modo que se puede encontrar "lo que se parece" a tu pregunta.
 
-Helpers en `lib/rag/`:
+<Callout type="warning">
+La migración de pgvector y la tabla `documents` **aún no están incluidas** en el boilerplate — llegarán junto con la receta. Hoy `supabase db push` no las crea.
+</Callout>
+
+Cuando la feature esté lista, se activará con `features.rag: true` en `web/config.js`, y los helpers vivirán en `web/lib/rag/`:
+
 - `chunk.js` — split de documentos en pedazos.
 - `embed.js` — embeddings con OpenAI.
 - `retrieve.js` — similarity search en `documents`.

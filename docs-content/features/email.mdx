@@ -8,7 +8,7 @@ order: 3
 
 VibeFast manda emails transaccionales con [Resend](https://resend.com) y
 templates escritos en [React Email](https://react.email). Todo el copy y el
-remitente salen de `config.js`.
+remitente salen de `web/config.js`.
 
 ## Activar
 
@@ -30,11 +30,11 @@ correos. Útil mientras no configuras Resend.
 
 ## Cómo está implementado
 
-- `lib/resend/client.js` — cliente único, devuelve `null` si email está off.
-- `lib/resend/templates/` — componentes React Email:
+- `web/lib/resend/client.js` — cliente único, devuelve `null` si email está off.
+- `web/lib/resend/templates/` — componentes React Email:
   - `WaitlistConfirm` — confirma el alta al waitlist (Sem 1).
   - `Welcome` — bienvenida en el primer login.
-- `lib/resend/send.js` — helpers `sendWaitlistConfirm(to)` y
+- `web/lib/resend/send.js` — helpers `sendWaitlistConfirm(to)` y
   `sendWelcome(to, name)`. Devuelven `{ ok, skipped?, error? }`.
 
 Los envíos se disparan con `after()` de Next (después de responder), así que
@@ -45,8 +45,8 @@ Los envíos se disparan con `after()` de Next (después de responder), así que
 
 ## Agregar un template nuevo
 
-1. Crea `lib/resend/templates/MiTemplate.js` (copia uno existente).
-2. Agrega un helper en `lib/resend/send.js`:
+1. Crea `web/lib/resend/templates/MiTemplate.js` (copia uno existente).
+2. Agrega un helper en `web/lib/resend/send.js`:
    ```js
    import MiTemplate from "@/lib/resend/templates/MiTemplate"
 
@@ -66,11 +66,15 @@ Los envíos se disparan con `after()` de Next (después de responder), así que
 
 ## Webhook de eventos (opcional)
 
-`/api/webhooks/resend` recibe eventos de Resend (`delivered`, `bounced`…).
-Resend los firma con Svix:
+Un **webhook** es una URL de tu app que otro servicio llama automáticamente
+cuando pasa algo. En este caso, `/api/webhooks/resend` recibe eventos de
+Resend (`delivered`, `bounced`…). Resend los firma con Svix:
 
 1. En Resend → Webhooks, apunta a `https://TU-DOMINIO/api/webhooks/resend`.
-2. Copia el signing secret a `web/.env.local`:
+   Aquí tienes que cambiar `TU-DOMINIO` por la URL donde vive tu app: tu URL
+   de Vercel (ej. `tu-producto.vercel.app`) o tu dominio propio.
+2. Copia el signing secret a `web/.env.local` (como cualquier otra
+   [variable de entorno](/docs/setup/variables-de-entorno)):
    ```bash
    RESEND_WEBHOOK_SECRET=whsec_...
    ```
@@ -80,7 +84,7 @@ warning). En producción **siempre** configura el secret.
 
 ## Errores comunes
 
-- **No llega el correo**: revisa que `RESEND_API_KEY` esté en `.env.local` y
+- **No llega el correo**: revisa que `RESEND_API_KEY` esté en `web/.env.local` y
   que `config.email.from` use un dominio verificado (o `onboarding@resend.dev`
   enviando a tu propio correo).
 - **`react` no renderiza**: ya viene `@react-email/components`. No mezcles

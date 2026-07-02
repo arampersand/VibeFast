@@ -6,8 +6,19 @@ order: 1
 
 <StackBadge tech={["openai", "langgraph", "mcp", "auth"]} />
 
+**Necesitas antes:**
+
+- Haber llegado a las **Semanas 4–5** del curso (tool use + agentes).
+- Credenciales OAuth de Google Cloud en `web/.env.local`: `GOOGLE_OAUTH_CLIENT_ID` y `GOOGLE_OAUTH_CLIENT_SECRET` (ver [Variables de entorno](/docs/setup/variables-de-entorno)).
+
+**OAuth** es la forma estándar de darle a una app permiso para usar tu cuenta de otro servicio (aquí: que tu agente pueda leer y mandar correos de tu Gmail) sin entregarle tu contraseña.
+
+<Callout type="warning">
+Estas credenciales son **distintas** de las del login con Google de tu app. Las del login van en el dashboard de Supabase (ver [Login con Google](/docs/setup/google-oauth)); estas van en `web/.env.local` y le dan a tu agente acceso a Gmail.
+</Callout>
+
 <Callout type="info">
-Receta completa disponible cuando termine Fase 4. Inspirada en{" "}
+Receta en construcción — se completará junto con la feature de agentes del boilerplate. Inspirada en{" "}
 <a href="https://auth0.com/blog/genai-tool-calling-build-agent-that-calls-gmail-securely-with-langgraph-vercelai-nextjs/">el post de Auth0 sobre agentes seguros con Gmail</a>.
 </Callout>
 
@@ -29,7 +40,7 @@ Es el patrón completo `tool use + agente + OAuth externo`. Lo que aprendas aqu�
 ## Pasos (preview)
 
 1. Configurar OAuth Gmail en Google Cloud Console.
-2. Guardar tokens en `profiles` (encriptados).
+2. Guardar tokens en `profiles` (encriptados). La columna para guardarlos aún no existe en la tabla — llegará con esta receta.
 3. Registrar tools: `listUnreadEmails`, `readEmail`, `sendReply`.
 4. Armar grafo LangGraph: `fetch → classify → respond → report`.
 5. Exponer la tarea como MCP server o como página.

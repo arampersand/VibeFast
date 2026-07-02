@@ -1,7 +1,7 @@
 ---
 title: Variables de entorno
 description: Las keys que viven en .env.local y de dónde sacarlas.
-order: 3
+order: 4
 ---
 
 Todas las keys del proyecto viven en `web/.env.local` (que **nunca** sube a git). El archivo `web/.env.example` te muestra qué variables necesitas.
@@ -10,10 +10,11 @@ Todas las keys del proyecto viven en `web/.env.local` (que **nunca** sube a git)
 
 | Servicio | Dónde | Paso |
 |----------|-------|------|
-| **Supabase** (URL + anon + service_role) | [dashboard](https://supabase.com/dashboard) | Botón verde **Connect → Next.js**, o **Settings → API**. Detalle en [Quick start · Paso 4](/docs/setup/quick-start). |
+| **Supabase** (URL + anon + service_role) | [dashboard](https://supabase.com/dashboard) | Botón verde **Connect → Next.js**, o **Settings → API**. Detalle en [Supabase paso a paso](/docs/setup/supabase#paso-4--saca-tus-3-keys). |
 | **OpenAI** (`OPENAI_API_KEY`) | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | **Create new secret key** → cópiala (empieza con `sk-`). Solo se muestra una vez. |
 | **Resend** (`RESEND_API_KEY`) | [resend.com/api-keys](https://resend.com/api-keys) | **Create API Key** → cópiala (empieza con `re_`). |
 | **PostHog** (`NEXT_PUBLIC_POSTHOG_KEY`) | [posthog.com](https://posthog.com) | Project Settings → Project API Key (`phc_...`). Opcional. |
+| **Stripe** (`STRIPE_SECRET_KEY` + publishable) | [stripe.com](https://stripe.com) | Developers → API keys. Solo receta SaaS — detalle en [Stripe paso a paso](/docs/setup/stripe). |
 
 <Callout type="info" title="Guárdalas al momento">
 OpenAI y Resend muestran la key **una sola vez**. Cópiala a tu `.env.local` en ese momento; si la pierdes, genera una nueva.
@@ -39,9 +40,14 @@ OPENAI_API_KEY=sk-...                  # OpenAI → API Keys
 
 ```bash
 RESEND_API_KEY=re_...                  # Email transaccional
+RESEND_WEBHOOK_SECRET=whsec_...        # Solo si activas el webhook de Resend (ver docs de Email)
 NEXT_PUBLIC_POSTHOG_KEY=phc_...        # Analytics
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com   # Analytics (default US; solo cámbialo si tu proyecto es de la región EU)
 GOOGLE_OAUTH_CLIENT_ID=...             # Receta agente Gmail
 GOOGLE_OAUTH_CLIENT_SECRET=...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...   # Receta SaaS — ver Stripe paso a paso
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...        # Se crea después del deploy (ver Stripe paso a paso)
 ```
 
 ## En producción (Vercel)

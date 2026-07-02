@@ -7,7 +7,9 @@ order: 10
 <StackBadge tech={["esp", "mcp"]} />
 
 <Callout type="info">
-Documentación completa cuando termine Fase 6.
+Esta feature se activa en las **Semanas 8–9** del curso.
 </Callout>
 
-Activación: `features.hardware: true`. El código de referencia vive en `/firmware/examples/`. Tu web app no necesita cambios — el ESP32 se conecta a `/api/mcp` como cualquier cliente MCP.
+Activación: `features.hardware: true` en `web/config.js`. Los ejemplos de firmware se publicarán en la carpeta `firmware/` antes de la Semana 8 (hoy la carpeta está vacía, en construcción).
+
+Tu web app no necesitará cambios: cuando el servidor MCP del boilerplate esté listo (vivirá en `/api/mcp` — ver [MCP](/docs/features/mcp)), el ESP32 se conectará a él como cualquier otro cliente MCP.

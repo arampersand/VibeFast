@@ -8,10 +8,14 @@ Componentes disponibles dentro de cualquier archivo `.mdx` en `docs-content/`.
 
 ## PromptBox
 
-Bloque copy-paste de un prompt para Cursor.
+Bloque copy-paste de un prompt para Cursor. Acepta una prop opcional `label` para ponerle un título al bloque (útil para distinguir varios prompts en la misma página).
 
 ```mdx
 <PromptBox>
+Tu prompt aquí.
+</PromptBox>
+
+<PromptBox label="Prompt para Cursor (ayuda con el copy)">
 Tu prompt aquí.
 </PromptBox>
 ```
@@ -46,8 +50,15 @@ Chips de tecnologías.
 
 ## VideoLoom
 
-Embed de Loom — pasa el URL share, lo convierte a embed.
+Embed de Loom. Props:
+
+- `url` (opcional) — el link *share* de Loom (`https://www.loom.com/share/...`); el componente lo convierte a embed solo. Si **no** pasas `url`, en vez del video se muestra un placeholder que dice *"[ Video pendiente · grábalo con Loom ]"* — por eso es válido usarlo sin `url` mientras el video no existe.
+- `title` (opcional) — título accesible del iframe. Default: `"Video del docente"`.
 
 ```mdx
 <VideoLoom url="https://www.loom.com/share/XXXX" title="Mi video" />
+
+<VideoLoom title="Video de la semana" />
 ```
+
+El segundo (sin `url`) muestra el placeholder de video pendiente.

@@ -1,0 +1,100 @@
+---
+title: Login con Google (paso a paso)
+description: Configura Google Cloud + Supabase para que tus usuarios entren con su cuenta de Google.
+order: 5
+---
+
+<StackBadge tech={["supabase", "auth"]} />
+
+Al final de esta página vas a tener:
+
+- ✅ Credenciales OAuth creadas en Google Cloud.
+- ✅ El provider de Google activado en Supabase.
+- ✅ El botón **"Entrar con Google"** funcionando en tu app.
+
+**Cuándo lo necesitas:** Semana 2 (cuando tu MVP agrega usuarios). No hace falta antes.
+
+Todo esto se hace **con clicks en dos dashboards** (Google Cloud y Supabase) — no vas a tocar código, salvo un prompt al final.
+
+## Antes de empezar
+
+- Tu proyecto de Supabase ya creado ([Supabase paso a paso](/docs/setup/supabase)).
+- Una cuenta de Google (la misma de tu Gmail sirve).
+
+<Callout type="info" title="¿Esto no es lo mismo que el agente de Gmail?">
+No. Estas credenciales son para que **los usuarios de tu app entren con Google**, y se pegan en el **dashboard de Supabase**. La receta del [agente de Gmail](/docs/recetas/agente-gmail) usa otras credenciales que van en `web/.env.local`. Son dos cosas distintas — no las mezcles.
+</Callout>
+
+## Parte 1 · Copia tu URL de callback desde Supabase
+
+Google necesita saber a qué dirección devolver al usuario después del login. Esa dirección te la da Supabase:
+
+1. Abre tu proyecto en [supabase.com/dashboard](https://supabase.com/dashboard).
+2. Menú izquierdo → **Authentication** → **Providers** (a veces se llama *Sign In / Providers*).
+3. Haz click en **Google** para expandirlo.
+4. Ahí aparece el campo **Callback URL (for OAuth)**. Haz click en el botón de copiar.
+
+Se ve así:
+
+```
+https://<tu-proyecto>.supabase.co/auth/v1/callback
+```
+
+<Callout type="danger" title="Aquí tienes que usar TU URL, no la de arriba">
+La de arriba es un ejemplo — `<tu-proyecto>` es el identificador único de tu proyecto. **No la escribas a mano**: cópiala del dashboard con el botón de copiar del paso 4 y déjala en un bloc de notas, la vas a pegar en Google en un momento.
+</Callout>
+
+## Parte 2 · Crea las credenciales en Google Cloud
+
+1. Entra a [console.cloud.google.com](https://console.cloud.google.com) con tu cuenta de Google.
+2. Arriba a la izquierda, junto al logo, hay un selector de proyectos → **New project**. Ponle el nombre de tu producto y créalo. Espera unos segundos y **selecciónalo** (verifica que su nombre aparezca arriba).
+3. En el buscador de arriba escribe **"OAuth consent screen"** (pantalla de consentimiento) y entra.
+   - Tipo de usuario: **External** → **Create**.
+   - Llena solo lo obligatorio: nombre de la app (el de tu producto), tu email de soporte y tu email de contacto. Todo lo demás déjalo vacío. **Save and continue** hasta terminar (los *scopes* — los permisos que tu app le pide al usuario — déjalos como vienen).
+   - Si te pregunta por **Test users**, agrega tu propio email — mientras la app esté "en pruebas", solo los emails de esa lista pueden hacer login.
+4. En el buscador escribe **"Credentials"** (credenciales) y entra.
+5. **+ Create credentials** → **OAuth client ID**.
+   - Application type: **Web application**.
+   - Name: el que quieras (ej. "mi-producto-web").
+   - En **Authorized redirect URIs** → **+ Add URI** → **pega la Callback URL de Supabase** que copiaste en la Parte 1.
+   - **Create**.
+6. Te aparece una ventana con tu **Client ID** y tu **Client Secret**. Cópialos los dos (también quedan guardados en Credentials por si cierras la ventana).
+
+<Callout type="warning" title="Google mueve los menús seguido">
+Si un menú no se llama exactamente como aquí, usa el **buscador de arriba de la consola** — escribe "OAuth" y te lleva. Los pasos son los mismos aunque el menú cambie de nombre.
+</Callout>
+
+## Parte 3 · Pega las credenciales en Supabase
+
+De vuelta en el dashboard de Supabase (donde estabas en la Parte 1):
+
+1. **Authentication** → **Providers** → **Google**.
+2. Activa el switch **Enable Sign in with Google**.
+3. Pega el **Client ID** y el **Client Secret** en sus campos.
+4. **Save**.
+
+## Parte 4 · Activa el login en tu app
+
+Esta es la única parte que toca código — y la hace tu IA. Pega esto en Cursor:
+
+<PromptBox label="Prompt para Cursor">
+Activa el login con Google en mi proyecto VibeFast: pon features.googleAuth en true en web/config.js y verifica que la pantalla /login muestre el botón de "Entrar con Google". No cambies nada más.
+</PromptBox>
+
+## Checkpoint
+
+<Checkpoint>
+Corre `yarn dev`, abre `http://localhost:3000/login` y haz click en **Entrar con Google**. Deberías poder elegir tu cuenta y volver a la app con la sesión iniciada.
+
+¿Te sale **"Error 400: redirect_uri_mismatch"**? → La URI que pegaste en Google (Parte 2, paso 5) no es exactamente la Callback URL de Supabase. Revísala carácter por carácter — sin espacios ni barra final de más.
+
+¿Te sale **"access_denied"** o "app no verificada"? → Tu app sigue en modo pruebas y ese email no está en Test users (Parte 2, paso 3). Agrégalo.
+</Checkpoint>
+
+## Cuando hagas deploy
+
+El login va a funcionar en `localhost`, pero para que funcione en tu URL pública tienes que decírselo a Supabase:
+
+- **Authentication** → **URL Configuration** → en **Site URL** pon la URL de tu deploy (la de Vercel o tu dominio propio) y agrégala también en **Redirect URLs**.
+
+El detalle de esto está en [Supabase en producción](/docs/deploy/supabase-produccion).

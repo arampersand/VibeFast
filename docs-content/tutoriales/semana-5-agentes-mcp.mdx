@@ -9,22 +9,22 @@ order: 5
 **3 – 5 ago 2026 · Técnico**
 
 <Callout type="info">
-Esta página se completa cuando termine <strong>Fase 4</strong> del boilerplate (Agentes + MCP).
+Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 5 — por ahora es un adelanto de lo que vas a construir.
 </Callout>
 
 ## Qué vas a tener al final
 
 - ✅ Un agente LangGraph que resuelve una tarea de tu producto en múltiples pasos.
 - ✅ El mismo registry de tools expuesto como servidor MCP (`/api/mcp`).
-- ✅ Evals básicas: medir si el agente funciona y no empeora con cada cambio.
-- ✅ Observabilidad: ver qué hizo el agente y por qué.
+- ✅ Evals básicas — pruebas automáticas que miden si el agente funciona y no empeora con cada cambio.
+- ✅ Observabilidad — poder ver, paso a paso, qué hizo el agente y por qué.
 
 ## Concepto: MCP
 
 MCP (Model Context Protocol) es un **estándar abierto** para conectar IA con herramientas y datos. En VibeFast lo usamos doble:
 
 - Tu app **expone** sus tools vía MCP (`/api/mcp`) — Claude Desktop, otros clientes pueden usar tu producto como tool.
-- Tu app **consume** MCPs externos — Gmail, Notion, ESP-Claw del Módulo 3.
+- Tu app **consume** MCPs externos — Gmail, Notion, ESP-Claw del [módulo de hardware (Semanas 8–9)](/docs/tutoriales/semana-8-hardware-fundamentos).
 
 ## Pasos (preview)
 

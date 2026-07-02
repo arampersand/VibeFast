@@ -1,0 +1,107 @@
+---
+title: Stripe paso a paso (pagos)
+description: Crea tu cuenta, tu producto y tus keys de Stripe para cobrar suscripciones.
+order: 6
+---
+
+<StackBadge tech={["next"]} />
+
+**Stripe** es el servicio que cobra por ti: tarjetas, suscripciones, recibos. Tu app le dice "cóbrale a este usuario el plan Pro" y Stripe se encarga del resto.
+
+**Cuándo lo necesitas:** solo si vas a hacer la receta [SaaS con suscripción](/docs/recetas/saas-con-suscripcion). Es opcional y está fuera del temario base — si tu producto no cobra suscripciones, sáltate esta página completa.
+
+Al final vas a tener:
+
+- ✅ Cuenta de Stripe en **modo test** (cobras con tarjetas de prueba, sin dinero real).
+- ✅ Tu producto y su precio creados, con el `price ID` copiado.
+- ✅ Tus keys en `web/.env.local`.
+- ✅ El prompt para que tu IA construya el checkout.
+
+<Callout type="warning" title="El código de cobro lo construye tu IA">
+El boilerplate trae el toggle `features.payments` y el lugar para el `stripePriceId` en `web/config.js`, pero **el módulo de cobro (checkout + webhook) no viene pre-armado** — lo construye Cursor con el prompt del final de esta página. Esta guía cubre la parte que la IA no puede hacer por ti: los clicks en el dashboard de Stripe.
+</Callout>
+
+## Paso 1 · Crea tu cuenta
+
+1. Entra a [stripe.com](https://stripe.com) → **Start now** y regístrate con tu email.
+2. Verifica tu email. **No necesitas** activar los cobros reales (datos bancarios, empresa, etc.) para el curso — con el modo test basta.
+
+## Paso 2 · Asegúrate de estar en modo Test
+
+Arriba a la derecha del dashboard hay un switch **Test mode** — actívalo (se pone naranja). Todo el curso trabajas en test:
+
+- Los cobros se hacen con **tarjetas de prueba** — la clásica es `4242 4242 4242 4242` (cualquier fecha futura y cualquier CVC).
+- No se mueve dinero real, ni tuyo ni de nadie.
+
+## Paso 3 · Crea tu producto y su precio
+
+1. Menú izquierdo → **Product catalog** (o busca "Products" en el buscador de arriba).
+2. **+ Add product**.
+3. **Name**: el nombre de tu plan de pago (ej. "Pro" — el mismo que tienes en la sección `pricing` de `web/config.js`).
+4. En **Price**: pon el monto mensual (ej. `9.99`), moneda **USD**, y asegúrate de que diga **Recurring → Monthly** (es una suscripción, no un pago único).
+5. **Add product**.
+6. Haz click en el producto que acabas de crear → en la sección de precios, haz click en el precio → arriba verás el **ID del precio**. Cópialo.
+
+Se ve así:
+
+```
+price_1QAbCdEfGhIjKlMn
+```
+
+<Callout type="danger" title="Ese ID es un ejemplo — copia el TUYO">
+Cada precio que creas tiene su propio ID que empieza con `price_`. Cópialo del dashboard con el botón de copiar. Ojo: es el ID del **precio** (`price_...`), no el del producto (`prod_...`).
+</Callout>
+
+## Paso 4 · Pega el price ID en tu config
+
+Abre `web/config.js` y en `pricing.plans`, dentro del plan de pago, pega tu ID en el campo `stripePriceId`. También activa el cobro: `features.payments: true`. Si prefieres que lo haga la IA:
+
+<PromptBox label="Prompt para Cursor">
+En web/config.js: pon features.payments en true, y en pricing.plans pon stripePriceId: "\{pega aquí tu price ID}" en el plan Pro. No cambies nada más.
+</PromptBox>
+
+## Paso 5 · Saca tus keys
+
+1. Menú izquierdo → **Developers** → **API keys** (o busca "API keys" arriba).
+2. Ahí hay dos keys de test:
+   - **Publishable key** — empieza con `pk_test_...`. Es pública.
+   - **Secret key** — empieza con `sk_test_...`. Haz click en **Reveal** y cópiala. Es secreta: nunca la subas a git.
+3. Agrégalas a `web/.env.local`:
+
+```bash
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+```
+
+## Paso 6 · Deja que tu IA construya el cobro
+
+Con las keys en su lugar, pega esto en Cursor:
+
+<PromptBox label="Prompt para Cursor">
+Implementa suscripciones con Stripe en mi proyecto VibeFast (Next.js App Router, la app vive en web/):
+1. Un endpoint de checkout que cree una Stripe Checkout Session en modo suscripción usando el stripePriceId de web/config.js (pricing.plans) y STRIPE_SECRET_KEY de web/.env.local.
+2. Un webhook en web/app/api/webhooks/stripe/route.js que escuche checkout.session.completed y customer.subscription.deleted, verifique la firma con STRIPE_WEBHOOK_SECRET, y guarde el estado de la suscripción del usuario en Supabase.
+3. Un helper hasActiveSubscription(user) en web/lib/ para saber si el usuario tiene suscripción activa y mostrar u ocultar features según su plan.
+4. Conecta el botón del plan Pro de la landing al checkout.
+Usa la versión más reciente del SDK de Stripe. Explícame qué archivos creaste al final.
+</PromptBox>
+
+## Paso 7 · El webhook (cuando ya tengas deploy)
+
+El **webhook** es la URL de tu app que Stripe llama automáticamente cuando pasa algo (ej. un pago exitoso). Para que Stripe pueda llamarla, tu app necesita estar **deployada** (una URL pública — la de Vercel sirve):
+
+1. En Stripe: **Developers** → **Webhooks** → **+ Add endpoint**.
+2. **Endpoint URL**: `https://TU-URL/api/webhooks/stripe` — aquí tienes que cambiar `TU-URL` por la URL de tu deploy (ej. `tu-producto.vercel.app` o tu dominio propio).
+3. En **Select events**, elige `checkout.session.completed` y `customer.subscription.deleted`.
+4. **Add endpoint** → en la pantalla del webhook, copia el **Signing secret** (empieza con `whsec_...`).
+5. Agrégalo como `STRIPE_WEBHOOK_SECRET` en `web/.env.local` **y también en Vercel** (Settings → Environment Variables), y redeploya.
+
+## Checkpoint
+
+<Checkpoint>
+✅ En tu landing, el botón del plan Pro te lleva a una pantalla de pago de Stripe.
+✅ Pagas con la tarjeta de prueba `4242 4242 4242 4242` y el checkout termina bien.
+✅ En el dashboard de Stripe (modo test) → **Payments**, aparece el cobro de prueba.
+
+¿El checkout da error? Copia el mensaje exacto y pégaselo a Cursor con contexto: "configuré Stripe siguiendo la guía y al pagar me sale este error: ...".
+</Checkpoint>

@@ -1,6 +1,6 @@
 ---
 title: Errores comunes
-description: Los 20 errores que vas a encontrar (y cómo resolverlos).
+description: Los errores más comunes del curso y cómo salir de cada uno.
 order: 1
 ---
 
@@ -47,11 +47,19 @@ Cierra y reabre la terminal, y reintenta.
 **Fix**: revisa tu internet y reintenta `yarn install`. Si sigue, limpia caché: `yarn cache clean` y reintenta.
 
 ### Paquetes corruptos / lockfile inconsistente
-**Síntoma**: errores raros de módulos tras un install a medias.
+**Síntoma**: errores raros de módulos tras un install a medias. (El *lockfile* — `yarn.lock` — es la lista exacta de versiones que usa el proyecto; si queda a medias, se confunde.)
 
-**Fix (reinstalación limpia)**:
+**Fix (reinstalación limpia)** — borra la carpeta de paquetes y reinstala.
+
+En Mac:
 ```bash
 rm -rf node_modules
+yarn install
+```
+
+En Windows (PowerShell):
+```powershell
+Remove-Item -Recurse -Force node_modules
 yarn install
 ```
 
@@ -83,16 +91,16 @@ Copia el error **completo** y pégaselo a Cursor pidiendo el fix paso a paso. C�
 
 ## Supabase devuelve `JWT expired`
 
-**Síntoma**: peticiones del cliente fallan con 401 después de un rato.
+**Síntoma**: peticiones del cliente fallan con 401 después de un rato. (`JWT expired` significa que tu sesión de login caducó y no se renovó sola.)
 
-**Causa**: el middleware no está refrescando la sesión.
+**Causa**: el *middleware* (un archivo que se ejecuta antes de cada página y, entre otras cosas, renueva tu sesión) no está refrescando la sesión.
 
-**Fix**: revisa que `web/middleware.js` esté implementado (Fase 1) y no sea el stub.
+**Fix**: revisa que `web/middleware.js` exista y esté completo. Si no sabes cómo, pega el error en Cursor y pide que revise ese archivo.
 
 ## El waitlist no guarda emails
 
-**Síntoma**: signups exitosos en UI pero no aparecen en Supabase.
+**Síntoma**: el formulario responde "¡listo!" pero los emails no aparecen en Supabase.
 
-**Causa probable (Fase 0)**: estamos en stub que solo loggea.
+**Causa**: es lo esperado por ahora — el formulario hoy responde pero **aún no guarda en la base de datos**. El guardado llega en la **Semana 2**, cuando conectes la base de datos.
 
-**Fix**: espera a Fase 1 del boilerplate o revisa logs del servidor (`console.log` del stub).
+**Fix**: nada que arreglar todavía. Si ya estás en Semana 2+ y sigue sin guardar, revisa que hayas subido el schema a Supabase y pega el problema en Cursor.

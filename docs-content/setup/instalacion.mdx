@@ -9,7 +9,7 @@ order: 0
 Esta es la checklist de todo lo que necesitas **antes de clonar el repo** (eso lo haces en el [Quick start](/docs/setup/quick-start)). Marca cada casilla; cuando estén todas, estás listo para clonar.
 
 <Callout type="success" title="¿Ya pasaste por Fundamentos?">
-Si ya seguiste [Prepara tu compu](/docs/fundamentos/prepara-tu-compu), ya deberías tener instalados **Node, yarn, Git y Cursor** (y Homebrew/Supabase CLI si aplica) — no hace falta reinstalar nada. Esta página es solo para confirmar que no te falta nada suelto (sobre todo las cuentas) antes de arrancar el Quick start.
+Si ya seguiste [Prepara tu compu](/docs/fundamentos/prepara-tu-compu), ya deberías tener instalados **Node, yarn, Git, Supabase CLI y Cursor** (y Homebrew si estás en Mac) — no hace falta reinstalar nada. Esta página es solo para confirmar que no te falta nada suelto (sobre todo las cuentas) antes de arrancar el Quick start.
 </Callout>
 
 Si prefieres el recorrido guiado paso a paso, ve directo a [Quick start](/docs/setup/quick-start). Esta página es la **lista de verificación** para tenerlo todo a la mano.
@@ -24,7 +24,7 @@ Los pasos exactos cambian según tu equipo. Sigue la guía por sistema operativo
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
-- [ ] **Node 20 o 22 LTS** — [nodejs.org](https://nodejs.org) (versión **par**/LTS). En Mac con Homebrew: `brew install node`. El repo trae un `.nvmrc`: con [nvm](https://github.com/nvm-sh/nvm) corre `nvm use`.
+- [ ] **Node 20 o 22 LTS** — [nodejs.org](https://nodejs.org) (versión **par**/LTS). En Mac con Homebrew: `brew install node`. *(Opcional, avanzado: [nvm](https://github.com/nvm-sh/nvm) es un programa para tener varias versiones de Node y cambiar entre ellas; el repo trae un archivo `.nvmrc` que le dice cuál usar — con nvm instalado, corre `nvm use`.)*
 - [ ] **yarn 1.x** — después de instalar Node: `npm install -g yarn` (en Mac, si falla por permisos: `sudo npm install -g yarn`).
 - [ ] **Supabase CLI** — para subir la base de datos: `npm install -g supabase` (Mac: `brew install supabase/tap/supabase`).
 - [ ] **Git** — normalmente ya viene; verifica con `git --version`.

@@ -9,7 +9,7 @@ order: 3
 **20 – 22 jul 2026 · Técnico**
 
 <Callout type="info">
-Esta página se completa cuando termine <strong>Fase 3</strong> del boilerplate (Capa AI). Por ahora muestra el contrato.
+Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 3 — por ahora es un adelanto de lo que vas a construir.
 </Callout>
 
 ## Qué vas a tener al final
@@ -20,7 +20,7 @@ Esta página se completa cuando termine <strong>Fase 3</strong> del boilerplate 
 
 ## Concepto: structured outputs
 
-En vez de pedirle al modelo "responde en formato JSON" (y esperar a que cumpla), le **das un schema con Zod** y la API garantiza que el JSON cumple ese schema. Cambia todo: el modelo ya no es una caja negra, es una función con tipos.
+En vez de pedirle al modelo "responde en formato JSON" (y esperar a que cumpla), le **das un schema con Zod** — o sea, un molde que describe exactamente qué campos debe traer la respuesta — y la API garantiza que el JSON cumple ese molde. Cambia todo: el modelo ya no es una caja negra, es una función con tipos.
 
 ```js
 import { z } from "zod"
@@ -38,10 +38,10 @@ const resultado = await generateObject(schema, "Analiza este review: ...")
 
 ## Pasos (preview)
 
-1. Agregar `OPENAI_API_KEY` a `.env.local`.
+1. Agregar `OPENAI_API_KEY` a `web/.env.local`. La key la creas en [platform.openai.com](https://platform.openai.com) → **API keys** — y necesitas saldo cargado en tu cuenta de OpenAI (ver [Setup → Cuentas](/docs/setup/cuentas)).
 2. Importar el helper `generateObject`.
 3. Definir el schema Zod de lo que quieres devolver.
-4. Llamar desde un Server Action o API route.
+4. Llamarla desde el backend — la IA (Cursor) elige el lugar correcto del código por ti.
 5. Renderizar el resultado en una página.
 
 ## Entregable

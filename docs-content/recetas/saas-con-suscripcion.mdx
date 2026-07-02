@@ -6,18 +6,22 @@ order: 3
 
 <StackBadge tech={["next", "supabase"]} />
 
+**Necesitas antes:**
+
+- Haber llegado a la **Semana 2** del curso (login + base de datos funcionando).
+- Tu cuenta de Stripe con producto, precio y keys listos — el click-por-click está en [Stripe paso a paso](/docs/setup/stripe).
+
 <Callout type="info">
-Receta opcional, fuera del temario base. Disponible cuando se active el módulo Stripe.
+Receta opcional, fuera del temario base. El código del cobro lo construye tu IA — el prompt está en la guía de Stripe.
 </Callout>
 
 ## Qué construyes
 
-Un SaaS donde los usuarios pagan suscripción mensual para acceder a tu producto. Stripe maneja el cobro; tu app gatea features por plan.
+Un SaaS donde los usuarios pagan suscripción mensual para acceder a tu producto. Stripe maneja el cobro; tu app desbloquea features según el plan de cada usuario.
 
-## Pasos (preview)
+## Pasos
 
-1. Activar `features.payments: true`.
-2. Configurar productos en Stripe Dashboard.
-3. Pegar `stripePriceId` en cada plan de `config.pricing.plans`.
-4. Implementar checkout y webhook.
-5. Gatear rutas/features con un helper `hasActiveSubscription(user)`.
+1. Sigue [Stripe paso a paso](/docs/setup/stripe): crear la cuenta, el producto con su precio, y copiar tus keys a `web/.env.local`. Ahí mismo activas `features.payments: true` y pegas el `stripePriceId` en tu plan de `web/config.js`.
+2. Deja que tu IA construya el checkout y el webhook con el prompt del **Paso 6** de esa guía (un **webhook** es una URL de tu app que otro servicio — aquí Stripe — llama automáticamente cuando pasa algo, por ejemplo un pago exitoso).
+3. Cuando tengas deploy, registra el webhook en Stripe (**Paso 7** de la guía).
+4. Prueba el flujo completo con la tarjeta de prueba `4242 4242 4242 4242`: pagar → volver a tu app → ver las features de plan Pro desbloqueadas.

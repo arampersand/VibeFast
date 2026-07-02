@@ -7,7 +7,7 @@ order: 2
 <StackBadge tech={["supabase", "postgres", "pgvector"]} />
 
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 1.
+La base de datos se configura en la **Semana 2** del curso (el schema ya viene listo — solo corres `supabase db push`).
 </Callout>
 
 ## Tablas pre-construidas
@@ -20,7 +20,10 @@ Documentación completa disponible cuando termine Fase 1.
 | `ai_conversations` | Historial de chat | 3+ |
 | `ai_messages` | Mensajes individuales | 3+ |
 | `tool_calls` | Auditoría de tool use | 4–5 |
-| `documents` | RAG con embeddings vector(1536) | Opcional |
 | `events` | Analytics fallback | Opcional |
 
-Todas con **Row Level Security (RLS) estricta** — un usuario solo ve sus propias filas.
+<Callout type="warning">
+La tabla `documents` (RAG con embeddings) **aún no está incluida** en las migraciones — llegará junto con la receta de [Chatbot con RAG](/docs/recetas/chatbot-con-rag). `supabase db push` hoy no la crea.
+</Callout>
+
+Todas con **Row Level Security (RLS) estricta** — cada usuario solo puede ver y tocar sus propias filas, y la base de datos lo garantiza sola (aunque tu código tenga un bug, nadie ve datos ajenos).

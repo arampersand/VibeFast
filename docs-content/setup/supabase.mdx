@@ -1,0 +1,97 @@
+---
+title: Supabase paso a paso
+description: Crea tu cuenta, tu proyecto y saca tus keys — todo con clicks, antes de tocar código.
+order: 1
+---
+
+<StackBadge tech={["supabase"]} />
+
+**Supabase** es donde vive tu base de datos y el login de tus usuarios, en la nube. Antes de correr el proyecto necesitas tener esto listo — y todo se hace con clicks en su página, sin código.
+
+Al final de esta página vas a tener:
+
+- ✅ Tu cuenta de Supabase creada.
+- ✅ Un proyecto creado y encendido (tu base de datos viva en la nube).
+- ✅ Tus **3 keys** copiadas y a la mano.
+- ✅ Ubicación básica en el dashboard (qué es cada sección).
+
+**Tiempo estimado: 10 minutos.**
+
+## Paso 1 · Crea tu cuenta
+
+1. Entra a [supabase.com](https://supabase.com) → **Start your project**.
+2. Haz click en **Continue with GitHub** (usa la misma cuenta de GitHub del curso — así no acumulas contraseñas).
+3. Autoriza el acceso y listo.
+
+## Paso 2 · Crea tu proyecto
+
+1. En el dashboard ([supabase.com/dashboard](https://supabase.com/dashboard)) → **New project**.
+2. Si te pide una **Organization**, crea una con cualquier nombre (es solo una carpeta para tus proyectos).
+3. **Project name**: el nombre de tu producto.
+4. **Database Password**: Supabase te pide definir una contraseña para tu base de datos. Usa el botón **Generate a password** y **guárdala en un lugar seguro** (un gestor de contraseñas o una nota) — la terminal te la puede pedir más adelante y no se puede ver después, solo resetear.
+5. **Region**: elige la más cercana a tus usuarios (`South America (São Paulo)` o `US East`).
+6. **Create new project**. Tarda 1–2 minutos en quedar listo (a esto le llaman *provisionar*) — la pantalla te avisa.
+
+<Callout type="warning" title="La contraseña de la base de datos NO es tu contraseña de Supabase">
+Son dos cosas distintas: con GitHub entras al dashboard; la **Database Password** es la llave de la base de datos en sí, y te la pedirá el comando `supabase link` cuando conectes el proyecto desde tu compu. Si la pierdes: **Project Settings → Database → Reset database password**.
+</Callout>
+
+## Paso 3 · Ubícate en el dashboard
+
+No necesitas dominarlo hoy, pero estas 4 secciones (menú izquierdo) son las que vas a usar durante el curso:
+
+| Sección | Icono/nombre | Para qué sirve |
+|---------|--------------|----------------|
+| **Table Editor** | tabla | Ver y editar los datos de tus tablas, como si fuera Excel. Aquí verificas que todo se guardó. |
+| **SQL Editor** | terminal | Correr consultas directamente en la base. Lo usarás poco — tu IA escribe el SQL. |
+| **Authentication** | candado | Tus usuarios registrados y los providers de login (aquí activarás [Google](/docs/setup/google-oauth) en Sem 2). |
+| **Project Settings** | engrane (abajo) | Las keys, la contraseña de la base y la configuración general. |
+
+## Paso 4 · Saca tus 3 keys
+
+Tu app necesita **3 valores** para hablar con Supabase. Cópialos a un bloc de notas — los vas a pegar en `web/.env.local` durante el [Quick start](/docs/setup/quick-start).
+
+**`NEXT_PUBLIC_SUPABASE_URL`** y **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — la forma rápida:
+
+1. Abre tu proyecto en el dashboard y haz click en el **botón verde `Connect`** (arriba, junto al nombre del proyecto).
+2. Pestaña **App Frameworks** → **Next.js**: ahí ves las dos, ya con su nombre. Cópialas.
+
+*Alternativa:* engrane **Project Settings** (abajo-izquierda) → **API**. Ahí está **Project URL** (= `NEXT_PUBLIC_SUPABASE_URL`) y, en **Project API keys**, la **anon public** (= `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
+
+**`SUPABASE_SERVICE_ROLE_KEY`** (la secreta):
+
+- **Project Settings → API → Project API keys → `service_role`** (dice *secret*). Haz click en **Reveal** y cópiala.
+
+<Callout type="info" title="¿Cómo se ve cada valor?">
+La **URL** termina en `.supabase.co` (ej. `https://abcd1234.supabase.co`). Las dos **keys** son cadenas largas que empiezan con `eyJ...`.
+</Callout>
+
+<Callout type="warning" title="La service_role es secreta">
+Es la llave maestra de tu base de datos. Nunca la subas a git, nunca la pegues en el navegador ni la compartas. La `anon` sí es pública (por eso lleva `NEXT_PUBLIC_`).
+</Callout>
+
+## Paso 5 · Sube las tablas (esto se hace después, con el repo)
+
+El schema (las tablas pre-armadas del boilerplate) se sube desde tu computadora **cuando ya clonaste el repo** — es el [Paso 6 del Quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase). Los comandos son:
+
+```bash
+supabase login
+supabase link --project-ref <tu-project-ref>
+supabase db push
+```
+
+<Callout type="danger" title="Aquí tienes que cambiar <tu-project-ref>">
+Es el identificador de tu proyecto: está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF` — esa parte final) o en **Project Settings → General → Reference ID**. Si `supabase link` te pide contraseña, es la **Database Password** del Paso 2.
+</Callout>
+
+**Cómo verificar que funcionó:** abre **Table Editor** en el dashboard. Deberías ver las tablas del boilerplate: `profiles`, `waitlist`, `core_items`, `ai_conversations`, `ai_messages`, `tool_calls`, `events`. Si aparecen, tu base está lista.
+
+## Checkpoint
+
+<Checkpoint>
+✅ Entras a [supabase.com/dashboard](https://supabase.com/dashboard) y ves tu proyecto con estado activo (verde).
+✅ Tienes tus 3 keys copiadas en un lugar a la mano.
+✅ Guardaste la Database Password en un lugar seguro.
+
+Con eso estás listo para el [Quick start](/docs/setup/quick-start). El Paso 5 (subir tablas) lo harás desde ahí.
+</Checkpoint>

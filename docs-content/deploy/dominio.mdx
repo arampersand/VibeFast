@@ -6,11 +6,11 @@ order: 3
 
 1. En Vercel → Project → Settings → Domains → Add.
 2. Pega tu dominio (`miproducto.com`).
-3. Vercel te da registros DNS (A o CNAME). Cópialos en tu proveedor (Namecheap, Google Domains, Cloudflare).
-4. Espera 5–60 min a que propague.
-5. Actualiza `config.app.domain` y `NEXT_PUBLIC_APP_URL`.
+3. Vercel te da registros **DNS** para copiar (DNS es la libreta de direcciones de internet: le dice al mundo a qué servidor apunta tu dominio). Pueden ser un registro **A** (apunta tu dominio a una dirección IP) o un **CNAME** (apunta tu dominio a otro dominio, como el de Vercel). Cópialos en tu proveedor (Namecheap, Cloudflare, Porkbun).
+4. Espera 5–60 min a que **propague** (que los servidores de internet alrededor del mundo se enteren del cambio — no es instantáneo).
+5. Actualiza `config.app.domain` (en el archivo `web/config.js`) y `NEXT_PUBLIC_APP_URL`.
 6. Re-deploya.
 
 <Callout type="info">
-También actualiza Supabase Auth Site URL y Redirect URLs para que apunten a tu nuevo dominio.
+También actualiza Supabase Auth Site URL y Redirect URLs para que apunten a tu nuevo dominio — el paso a paso está en [Supabase en producción](/docs/deploy/supabase-produccion).
 </Callout>

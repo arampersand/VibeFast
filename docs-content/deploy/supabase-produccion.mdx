@@ -7,19 +7,23 @@ order: 2
 <StackBadge tech={["supabase"]} />
 
 <Callout type="info">
-Página completa cuando termine Fase 1.
+Página en construcción — los pasos finales se publican antes de que la necesites (deploy con auth, Sem 2+).
 </Callout>
 
 ## Aplicar migrations
 
 ```bash
-npx supabase link --project-ref <tu-ref>
-npx supabase db push
+supabase link --project-ref <tu-project-ref>
+supabase db push
 ```
+
+Aquí `<tu-project-ref>` es el identificador de tu proyecto: está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**.
 
 ## Configurar redirect URLs
 
 En Supabase → Authentication → URL Configuration:
 
 - **Site URL**: tu URL de Vercel (`https://<tu-producto>.vercel.app` o tu dominio).
-- **Redirect URLs**: agrega `https://<tu-producto>.vercel.app/api/auth/callback`.
+- **Redirect URLs**: agrega `https://<tu-producto>.vercel.app/auth/callback`.
+
+En los dos, cambia `https://<tu-producto>.vercel.app` por la URL real que te dio Vercel al deployar (o tu dominio propio si ya lo conectaste).

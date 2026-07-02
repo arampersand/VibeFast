@@ -12,20 +12,24 @@ order: 1
 2. **Root Directory**: `web` (obligatorio porque es monorepo).
 3. Framework: Next.js (autodetectado).
 4. Build command: `yarn build` (autodetectado).
-5. Install command: `yarn install` desde la raíz del monorepo.
+5. Install command: `yarn install` desde la raíz del monorepo — Vercel lo autodetecta, no hay que tocarlo.
 
 ## Variables de entorno
 
-Settings → Environment Variables. Agrega todas las de tu `web/.env.local`. Marca scope:
+Settings → Environment Variables. Agrega todas las de tu `web/.env.local` — mínimo estas **4**: las 3 de Supabase + `NEXT_PUBLIC_APP_URL`. (Agregarlas durante el import, como en el [Quick start · Paso 9](/docs/setup/quick-start), o después en Settings → Environment Variables da igual: es el mismo lugar.) Marca scope:
 
 - `Production` — para tu URL principal.
 - `Preview` — para PRs.
 - `Development` — para `vercel dev` local.
 
+<Callout type="warning" title="NEXT_PUBLIC_APP_URL NO es localhost">
+En Vercel, `NEXT_PUBLIC_APP_URL` debe ser la **URL de tu deploy** (ej. `https://tu-producto.vercel.app` o tu dominio), no `http://localhost:3000`. Si no la sabías al importar, actualízala después del primer deploy y redeploya.
+</Callout>
+
 ## Deploys automáticos
 
 Cada `git push` a `main` deploya a producción. Cada PR genera un preview con URL única.
 
-<Callout type="warning" title="Cambios en config.js requieren redeploy">
-Como `config.js` se evalúa en build, cambiarlo en local no afecta producción hasta el siguiente push.
+<Callout type="warning" title="Cambios en web/config.js requieren redeploy">
+Como `web/config.js` se evalúa en build, cambiarlo en local no afecta producción hasta el siguiente push.
 </Callout>

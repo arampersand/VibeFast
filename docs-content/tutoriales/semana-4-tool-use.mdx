@@ -9,27 +9,27 @@ order: 4
 **27 – 29 jul 2026 · Técnico**
 
 <Callout type="info">
-Esta página se completa cuando termine <strong>Fase 3</strong> del boilerplate.
+Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 4 — por ahora es un adelanto de lo que vas a construir.
 </Callout>
 
 ## Qué vas a tener al final
 
 - ✅ Una tool propia registrada en el registry.
 - ✅ El modelo decide cuándo llamarla y con qué argumentos.
-- ✅ Auditoría: cada tool call queda guardada en `tool_calls`.
-- ✅ Un flujo `recuperar → decidir → actuar` con LangGraph.
+- ✅ Auditoría: cada tool call queda guardada en la tabla `tool_calls` (ya la creó tu `supabase db push` de la [Semana 2](/docs/tutoriales/semana-2-mvp)).
+- ✅ Un flujo `recuperar → decidir → actuar` con [LangGraph](/docs/features/agentes-langgraph) — una librería para encadenar pasos de IA, como un diagrama de flujo que el modelo recorre.
 
 ## Concepto: tool use
 
 Tool use es darle al modelo una lista de **funciones que puede invocar**. El modelo decide cuándo llamarlas y con qué argumentos; tú ejecutas la función y le devuelves el resultado. El loop sigue hasta que el modelo da una respuesta final.
 
-VibeFast usa un **registry pattern**: defines la tool una vez, está disponible tanto para tool use (OpenAI) como para MCP (Sem 5).
+VibeFast usa un **registry**: un catálogo central donde defines la tool una vez y queda disponible tanto para tool use (OpenAI) como para MCP (Sem 5). Más detalle en [Features → Tool use](/docs/features/tool-use).
 
 ## Pasos (preview)
 
 1. Crear una tool en `lib/tools/examples/`.
 2. Registrarla con `registerTool({ name, description, parameters, execute })`.
-3. Probar desde `/chat`.
+3. Probar desde `/chat` — la pantalla de chat de tu app, que se activa con `features.aiChat` en `web/config.js`.
 4. Armar un flujo LangGraph que use 2+ tools.
 
 ## Entregable

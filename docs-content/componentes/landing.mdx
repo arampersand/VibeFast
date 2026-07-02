@@ -4,7 +4,7 @@ description: Hero, Features, FAQ, Waitlist — todos leyendo de config.js.
 order: 1
 ---
 
-Los componentes en `components/landing/` están diseñados para **no tocarlos**. Cambias el copy en `config.js` y el componente se actualiza solo.
+Los componentes en `web/components/landing/` están diseñados para **no tocarlos**. Cambias el copy en `web/config.js` y el componente se actualiza solo.
 
 | Componente | Lee de config | Cuándo personalizar |
 |---|---|---|
@@ -15,7 +15,7 @@ Los componentes en `components/landing/` están diseñados para **no tocarlos**.
 
 ## Para agregar una sección nueva
 
-1. Crea el componente en `components/landing/MiSeccion.js`.
+1. Crea el componente en `web/components/landing/MiSeccion.js`.
 2. Lee el copy de `config.landing.miSeccion`.
-3. Agrega `miSeccion: {...}` en `config.js`.
-4. Importa y renderiza en `app/(marketing)/page.js`.
+3. Agrega `miSeccion: {...}` en `web/config.js`.
+4. Importa y renderiza en `web/app/(marketing)/page.js`.

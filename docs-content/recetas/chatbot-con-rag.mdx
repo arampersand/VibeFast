@@ -6,17 +6,23 @@ order: 2
 
 <StackBadge tech={["openai", "pgvector", "supabase"]} />
 
-<Callout type="info">
-Receta completa cuando termine Fase 5.
+**Necesitas antes:**
+
+- Haber llegado a la **Semana 3** del curso (tu primera integración con AI).
+
+<Callout type="warning">
+La parte de RAG del boilerplate (la extensión pgvector y la tabla `documents`) aún está en construcción — esta receta se completará cuando esté lista. Mientras tanto, aquí tienes el mapa de lo que vas a construir.
 </Callout>
 
 ## Qué construyes
 
 Un chatbot que responde solo sobre **tus documentos** (PDF, web, notas). Cada respuesta incluye citaciones al chunk fuente.
 
+Esto es **RAG** (Retrieval-Augmented Generation): la IA busca primero en tus documentos y responde con lo que encontró, en vez de inventar de memoria. La búsqueda funciona con **embeddings** — texto convertido en números que capturan su significado, para poder encontrar "lo que se parece" a tu pregunta.
+
 ## Pasos (preview)
 
-1. Activar `features.rag: true`.
+1. Activar `features.rag: true` en `web/config.js`.
 2. UI para subir PDFs (`/upload`).
 3. Pipeline: extract → chunk → embed → store en `documents`.
 4. Endpoint `/api/rag/query`: embed pregunta → similarity search → pasa contexto al modelo.

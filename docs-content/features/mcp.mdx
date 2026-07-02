@@ -7,12 +7,16 @@ order: 7
 <StackBadge tech={["mcp"]} />
 
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 4.
+Esta feature se activa en la **Semana 5** del curso. Todavía está en construcción en el boilerplate — abajo te contamos qué va a incluir.
 </Callout>
 
-## Doble rol
+**MCP** (Model Context Protocol) es un estándar para que las apps de IA se conecten entre sí: le da a una IA una forma universal de usar herramientas de otras apps, como un "USB" para inteligencia artificial.
 
-- **Servidor MCP** en `/api/mcp` — expone el registry de tools. Cualquier cliente MCP (Claude Desktop, otros) puede usar tu producto como herramienta.
-- **Cliente MCP** en `lib/mcp/client.js` — consume MCPs externos (Gmail, Notion, ESP-Claw).
+## Doble rol (en construcción)
 
-Pieza central que conecta Web ↔ Hardware en Sem 8–9.
+Cuando esta feature esté lista en el boilerplate:
+
+- **Servidor MCP** — vivirá en `/api/mcp` y expondrá el mismo registry de tools de `web/lib/tools/index.js`. Cualquier cliente MCP (Claude Desktop, otros) podrá usar tu producto como herramienta.
+- **Cliente MCP** — vivirá en `web/lib/mcp/client.js` y consumirá MCPs externos (Gmail, Notion, ESP-Claw).
+
+Será la pieza central que conecta Web ↔ Hardware en las Semanas 8–9.

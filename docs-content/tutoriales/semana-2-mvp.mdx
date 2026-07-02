@@ -9,25 +9,25 @@ order: 2
 **13 – 15 jul 2026 · Técnico**
 
 <Callout type="info">
-Esta página se completa cuando termine <strong>Fase 1</strong> del boilerplate (Auth + DB). Por ahora muestra el contrato y los entregables.
+Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 2 — por ahora es un adelanto de lo que vas a construir.
 </Callout>
 
 ## Qué vas a tener al final
 
 - ✅ Login con Google funcionando.
 - ✅ `/dashboard` protegido — solo usuarios logueados entran.
-- ✅ CRUD genérico (`core_items`) renombrado a tu dominio (ej. "leads", "recetas", "proyectos").
+- ✅ CRUD genérico (`core_items`) renombrado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros (más en el [glosario](/docs/fundamentos/glosario)).
 - ✅ Tracking de 2–3 eventos clave (opcional).
 
 ## Lo que debes tener antes
 
 - [Semana 1](/docs/tutoriales/semana-1-landing) completada — landing en producción.
 - Proyecto Supabase creado.
-- Variables de entorno de Supabase en `.env.local`.
+- Variables de entorno de Supabase en `web/.env.local`.
 
 ## Pasos
 
-1. Aplicar migrations de Supabase (`supabase db push` o vía dashboard SQL).
+1. Aplicar migrations de Supabase con `supabase db push` — esto crea las tablas en tu base de datos (aquí es donde tu waitlist empieza a guardar emails de verdad). Si te saltaste el [Paso 6 del quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase), primero corre `supabase login` y luego `supabase link --project-ref <tu-project-ref>` (cámbialo por tu project-ref: está en la URL del dashboard de Supabase, `https://supabase.com/dashboard/project/TU-REF`).
 2. Configurar Google OAuth en Supabase (ver [Features → Auth](/docs/features/auth)).
 3. Renombrar `core_items` a tu dominio con prompt de Cursor.
 4. Personalizar el dashboard con la lógica de tu producto.

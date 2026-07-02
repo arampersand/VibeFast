@@ -1,7 +1,7 @@
 ---
 title: Quick start (30 min)
 description: De cero a deploy en Vercel en una sentada.
-order: 1
+order: 2
 ---
 
 <StackBadge tech={["github", "yarn", "supabase", "vercel"]} />
@@ -10,7 +10,7 @@ Al final de esta página vas a tener:
 
 - ✅ Tu repo en GitHub con el código de VibeFast.
 - ✅ El proyecto corriendo en `localhost:3000`.
-- ✅ Supabase configurado con todas las tablas pre-cargadas.
+- ✅ Supabase conectado a tu app (y las tablas pre-cargadas, si haces el Paso 6).
 - ✅ Tu landing deployada en Vercel con una URL pública.
 
 **Tiempo estimado: 30–60 minutos** (la primera vez puede tardar un poco más).
@@ -19,13 +19,14 @@ Al final de esta página vas a tener:
 
 Esto es lo primero de lo primero. Hazlo antes de tocar el código:
 
-**1 · Crea tus cuentas** (gratis, puedes hacer login con GitHub en todas):
+**1 · Crea tus cuentas** (casi todas gratis, y en casi todas puedes hacer login con GitHub):
 - [GitHub](https://github.com), [Vercel](https://vercel.com), [Supabase](https://supabase.com).
-- [OpenAI](https://platform.openai.com) y [Resend](https://resend.com) son para más adelante (opcionales al inicio).
+- [OpenAI](https://platform.openai.com) es distinta: requiere cuenta propia y cargar saldo ($5–10 USD) — detalles en [Cuentas que necesitas](/docs/setup/cuentas). [Resend](https://resend.com) es para más adelante (opcional al inicio).
 
 **2 · Instala las herramientas** en tu compu. La guía paso a paso por sistema operativo está en [Prepara tu compu (Mac / Windows)](/docs/fundamentos/prepara-tu-compu). En resumen necesitas:
 - **Node 20 o 22 LTS** ([nodejs.org](https://nodejs.org)) — usa una versión **par** (LTS).
 - **yarn**: `npm install -g yarn`
+- **Git** (para clonar tu repo en el Paso 2) — cómo instalarlo está en [Prepara tu compu](/docs/fundamentos/prepara-tu-compu).
 - **Supabase CLI** (para subir la base de datos):
 
 ```bash
@@ -34,7 +35,7 @@ npm install -g supabase
 (En Mac también puedes: `brew install supabase/tap/supabase`.) Verifica con `supabase --version`.
 - **Cursor** ([cursor.com](https://cursor.com)).
 
-**3 · Crea tu proyecto de Supabase ya** — tarda ~1–2 min en provisionar, así estará listo cuando lo necesites. Entra a [supabase.com/dashboard](https://supabase.com/dashboard) → **New project**, elige la región más cercana (`South America (São Paulo)` o `US East`) y déjalo creándose mientras sigues.
+**3 · Ten tu proyecto de Supabase listo** — si todavía no lo tienes, sigue [Supabase paso a paso](/docs/setup/supabase) (crear cuenta, crear proyecto, guardar la contraseña de la base y copiar tus 3 keys — ~10 min, todo con clicks). Vuelve aquí con tus keys a la mano.
 
 ## Paso 1 · Haz tu fork (primero esto)
 
@@ -87,7 +88,7 @@ cursor .
 `git clone` crea la carpeta `VibeFast/` con todo el código adentro, dentro de la carpeta donde estés parado.
 
 <Callout type="info" title="Tip: ¿dónde estoy parado?">
-Corre `pwd` (Mac) o `cd` (Windows) para ver tu carpeta actual, y `ls` (Mac) / `dir` (Windows) para ver qué hay. Así confirmas que clonaste en el lugar correcto.
+Corre `pwd` para ver tu carpeta actual y `ls` para ver qué hay. Los dos funcionan igual en Mac y en Windows (PowerShell los acepta). Así confirmas que clonaste en el lugar correcto.
 </Callout>
 
 ## Paso 3 · Instala dependencias
@@ -104,22 +105,15 @@ Esto puede tardar 1–2 minutos la primera vez.
 Los tropiezos más comunes (versión de Node incorrecta, `yarn: command not found`, permisos, red) y su solución están en [Errores comunes → instalar dependencias](/docs/troubleshooting/errores-comunes).
 </Callout>
 
-## Paso 4 · Saca tus keys de Supabase
+## Paso 4 · Ten tus keys de Supabase a la mano
 
-Tu proyecto ya está creado (lo hiciste en *Antes de empezar*). Necesitas **3 valores**. Aquí está exactamente de dónde sale cada uno:
+Necesitas **3 valores** de tu proyecto de Supabase:
 
-**`NEXT_PUBLIC_SUPABASE_URL`** y **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — la forma rápida:
-1. Abre tu proyecto en el dashboard y haz click en el **botón verde `Connect`** (arriba, junto al nombre del proyecto).
-2. Pestaña **App Frameworks** → **Next.js**: ahí ves las dos, ya con su nombre. Cópialas.
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
 
-*Alternativa:* engrane **Project Settings** (abajo-izquierda) → **API**. Ahí está **Project URL** (= `NEXT_PUBLIC_SUPABASE_URL`) y, en **Project API keys**, la **anon public** (= `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
-
-**`SUPABASE_SERVICE_ROLE_KEY`** (la secreta):
-- **Project Settings → API → Project API keys → `service_role`** (dice *secret*). Haz click en **Reveal** y cópiala.
-
-<Callout type="info" title="¿Cómo se ve cada valor?">
-La **URL** termina en `.supabase.co` (ej. `https://abcd1234.supabase.co`). Las dos **keys** son cadenas largas que empiezan con `eyJ...`.
-</Callout>
+Ya los copiaste en [Supabase paso a paso → Paso 4](/docs/setup/supabase#paso-4--saca-tus-3-keys). ¿No los tienes? Ve ahí — dice exactamente en qué botón está cada uno — y vuelve.
 
 <Callout type="warning" title="La service_role es secreta">
 Es la llave maestra de tu base de datos. Nunca la subas a git ni la pongas en el navegador. La `anon` sí es pública (por eso lleva `NEXT_PUBLIC_`).
@@ -174,7 +168,9 @@ supabase link --project-ref <tu-project-ref>
 supabase db push
 ```
 
-Tu `project-ref` está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**.
+Tu `project-ref` está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**. Si `supabase link` te pide contraseña, es la **Database Password** que guardaste al crear el proyecto.
+
+**Verifica que funcionó:** abre el **Table Editor** en el dashboard de Supabase — deberías ver las tablas (`profiles`, `waitlist`, `core_items`…). El detalle está en [Supabase paso a paso → Paso 5](/docs/setup/supabase#paso-5--sube-las-tablas-esto-se-hace-después-con-el-repo).
 
 <Callout type="info" title="¿Solo quieres ver la landing?">
 Puedes saltarte este paso por ahora: la landing corre sin base de datos. Vuelve aquí en **Sem 2** cuando agreguemos Auth + DB.
@@ -207,7 +203,7 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 <Checkpoint>
 ✅ Ves tu landing con tu título y color primario.
 ✅ El menú lleva a `/docs` y muestra estas docs.
-✅ El formulario de waitlist responde (sin guardar todavía — eso es Sem 1).
+✅ El formulario de waitlist responde (sin guardar todavía — el guardado llega en Sem 2).
 
 ¿Algo no carga? → [Troubleshooting](/docs/troubleshooting/errores-comunes).
 </Checkpoint>
@@ -218,8 +214,12 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 2. En la lista de repos, busca **tu fork** y haz click en **Import**. (Si no aparece, click en *Adjust GitHub App Permissions* y dale acceso.)
 3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un monorepo y la app vive en `web/`.
 4. **Framework Preset**: Next.js (se autodetecta, no lo toques).
-5. Expande **Environment Variables** y agrega **cada** variable de tu `web/.env.local` (nombre y valor, una por una). Mínimo las **4 de Supabase** para que no falle.
+5. Expande **Environment Variables** y agrega **cada** variable de tu `web/.env.local` (nombre y valor, una por una). Mínimo estas **4**: las 3 de Supabase + `NEXT_PUBLIC_APP_URL`.
 6. Click **Deploy**.
+
+<Callout type="warning" title="NEXT_PUBLIC_APP_URL en Vercel NO es localhost">
+En Vercel, `NEXT_PUBLIC_APP_URL` **no** debe ser `http://localhost:3000` — ahí va la URL de tu deploy (ej. `https://tu-producto.vercel.app`). Esa URL la sabes hasta después del primer deploy: haz el deploy, copia la URL que te da Vercel, actualiza la variable en Settings → Environment Variables y redeploya (o agrégala después).
+</Callout>
 
 En 2–3 minutos tienes una URL pública. Compártela.
 
@@ -251,7 +251,7 @@ No necesitas conocerla toda hoy, pero ubícate. Esto es lo que hay:
 
 - `app` — nombre, descripción, dominio de tu producto.
 - `brand` — color primario, logo, radios.
-- `features` — toggles para prender/apagar cada feature (waitlist, chat, agentes…).
+- `features` — toggles para prender/apagar cada feature (waitlist, aiChat, agents…).
 - `landing` — todo el copy de la página pública (hero, features, FAQ, pricing).
 - `pricing` — los planes.
 

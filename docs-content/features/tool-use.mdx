@@ -7,31 +7,49 @@ order: 5
 <StackBadge tech={["openai", "mcp"]} />
 
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 3–4.
+Esta feature se activa en la **Semana 4** del curso.
 </Callout>
 
 ## Pattern
 
-```js
-// lib/tools/examples/sendEmail.js
-import { registerTool } from "@/lib/tools"
+VibeFast usa un **registry pattern**: en vez de repartir las herramientas por todo el código, hay una sola lista central donde se anotan todas — y desde ahí se reparten a quien las necesite.
 
-registerTool({
-  name: "sendEmail",
-  description: "Envía un email transaccional.",
+Cada tool es un objeto con nombre, descripción, parámetros y una función `execute()`. Los ejemplos incluidos viven en `web/lib/tools/examples/`:
+
+- `crearItem.js` — crea un item en `core_items` del usuario autenticado.
+- `buscarItems.js` — busca items del usuario por título.
+- `enviarEmail.js` — manda un email vía Resend (si Resend no está configurado, no rompe nada).
+
+Así se ve una tool (versión resumida de `web/lib/tools/examples/enviarEmail.js`):
+
+```js
+// web/lib/tools/examples/enviarEmail.js
+export const enviarEmail = {
+  name: "enviar_email",
+  description: "Envía un email transaccional al destinatario indicado.",
   parameters: {
     type: "object",
     properties: {
-      to: { type: "string" },
-      subject: { type: "string" },
-      body: { type: "string" },
+      to: { type: "string", description: "Correo del destinatario." },
+      subject: { type: "string", description: "Asunto del email." },
+      body: { type: "string", description: "Cuerpo del mensaje." },
     },
     required: ["to", "subject", "body"],
+    additionalProperties: false,
   },
   async execute({ to, subject, body }) {
     // ...
   },
-})
+}
 ```
 
-Una sola registración → disponible para tool use de OpenAI **y** para el servidor MCP.
+El registro pasa en `web/lib/tools/index.js`: cada tool se importa y se anota en el registry con una sola línea al final del archivo:
+
+```js
+// web/lib/tools/index.js
+;[crearItem, buscarItems, enviarEmail].forEach(registerTool)
+```
+
+Para agregar la tuya: creas el archivo en `web/lib/tools/examples/`, escribes solo el `execute()` (la IA puede ayudarte con el resto del objeto), y la agregas a esa lista.
+
+Una sola registración → disponible para tool use de OpenAI (via `getOpenAITools()`) **y** para los agentes de [LangGraph](/docs/features/agentes-langgraph) — la librería con la que armamos agentes que deciden qué herramienta usar en cada paso.

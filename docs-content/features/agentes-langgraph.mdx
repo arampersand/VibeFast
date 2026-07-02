@@ -7,7 +7,15 @@ order: 6
 <StackBadge tech={["langgraph", "openai"]} />
 
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 4.
+Esta feature se activa en las **Semanas 4–5** del curso.
 </Callout>
 
-VibeFast envuelve LangGraph.js en un wrapper que implementa el patrón base del temario: **recuperar → decidir → actuar**.
+**LangGraph** es la librería con la que armamos agentes: programas de IA que dan varios pasos solos (pensar → usar una herramienta → volver a pensar) hasta cumplir un objetivo.
+
+VibeFast envuelve LangGraph.js en un wrapper (`web/lib/agents/graph.js`) que implementa el patrón base del temario: **recuperar → decidir → actuar**.
+
+- **recover** — carga el contexto (mensajes previos) y arma el estado inicial.
+- **decide** — llama al modelo con las tools del [registry](/docs/features/tool-use); el modelo elige usar una herramienta o responder.
+- **act** — ejecuta las tools pedidas, registra cada llamada y vuelve a `decide`.
+
+El ejemplo listo para usar vive en `web/lib/agents/examples/recoverDecideAct.js`, y el endpoint que lo expone es `/api/ai/agent`. Los eventos del agente (razonamiento, tool calls, tokens) se streamean a la UI en tiempo real.

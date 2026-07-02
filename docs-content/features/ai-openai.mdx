@@ -7,17 +7,19 @@ order: 4
 <StackBadge tech={["openai"]} />
 
 <Callout type="info">
-Documentación completa disponible cuando termine Fase 3.
+Esta feature se activa en la **Semana 3** del curso (tu primera integración con AI).
 </Callout>
 
 ## Helpers principales
+
+Viven en `web/lib/openai/`:
 
 ```js
 import { streamChat } from "@/lib/openai/chat"
 import { generateObject } from "@/lib/openai/structured"
 ```
 
-- `streamChat(messages)` — chat streaming para UIs interactivas.
-- `generateObject(schema, prompt)` — JSON tipado garantizado por el modelo.
+- `streamChat(messages)` — chat streaming para UIs interactivas (lo usa `/api/ai/chat`).
+- `generateObject(schema, prompt)` — JSON tipado garantizado por el modelo (lo usa `/api/ai/structured`).
 
-Configuración de modelos y costo en `config.ai`.
+Configuración de modelos y costo en la sección `ai` de `web/config.js`.

@@ -1,6 +1,6 @@
 ---
 title: Semana 1 · Tu landing en vivo
-description: Setup completo, landing personalizada y waitlist capturando emails en producción.
+description: Setup completo, landing personalizada con waitlist y deploy en producción.
 order: 1
 ---
 
@@ -16,7 +16,7 @@ order: 1
 - ✅ Cuentas creadas en GitHub, Supabase, Vercel.
 - ✅ Plantilla VibeFast clonada y corriendo en local.
 - ✅ Landing con tu copy, colores y un solo CTA claro.
-- ✅ Waitlist conectado a Supabase capturando emails reales.
+- ✅ Waitlist funcionando en tu landing (guardar los emails en la base de datos llega en Sem 2).
 - ✅ Todo deployado en Vercel con una URL pública.
 
 ## Lo que debes tener antes
@@ -25,7 +25,7 @@ order: 1
 
 ## Paso 1 · Setup de entorno
 
-Sigue [Setup → Quick start](/docs/setup/quick-start) completo hasta el Paso 7. Tope: 30 min.
+Sigue [Setup → Quick start](/docs/setup/quick-start) completo hasta el Paso 8 (`yarn dev`). Tope: 30 min.
 
 <Checkpoint>
 Ves la landing por default de VibeFast en `localhost:3000`.
@@ -64,15 +64,13 @@ Guarda `config.js`. Refresca `localhost:3000`. Deberías ver tu producto.
 ✅ El color primario es el tuyo.
 </Checkpoint>
 
-## Paso 4 · Conecta el waitlist a Supabase
+## Paso 4 · Prueba tu waitlist
 
-(Esta parte queda lista en Fase 1 del boilerplate — cuando esté, este paso se actualiza con el código real.)
-
-Por ahora, el formulario funciona pero solo loggea al servidor. En Sem 1 final, lo conectamos a Supabase para que guarde emails de verdad.
+Escribe un email en el formulario de la landing y envíalo. Hoy el formulario **responde** (verás la confirmación), pero **todavía no guarda** el email en la base de datos — eso llega en [Semana 2](/docs/tutoriales/semana-2-mvp), cuando conectemos Supabase.
 
 ## Paso 5 · Deploy a Vercel
 
-Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9). Cuando termines, comparte tu URL en el canal del curso.
+Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9--deploy-a-vercel). Cuando termines, comparte tu URL en el canal del curso.
 
 ## Entregable de la semana
 
