@@ -6,32 +6,100 @@ order: 2
 
 <StackBadge tech={["next", "supabase", "auth", "cursor"]} />
 
-**13 – 15 jul 2026 · Técnico**
-
-<Callout type="info">
-Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 2 — por ahora es un adelanto de lo que vas a construir.
-</Callout>
+La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que entran con Google, un dashboard solo para ellos, y tu primera feature guardando datos de verdad en la base.
 
 ## Qué vas a tener al final
 
+- ✅ Las tablas de tu base de datos creadas (y tu waitlist **guardando emails de verdad**).
 - ✅ Login con Google funcionando.
 - ✅ `/dashboard` protegido — solo usuarios logueados entran.
-- ✅ CRUD genérico (`core_items`) renombrado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros (más en el [glosario](/docs/fundamentos/glosario)).
-- ✅ Tracking de 2–3 eventos clave (opcional).
+- ✅ Tu **core feature**: el CRUD genérico (`core_items`) adaptado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros (más en el [glosario](/docs/fundamentos/glosario)).
 
 ## Lo que debes tener antes
 
-- [Semana 1](/docs/tutoriales/semana-1-landing) completada — landing en producción.
-- Proyecto Supabase creado.
-- Variables de entorno de Supabase en `web/.env.local`.
+- [Semana 1](/docs/tutoriales/semana-1-landing) completada — landing deployada con URL pública.
+- Tu proyecto de Supabase creado y las 3 keys en `web/.env.local` ([Supabase paso a paso](/docs/setup/supabase)).
 
-## Pasos
+## Paso 1 · Sube las tablas a Supabase
 
-1. Aplicar migrations de Supabase con `supabase db push` — esto crea las tablas en tu base de datos (aquí es donde tu waitlist empieza a guardar emails de verdad). Si te saltaste el [Paso 6 del quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase), primero corre `supabase login` y luego `supabase link --project-ref <tu-project-ref>` (cámbialo por tu project-ref: está en la URL del dashboard de Supabase, `https://supabase.com/dashboard/project/TU-REF`).
-2. Configurar Google OAuth en Supabase (ver [Features → Auth](/docs/features/auth)).
-3. Renombrar `core_items` a tu dominio con prompt de Cursor.
-4. Personalizar el dashboard con la lógica de tu producto.
+Si te saltaste el [Paso 6 del quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase), este es el momento. En la terminal de Cursor:
 
-## Entregable
+```bash
+supabase login
+supabase link --project-ref <tu-project-ref>
+supabase db push
+```
 
-MVP con login + core feature funcionando. URL pública.
+<Callout type="danger" title="Aquí tienes que cambiar <tu-project-ref>">
+Está en la URL de tu dashboard de Supabase (`https://supabase.com/dashboard/project/TU-REF` — esa parte final). Si `link` te pide contraseña, es la **Database Password** que guardaste al crear el proyecto.
+</Callout>
+
+Ya lo habías hecho antes? Entonces solo verifica y sigue.
+
+<Checkpoint>
+✅ En el dashboard de Supabase → **Table Editor** ves las tablas: `profiles`, `waitlist`, `core_items`, `ai_conversations`, `ai_messages`, `tool_calls`, `events`.
+✅ Escribe un email en el formulario de tu landing (en `localhost:3000`) y refresca la tabla `waitlist` — **el email aparece como fila**. Tu waitlist ya guarda de verdad.
+</Checkpoint>
+
+## Paso 2 · Activa el login con Google
+
+Sigue [Login con Google (paso a paso)](/docs/setup/google-oauth): son clicks en Google Cloud y en Supabase, más un prompt al final. Tómate ~20 min con calma — es la parte con más pantallas nuevas de la semana.
+
+<Checkpoint>
+En `localhost:3000/login` haces click en **Entrar con Google**, eliges tu cuenta y vuelves a la app con la sesión iniciada. Al entrar, `/dashboard` te deja pasar; en una ventana de incógnito (sin login), te redirige a `/login`.
+</Checkpoint>
+
+## Paso 3 · Convierte `core_items` en TU feature
+
+El boilerplate trae un CRUD genérico llamado `core_items` — una pantalla donde el usuario crea, ve, edita y borra "cosas". Esta semana esas "cosas" se convierten en la entidad central de tu producto. Rellena las llaves y pégalo en Cursor:
+
+<PromptBox label="Prompt para Cursor — tu core feature">
+Adapta la feature core_items de este proyecto VibeFast a mi producto.
+
+Mi producto: \{describe tu producto en 1 frase}.
+Mi entidad principal es: \{ej. "leads", "recetas", "proyectos"} — en singular, \{ej. "lead"}.
+Cada una tiene estos campos: \{lista 3-5 campos con su tipo, ej: nombre (texto), presupuesto (número), estatus (nuevo/contactado/cerrado)}.
+
+Requisitos:
+1. Renombra todo lo visible en la UI (títulos, botones, formularios, columnas) a mi entidad.
+2. Ajusta el formulario de crear/editar y la lista para mostrar mis campos.
+3. Si necesitas cambiar la base de datos, crea una migración nueva en supabase/migrations/ y dime exactamente qué comando debo correr.
+4. Mantén el login y la protección de rutas como están.
+Al final dime qué archivos cambiaste y en qué URL pruebo mi feature.
+</PromptBox>
+
+<Callout type="info" title="Si Cursor te pidió correr un comando">
+Probablemente es `supabase db push` (para aplicar la migración nueva). Córrelo en la terminal y verifica en el **Table Editor** que el cambio se vea. Si algo truena, pégale el error exacto a Cursor.
+</Callout>
+
+## Paso 4 · Pruébalo como si fueras tu cliente
+
+Recorre el flujo completo, de afuera hacia adentro, como lo haría tu ICP:
+
+<Checkpoint>
+✅ Entras con Google desde `/login`.
+✅ En el dashboard creas 2–3 registros de tu entidad con datos reales.
+✅ Editas uno y borras otro — la lista se actualiza.
+✅ En Supabase → **Table Editor**, las filas están ahí con tus campos.
+</Checkpoint>
+
+## Paso 5 · Deploya la nueva versión
+
+Haz commit y push de tus cambios (pídele a Cursor: *"haz commit y push de todo lo de esta semana con un mensaje descriptivo"*) — Vercel redeploya solo. Dos ajustes para que el login funcione en tu URL pública:
+
+1. En Supabase → **Authentication → URL Configuration**: pon tu URL de Vercel en **Site URL** y agrégala a **Redirect URLs** (detalle en [Supabase en producción](/docs/deploy/supabase-produccion)).
+2. Verifica que en Vercel estén todas tus variables de entorno (las 3 de Supabase + `NEXT_PUBLIC_APP_URL` con tu URL real).
+
+<Checkpoint>
+En tu URL pública (no localhost): entras con Google y creas un registro desde el celular.
+</Checkpoint>
+
+## Entregable de la semana
+
+**Tu MVP funcionando en producción**: la URL pública + un video corto (1–2 min) mostrando login con Google → crear un registro → verlo en la lista. Mándalo al docente con 1 frase: qué es tu entidad central y por qué.
+
+## Si te sobra tiempo
+
+- **Dashboard a tu medida**: pídele a Cursor que agregue a `/dashboard` un resumen arriba (ej. "cuántos leads tienes, cuántos nuevos esta semana").
+- **Tracking**: activa PostHog ([Features → Analytics](/docs/features/analytics)) y pídele a Cursor que registre 2–3 eventos clave (signup, crear registro, click en CTA).
+- **Primeros usuarios reales**: mándale tu URL a 2–3 personas de tu ICP y pídeles que se registren. Lo que se traben es oro para la Semana 6 (customer development).

@@ -6,34 +6,33 @@ order: 1
 
 <StackBadge tech={["next", "tailwind", "supabase", "vercel", "yarn", "cursor"]} />
 
-**6 – 8 jul 2026 · Técnico**
-
-<VideoLoom title="Loom de la semana 1" />
+Esta es la semana del hito grande: **al terminarla, tu producto tiene una página web pública en internet**, con tu nombre, tu copy y una URL que puedes mandar por WhatsApp. Todo lo que sigue en el curso se construye encima de esto.
 
 ## Qué vas a tener al final
 
-- ✅ Entorno de desarrollo completo (Cursor + Node + yarn).
-- ✅ Cuentas creadas en GitHub, Supabase, Vercel.
-- ✅ Plantilla VibeFast clonada y corriendo en local.
-- ✅ Landing con tu copy, colores y un solo CTA claro.
+- ✅ La plantilla VibeFast clonada y corriendo en tu compu.
+- ✅ Landing con tu copy, tus colores y un solo CTA claro.
 - ✅ Waitlist funcionando en tu landing (guardar los emails en la base de datos llega en Sem 2).
-- ✅ Todo deployado en Vercel con una URL pública.
+- ✅ Todo deployado en Vercel con una **URL pública**.
 
 ## Lo que debes tener antes
 
 - Ficha de proyecto de [Semana 0](/docs/tutoriales/semana-0-arranque) — necesitas saber qué producto y para quién antes de escribir el copy.
+- Cuentas creadas y compu preparada (Pasos 2 y 3 de la Semana 0). Si te lo saltaste, hazlo ahora — sin eso el Paso 1 no avanza.
 
 ## Paso 1 · Setup de entorno
 
-Sigue [Setup → Quick start](/docs/setup/quick-start) completo hasta el Paso 8 (`yarn dev`). Tope: 30 min.
+Sigue [Setup → Quick start](/docs/setup/quick-start) completo hasta el Paso 8 (`yarn dev`). Incluye crear tu proyecto de Supabase ([Supabase paso a paso](/docs/setup/supabase)) si no lo adelantaste en Semana 0. Tope: 45 min.
 
 <Checkpoint>
 Ves la landing por default de VibeFast en `localhost:3000`.
+
+¿Atorado en algún paso? → [Errores comunes](/docs/troubleshooting/errores-comunes). No te quedes solo: pregunta en el canal del curso.
 </Checkpoint>
 
-## Paso 2 · Personaliza tu producto en `config.js`
+## Paso 2 · Personaliza tu producto en `web/config.js`
 
-Abre `web/config.js`. Es **el único archivo** que necesitas tocar para cambiar el branding entero.
+`web/config.js` es **el único archivo** que hay que cambiar para que la landing sea tuya — y lo cambia Cursor por ti. Copia este prompt y rellena las llaves con los datos de tu ficha de Semana 0:
 
 <PromptBox label="Prompt para Cursor — copy del producto">
 Soy founder de un producto que \{describe tu producto en 1 frase}.
@@ -50,13 +49,13 @@ Edita web/config.js. Actualiza:
 Devuelve el archivo completo. No cambies la estructura del objeto.
 </PromptBox>
 
-<Callout type="info">
-Si Cursor sugiere algo raro, refínalo. El prompt está para arrancar, no para terminar.
+<Callout type="info" title="El prompt es el arranque, no el final">
+Si el copy que salió no suena a ti, díselo a Cursor: "el título suena genérico, hazlo más directo y con el dolor del cliente". Itera 2-3 veces — es normal y es el músculo que estás entrenando.
 </Callout>
 
 ## Paso 3 · Guarda y mira el cambio
 
-Guarda `config.js`. Refresca `localhost:3000`. Deberías ver tu producto.
+Guarda `web/config.js` y refresca `localhost:3000`.
 
 <Checkpoint>
 ✅ Tu título aparece en el Hero.
@@ -66,11 +65,21 @@ Guarda `config.js`. Refresca `localhost:3000`. Deberías ver tu producto.
 
 ## Paso 4 · Prueba tu waitlist
 
-Escribe un email en el formulario de la landing y envíalo. Hoy el formulario **responde** (verás la confirmación), pero **todavía no guarda** el email en la base de datos — eso llega en [Semana 2](/docs/tutoriales/semana-2-mvp), cuando conectemos Supabase.
+Escribe un email en el formulario de la landing y envíalo.
+
+<Checkpoint>
+El formulario **responde** con su mensaje de confirmación. Hoy **todavía no guarda** el email en la base de datos — eso llega en [Semana 2](/docs/tutoriales/semana-2-mvp), cuando conectemos Supabase. Si el formulario da error (no confirmación), revisa [Errores comunes](/docs/troubleshooting/errores-comunes).
+</Checkpoint>
 
 ## Paso 5 · Deploy a Vercel
 
-Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9--deploy-a-vercel). Cuando termines, comparte tu URL en el canal del curso.
+Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9--deploy-a-vercel): importar tu fork, **Root Directory = `web`**, pegar tus variables de entorno y deploy.
+
+<Checkpoint>
+✅ Tienes una URL pública tipo `tu-producto.vercel.app`.
+✅ La abres desde tu **celular** (no solo tu compu) y se ve tu landing.
+✅ Actualizaste `NEXT_PUBLIC_APP_URL` en Vercel con esa URL (no `localhost`) y redeployaste.
+</Checkpoint>
 
 ## Entregable de la semana
 
@@ -80,8 +89,10 @@ Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9--deploy-a-verce
 2. 1 captura de pantalla.
 3. 1 párrafo de qué hace tu producto (el mismo del `app.description`).
 
+Y compártela en el canal del curso — ver las landings de los demás es parte del ejercicio.
+
 ## Si te sobra tiempo
 
-- Agrega una sección de "logos de clientes" con tu propio logo + algunos placeholders.
-- Cambia el favicon (`web/public/favicon.svg`).
-- Customiza `og:image` para que el preview en WhatsApp/Twitter se vea bien.
+- **Favicon**: pídele a Cursor — *"cambia el favicon en web/public/ por uno acorde a mi producto (puede ser un emoji renderizado a SVG)"*.
+- **Preview en redes**: pídele a Cursor — *"configura el og:image y los metadatos para que el link de mi landing se vea bien al compartirlo en WhatsApp y Twitter"*.
+- **Sección extra**: una fila de "logos de clientes" con tu logo + placeholders — descríbesela a Cursor y deja que la proponga.

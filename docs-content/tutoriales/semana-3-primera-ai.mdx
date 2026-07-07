@@ -1,26 +1,30 @@
 ---
 title: Semana 3 · Tu primera función con IA
-description: OpenAI con structured outputs — el modelo devuelve JSON tipado que tu UI consume.
+description: OpenAI con structured outputs — el modelo devuelve datos ordenados que tu app usa directo.
 order: 3
 ---
 
 <StackBadge tech={["next", "openai"]} />
 
-**20 – 22 jul 2026 · Técnico**
-
-<Callout type="info">
-Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 3 — por ahora es un adelanto de lo que vas a construir.
-</Callout>
+Esta semana tu producto deja de ser una página bonita y empieza a **hacer algo inteligente**: una función real que usa IA y muestra el resultado en tu app. La construye Cursor — tú decides *qué* hace y verificas que funcione.
 
 ## Qué vas a tener al final
 
-- ✅ Una función en tu producto que llama a OpenAI y devuelve datos estructurados (JSON tipado con Zod).
-- ✅ Renderizado de ese JSON en UI — sin "parsear texto del modelo".
-- ✅ Entendimiento de costo y latencia (por qué `gpt-4o-mini` por default).
+- ✅ Tu API key de OpenAI configurada y funcionando.
+- ✅ Una función de tu producto que llama a OpenAI y devuelve **datos estructurados** (no texto suelto).
+- ✅ Ese resultado renderizado en tu app, usable por tu ICP.
+- ✅ Noción de cuánto cuesta cada llamada (spoiler: centavos).
 
-## Concepto: structured outputs
+## Lo que debes tener antes
 
-En vez de pedirle al modelo "responde en formato JSON" (y esperar a que cumpla), le **das un schema con Zod** — o sea, un molde que describe exactamente qué campos debe traer la respuesta — y la API garantiza que el JSON cumple ese molde. Cambia todo: el modelo ya no es una caja negra, es una función con tipos.
+- [Semana 2](/docs/tutoriales/semana-2-mvp) completa: login funcionando y base de datos con las tablas subidas (`supabase db push`).
+- Cuenta de OpenAI **con saldo cargado** ($5–10) — lo hiciste en [Semana 0](/docs/tutoriales/semana-0-arranque); si no, hazlo ahora en [Setup → Cuentas](/docs/setup/cuentas).
+
+## Concepto: structured outputs (2 min)
+
+En vez de pedirle al modelo "responde en formato JSON" (y cruzar los dedos), se le da un **molde** que describe exactamente qué campos debe traer la respuesta, y la API **garantiza** que lo cumple. El modelo deja de ser una caja negra que devuelve texto: se vuelve una función confiable de tu producto.
+
+Así se ve por dentro — **no lo escribes tú, lo escribe Cursor** — pero conviene que lo reconozcas:
 
 ```js
 import { z } from "zod"
@@ -33,17 +37,85 @@ const schema = z.object({
 })
 
 const resultado = await generateObject(schema, "Analiza este review: ...")
-// resultado.sentimiento === "positivo"  ← garantizado, tipado
+// resultado.sentimiento === "positivo"  ← garantizado, siempre viene
 ```
 
-## Pasos (preview)
+(Zod es la librería que define el molde; `generateObject` es un helper que ya viene en el boilerplate, en `web/lib/openai/`.)
 
-1. Agregar `OPENAI_API_KEY` a `web/.env.local`. La key la creas en [platform.openai.com](https://platform.openai.com) → **API keys** — y necesitas saldo cargado en tu cuenta de OpenAI (ver [Setup → Cuentas](/docs/setup/cuentas)).
-2. Importar el helper `generateObject`.
-3. Definir el schema Zod de lo que quieres devolver.
-4. Llamarla desde el backend — la IA (Cursor) elige el lugar correcto del código por ti.
-5. Renderizar el resultado en una página.
+## Paso 1 · Consigue tu API key de OpenAI
 
-## Entregable
+1. Entra a [platform.openai.com](https://platform.openai.com) con tu cuenta.
+2. Verifica tu saldo en **Settings → Billing** — debe haber crédito. Si está en $0, carga $5–10 ahí mismo.
+3. Menú → **API keys** → **+ Create new secret key**. Ponle nombre (ej. "vibefast-curso") → **Create**.
+4. **Cópiala en ese momento** (empieza con `sk-...`) — solo se muestra una vez. Si la pierdes, borras esa y creas otra.
+5. Pégala en `web/.env.local`:
 
-Una función con IA devolviendo datos estructurados, demostrada en tu UI.
+```bash
+OPENAI_API_KEY=sk-...
+```
+
+6. Reinicia el servidor: `Ctrl+C` en la terminal y de nuevo `yarn dev` (las variables de entorno no se recargan solas).
+
+<Checkpoint>
+`web/.env.local` tiene tu `OPENAI_API_KEY` y reiniciaste `yarn dev` sin errores en la terminal.
+</Checkpoint>
+
+## Paso 2 · Decide qué hará tu primera función IA
+
+La regla: que le sirva a **tu ICP**, no que sea impresionante. Ejemplos del calibre correcto:
+
+- Un CRM inmobiliario → *"analiza este mensaje de un lead y devuelve: intención de compra (alta/media/baja), presupuesto detectado y respuesta sugerida"*.
+- Una app de nutrición → *"a partir de esta lista de ingredientes devuelve: calorías estimadas, macros y 2 sugerencias de mejora"*.
+- Un marketplace de servicios → *"resume esta solicitud de cliente en: categoría, urgencia y precio estimado"*.
+
+¿No se te ocurre? Pídeselo a la IA con tu ficha:
+
+<PromptBox label="Prompt para elegir la función (Cursor o claude.ai)">
+Mi producto: \{describe tu producto en 1 frase}. Mi ICP: \{tu cliente ideal}.
+Proponme 3 funciones con IA que pueda construir esta semana, donde la IA reciba un texto del usuario y devuelva datos estructurados (campos concretos, no texto libre). Para cada una dime: qué recibe, qué campos devuelve y por qué le sirve a mi ICP. Ordénalas de más a menos valiosa.
+</PromptBox>
+
+## Paso 3 · Deja que Cursor la construya
+
+Con la función elegida, este es el prompt. Rellena las llaves:
+
+<PromptBox label="Prompt para Cursor — construir la función">
+Construye mi primera feature con IA en este proyecto VibeFast (Next.js, la app vive en web/):
+
+La función: recibe \{qué escribe o sube el usuario} y devuelve \{lista los campos exactos que quieres de vuelta, ej: categoría, urgencia (alta/media/baja), respuesta_sugerida}.
+
+Requisitos:
+1. Usa el helper generateObject de web/lib/openai/structured con un schema Zod de esos campos.
+2. La llamada a OpenAI va en el backend (nunca en el navegador) — elige tú el lugar correcto.
+3. Crea una página o sección en la app donde yo pegue el texto de entrada, con un botón, y el resultado se muestre bonito (usa los componentes de UI que ya trae el proyecto).
+4. Usa gpt-4o-mini como modelo.
+Al final dime qué archivos creaste y en qué URL pruebo la función.
+</PromptBox>
+
+<Callout type="info" title="Si Cursor se equivoca, no arregles tú el código">
+Descríbele el problema: pega el error exacto o describe lo que ves ("el botón no hace nada", "sale undefined en el resultado"). Iterar con la IA **es** el flujo de trabajo, no un fracaso.
+</Callout>
+
+## Paso 4 · Pruébala
+
+Abre la URL que te dijo Cursor y usa la función con un caso real de tu producto.
+
+<Checkpoint>
+✅ Escribes una entrada real y el resultado aparece en pantalla con **todos los campos** de tu molde.
+✅ Lo intentas con una entrada rara (texto vacío, algo fuera de tema) y la app no se rompe.
+✅ En [platform.openai.com/usage](https://platform.openai.com/usage) ves las llamadas registradas — cada una debería costar **fracciones de centavo** con `gpt-4o-mini`.
+</Checkpoint>
+
+<Callout type="success" title="Por qué gpt-4o-mini">
+Es el modelo barato y rápido de OpenAI: perfecto para funciones de producto. Los $5 que cargaste alcanzan para **miles** de llamadas. Sube de modelo solo cuando una función lo justifique.
+</Callout>
+
+## Entregable de la semana
+
+Demo de tu función con IA: **un video corto (1–2 min) o tu URL** mostrando la entrada, el click y el resultado estructurado en pantalla. Mándalo al docente con 1 frase de por qué esta función le sirve a tu ICP.
+
+## Si te sobra tiempo
+
+- **Chat con streaming**: pídele a Cursor que active `features.aiChat` en `web/config.js` y prueba la pantalla de chat que trae el boilerplate (`/chat`).
+- **Segunda función**: la runner-up de tu lista del Paso 2 — ahora te va a tomar la mitad del tiempo.
+- **Guarda los resultados**: pídele a Cursor que persista cada análisis en la tabla `ai_conversations` de Supabase, y míralos aparecer en el Table Editor.

@@ -52,13 +52,9 @@ Chips de tecnologías.
 
 Embed de Loom. Props:
 
-- `url` (opcional) — el link *share* de Loom (`https://www.loom.com/share/...`); el componente lo convierte a embed solo. Si **no** pasas `url`, en vez del video se muestra un placeholder que dice *"[ Video pendiente · grábalo con Loom ]"* — por eso es válido usarlo sin `url` mientras el video no existe.
+- `url` — el link *share* de Loom (`https://www.loom.com/share/...`); el componente lo convierte a embed solo. Úsalo solo cuando el video ya exista (sin `url` muestra un placeholder de "video pendiente" — evítalo en páginas publicadas).
 - `title` (opcional) — título accesible del iframe. Default: `"Video del docente"`.
 
 ```mdx
 <VideoLoom url="https://www.loom.com/share/XXXX" title="Mi video" />
-
-<VideoLoom title="Video de la semana" />
 ```
-
-El segundo (sin `url`) muestra el placeholder de video pendiente.

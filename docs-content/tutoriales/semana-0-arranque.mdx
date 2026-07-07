@@ -1,31 +1,84 @@
 ---
 title: Semana 0 · Arranque & Diagnóstico
-description: Hipótesis, ICP y mentalidad vibecoder. Sin código.
+description: Define tu producto, crea tus cuentas y deja tu compu lista. Sin código.
 order: 0
 ---
 
 <StackBadge tech={["cursor"]} />
 
-**29 jun – 1 jul 2026 · Negocio + intro técnica**
+Esta semana no se escribe ni una línea de código. Se hacen las dos cosas que sostienen todo lo demás: **decidir qué vas a construir y para quién**, y **dejar tu compu y tus cuentas listas** para que la Semana 1 sea pura construcción.
 
 ## Qué vas a tener al final
 
-- ✅ Ficha de proyecto con etapa + hipótesis + ICP.
-- ✅ Cursor instalado (ver [Prepara tu compu](/docs/fundamentos/prepara-tu-compu)) y entendido a nivel "qué hace y por qué lo usamos".
-- ✅ Mentalidad vibecoder: cómo escribir prompts que generen código que sirve.
+- ✅ Ficha de proyecto: etapa + hipótesis + ICP.
+- ✅ Tus cuentas creadas (GitHub, Vercel, Supabase, OpenAI con saldo, Cursor).
+- ✅ Tu compu preparada (los 5 programas instalados y verificados).
+- ✅ Tu primera conversación real con Cursor — y la mentalidad para escribir prompts que sirven.
 
-## Qué se ve esta semana
+## Lo que debes tener antes
 
-- Diagnóstico de etapa (idea / prototipo / MVP / tracción).
-- Founder-market fit y la hipótesis principal.
-- ICP, problema cuantificado e hipótesis de valor.
-- Qué es PMF como meta del curso.
-- Mentalidad vibecoder: prompting estructurado (contexto, objetivo, restricciones).
+- Nada — esta es la semana de arranque. Solo trae una idea de producto (aunque sea vaga: esta semana la afilamos).
+
+## Paso 1 · Define tu producto (la ficha)
+
+Tu docente te dará la plantilla de la **ficha de proyecto**. Tiene 3 partes:
+
+1. **Etapa** — dónde estás hoy: idea / prototipo / MVP / tracción.
+2. **Hipótesis principal** — qué crees que es verdad y aún no has comprobado (ej. "los agentes inmobiliarios pagarían por respuestas automáticas a sus leads").
+3. **ICP** (Ideal Customer Profile) — tu cliente ideal, en concreto: quién es, qué le duele, cuánto le cuesta ese dolor.
+
+Si tu idea todavía está borrosa, úsala como excusa para tu primera conversación con la IA:
+
+<PromptBox label="Prompt para afinar tu ficha (úsalo en Cursor o en claude.ai/ChatGPT)">
+Estoy definiendo mi producto para un curso de creación de startups. Mi idea es: \{describe tu idea en 2-3 frases, aunque esté vaga}.
+
+Hazme una a una las preguntas necesarias para dejar bien definido: (1) el problema concreto que resuelvo, (2) mi cliente ideal con nombre y apellido de arquetipo, (3) mi hipótesis principal — lo que estoy asumiendo y debería validar primero. Al final, devuélveme las 3 respuestas en formato de ficha.
+</PromptBox>
+
+<Checkpoint>
+Puedes explicar tu producto en 1 frase y tu cliente ideal en 1 frase, sin titubear. Si no puedes, la ficha no está lista.
+</Checkpoint>
+
+## Paso 2 · Crea tus cuentas
+
+Sigue la lista de [Setup → Cuentas que necesitas](/docs/setup/cuentas). Para esta semana bastan las de "Día 1":
+
+- **GitHub**, **Vercel** y **Supabase** (gratis, con login de GitHub).
+- **OpenAI** — crea la cuenta y **carga $5–10 USD de saldo ya** (evita atorones en Semana 3).
+- **Cursor** — descárgalo de [cursor.com](https://cursor.com) e inicia el trial.
+
+## Paso 3 · Prepara tu compu
+
+Sigue [Fundamentos → Prepara tu compu (Mac / Windows)](/docs/fundamentos/prepara-tu-compu): son 5 programas (Node, yarn, Git, Supabase CLI y Cursor) con su verificación al final.
+
+<Checkpoint>
+Abres una terminal y estos cuatro comandos responden con un número de versión (no con "command not found"):
+
+`node -v` · `yarn -v` · `git --version` · `supabase --version`
+
+¿Alguno falla? → [Errores comunes](/docs/troubleshooting/errores-comunes).
+</Checkpoint>
+
+## Paso 4 · Aprende a hablarle a la IA
+
+En este curso **tú no escribes el código — Cursor lo escribe**. Tu herramienta es el prompt. Lee [Fundamentos → Hablarle a la IA](/docs/fundamentos/hablarle-a-la-ia) (10 min) y quédate con la estructura: **contexto + objetivo + restricciones**.
+
+Practica una vez, sin miedo — aún no hay proyecto que romper:
+
+<PromptBox label="Prompt de práctica (pégalo en el chat de Cursor)">
+Explícame como si nunca hubiera programado: ¿qué pasa exactamente cuando escribo "yarn dev" en la terminal y luego abro localhost:3000 en el navegador? Usa una analogía sencilla.
+</PromptBox>
 
 ## Entregable
 
-Ficha de proyecto: **etapa + hipótesis + ICP**. Tu docente te dará la plantilla.
+**Tu ficha de proyecto** (etapa + hipótesis + ICP), enviada al docente en la plantilla que te dio.
 
 <Checkpoint>
-Al cerrar la semana ya sabes <strong>qué producto</strong> vas a construir y <strong>para quién</strong>. Sin esto, las semanas siguientes no funcionan.
+Al cerrar la semana sabes <strong>qué producto</strong> vas a construir y <strong>para quién</strong> — y tu compu está lista para construirlo. Sin esto, las semanas siguientes no funcionan.
 </Checkpoint>
+
+## Si te sobra tiempo
+
+- Lee [Cómo usar estas docs](/docs/intro/como-usar-las-docs) — 5 min que te ahorran errores de copy-paste todo el curso.
+- Hojea el [Glosario](/docs/fundamentos/glosario) — no lo memorices, solo ubica que existe.
+- Adelanta [Supabase paso a paso](/docs/setup/supabase) (crear tu proyecto y guardar tus keys): son 10 minutos que le quitas a la Semana 1.
