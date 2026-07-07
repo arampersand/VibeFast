@@ -1,0 +1,80 @@
+---
+title: Seguridad básica (no filtres tus llaves)
+description: Los 3 errores de seguridad que comete todo principiante y cómo evitarlos.
+order: 7
+---
+
+<StackBadge tech={["github", "supabase", "vercel"]} />
+
+Una **key** (o secreto) es una contraseña que le das a tu app para usar un servicio: OpenAI, tu base de datos, tu correo. 🔑 Filtrarla es caro porque quien la tenga puede **gastar tu dinero** o **entrar a tus datos**.
+
+Piénsalo así: es la llave de tu casa. No la pegas en un poste con tu dirección. Con tus keys es igual: se guardan, no se enseñan.
+
+<Callout type="info" title="La regla mental">
+Si un valor parece una contraseña rara y larga, es un secreto. Trátalo como tu PIN del banco.
+</Callout>
+
+## Error #1 — subir tu `.env.local` a GitHub
+
+Tu archivo `.env.local` guarda todas tus keys. Si lo subes a GitHub, quedan públicas para siempre (aunque lo borres después, el historial las recuerda).
+
+<Callout type="danger" title="Antes de CADA commit, revisa">
+Abre **Source Control** en Cursor y mira la lista de archivos. Si ves `.env.local` ahí, **DETENTE**: algo está mal configurado. Ese archivo NUNCA debe aparecer.
+</Callout>
+
+La buena noticia: VibeFast ya trae `.env.local` en el `.gitignore` (la lista de archivos que Git ignora), así que normalmente ni aparece. Tú solo confirma que sigue así.
+
+- Cómo llenar ese archivo: [Variables de entorno](/docs/setup/variables-de-entorno).
+- Qué es un commit y el `.gitignore`: [Git básico](/docs/fundamentos/git-basico).
+
+## Error #2 — enseñar tus keys al pedir ayuda
+
+Pegar una key en un chat público, en una captura de pantalla, o en un mensaje "para que me ayuden" es lo mismo que gritarla en la calle.
+
+Cuando pidas ayuda y necesites mostrar una línea con un secreto, **tápalo**. Reemplaza el valor por `XXX`:
+
+```text
+OPENAI_API_KEY=XXX
+```
+
+Con eso quien te ayude entiende el problema sin ver tu secreto. Más sobre cómo pedir ayuda bien: [Pedir ayuda](/docs/intro/pedir-ayuda).
+
+## Error #3 — apagar la seguridad de la base de datos
+
+Tu base de datos trae una protección llamada **RLS (Row Level Security)**: la regla que hace que cada usuario solo vea **SUS** datos y no los de los demás.
+
+VibeFast ya la trae activa. No la desactives "para que funcione más rápido": estarías dejando la puerta abierta para que cualquiera lea la información de todos.
+
+Cómo funciona tu base de datos: [Database](/docs/features/database).
+
+## "Ya la regué, filtré una key" 😰
+
+Respira. Se arregla, pero **hazlo hoy mismo**. La solución se llama **rotar** la key: generas una nueva y borras la vieja. La vieja (la filtrada) deja de servir al instante.
+
+Pasos generales:
+
+1. Entra al panel del servicio que se filtró.
+2. Borra la key vieja y genera una nueva.
+3. Actualiza `.env.local` en tu compu con la nueva.
+4. Actualiza también las **env vars en Vercel** (las variables de tu app en producción).
+
+| Servicio | Dónde rotar la key |
+| --- | --- |
+| OpenAI | Panel de OpenAI → sección de API keys → borra la vieja y crea una nueva |
+| Supabase | Panel de tu proyecto en Supabase → Settings → API |
+| Resend | Panel de Resend → sección de API Keys |
+
+Para actualizar las variables en producción: [Deploy en Vercel](/docs/deploy/vercel).
+
+<Callout type="success" title="La regla de oro">
+Si un valor es secreto, vive en **variables de entorno**, nunca en el código ni en un mensaje. Sin excepciones.
+</Callout>
+
+<Checkpoint>
+✅ Sabes que `.env.local` nunca se sube a GitHub y lo confirmas antes de cada commit.
+✅ Nunca compartes una key: la tapas con `XXX` al pedir ayuda.
+✅ Si filtras una key, sabes rotarla el mismo día y actualizarla en `.env.local` y en Vercel.
+✅ No desactivas el RLS de tu base de datos.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

@@ -1,0 +1,76 @@
+---
+title: PostHog paso a paso (analytics)
+description: Crea tu cuenta, pon tus keys y empieza a ver qué hacen tus usuarios.
+order: 9
+---
+
+<StackBadge tech={["posthog"]} />
+
+**PostHog** te deja ver qué hacen los usuarios dentro de tu producto: cuántos entran, dónde hacen clic, en qué pantalla se aburren y se van. En una frase: son los **ojos** de tu producto. 👀
+
+<Callout type="info" title="Por qué te importa">
+Sin analítica, adivinas. Con PostHog, ves. Sabrás qué funciona y qué no vale la pena, para invertir tu tiempo donde sí importa. Aquí te contamos qué hace por dentro: [Analytics en VibeFast](/docs/features/analytics).
+</Callout>
+
+## 1. Crea tu cuenta
+
+1. Entra a [posthog.com](https://posthog.com) y regístrate (gratis).
+2. Cuando crees tu primer **proyecto**, te va a pedir una **región**: **US** o **EU**. 🌎
+3. Elige la que quieras. Ojo: la región define el **host** (la dirección del servidor) que usarás más abajo. No lo puedes cambiar después, así que si estás en Latinoamérica o Europa, **EU** suele ser buena opción.
+
+## 2. Saca tus credenciales
+
+Necesitas dos datos. Los encuentras en **Project Settings** (el engranaje de configuración de tu proyecto):
+
+- **Project API Key**: un texto largo que empieza con `phc_`. Es la "llave pública" que identifica tu proyecto.
+- **Host**: la dirección de tu servidor, según tu región. Ejemplos: `https://us.i.posthog.com` (US) o el equivalente de la UE.
+
+Copia ambos. Los vas a pegar en el siguiente paso. 🔑
+
+## 3. Pégalas en `.env.local`
+
+Abre (o crea) el archivo `.env.local` en la raíz de tu proyecto y agrega tus dos datos:
+
+```bash
+NEXT_PUBLIC_POSTHOG_KEY=phc_tu_key_aqui
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+```
+
+<Callout type="warning" title="Confirma los nombres exactos">
+Los nombres de las variables deben coincidir **letra por letra** con los que usa tu plantilla. Revísalos en [Variables de entorno](/docs/setup/variables-de-entorno) antes de dar por hecho que están bien.
+</Callout>
+
+Un detalle: las variables que empiezan con `NEXT_PUBLIC_` **sí llegan al navegador** (a diferencia de una API key privada, que se queda escondida en el servidor). Aquí está bien, porque la Project API Key de PostHog está pensada para eso. Aun así, se manejan como variables de entorno, ordenaditas en su `.env.local`.
+
+Guarda el archivo y **reinicia** tu servidor para que tome los cambios:
+
+```bash
+yarn dev
+```
+
+## 4. El toggle de analytics
+
+VibeFast trae la analítica lista con un **toggle** (un interruptor de encender/apagar). Se activa solo con tener esas dos variables presentes en tu `.env.local`. Confirma el detalle exacto de cómo se prende en [Analytics en VibeFast](/docs/features/analytics).
+
+## 5. Verifica que funciona ✅
+
+1. Abre tu app en `http://localhost:3000` y **navega un poco**: entra, cambia de página, haz clic aquí y allá.
+2. Vuelve al **dashboard de PostHog** y entra a la sección **Activity** (o **Events**).
+3. En un ratito deberías ver **tus propios eventos** aparecer en la lista. 🎉
+
+Si aparecen, ¡ya estás midiendo! Esos son tus primeros datos reales.
+
+<Callout type="info" title="¿Cuánto cuesta?">
+PostHog tiene un plan gratis generoso, pero los límites cambian. No te fíes de cifras de memoria: revisa el **free tier** actual en [posthog.com](https://posthog.com). Para tener el panorama completo de gastos, mira [Costos](/docs/setup/costos).
+
+Y cuando quieras sacarle jugo de verdad, tenemos una guía de **qué medir** para tomar decisiones: [Analytics para decidir](/docs/deploy/analytics-para-decidir).
+</Callout>
+
+<Checkpoint>
+✅ Tienes cuenta en PostHog y elegiste una región (US o EU).
+✅ Copiaste tu Project API Key (`phc_...`) y tu host.
+✅ Los pegaste en `.env.local` y reiniciaste `yarn dev`.
+✅ Navegaste tu app y viste tus eventos aparecer en el dashboard.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

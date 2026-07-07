@@ -1,0 +1,80 @@
+---
+title: Checklist de lanzamiento
+description: Lo que revisas antes de enseñarle tu producto al mundo.
+order: 4
+---
+
+<StackBadge tech={["vercel", "next"]} />
+
+Llegaste lejos. 🎉 Tu producto ya no vive solo en tu compu: está en internet. Antes de compartir el link, repasa esta lista rápida para no quedar mal por un detalle tonto (un botón que no funciona, un link feo al compartirlo).
+
+La idea es simple: pasar de "funciona en mi compu" a "lanzado de verdad".
+
+## 1. Técnico: que todo funcione en el sitio público
+
+"En producción" significa la versión real que ve la gente, no la que corres en tu compu. Revisa esto en tu sitio público (tu dominio o la URL de Vercel):
+
+<Checkpoint>
+✅ Tus **variables de entorno** (las llaves y claves de tu app) están puestas en producción, no solo en tu compu. Repasa [Variables de entorno](/docs/setup/variables-de-entorno) y cómo cargarlas en [Deploy en Vercel](/docs/deploy/vercel).
+✅ Tu **dominio propio** está conectado (se ve como `tuproducto.com`, no como un link raro). Guía: [Conectar tu dominio](/docs/deploy/dominio).
+✅ Tu **base de datos de producción** está lista y con **RLS activo** (la regla que impide que un usuario vea datos de otro). Míralo en [Supabase en producción](/docs/deploy/supabase-produccion).
+</Checkpoint>
+
+Ahora pruébalo tú mismo, como si fueras un usuario nuevo, en el sitio público:
+
+<Checkpoint>
+✅ Registro y login funcionan (crea una cuenta de prueba de cero).
+✅ La **feature principal** de tu producto hace lo que promete.
+✅ Si tu app manda correos (bienvenida, confirmación...), llega uno de verdad.
+✅ Lo abriste en el **móvil** y se ve bien. La mayoría de la gente entrará desde el teléfono, así que esto no es opcional.
+</Checkpoint>
+
+<Callout type="warning" title="Prueba con ojos frescos">
+Tú sabes exactamente dónde hacer clic, así que todo "funciona". Pídele a un amigo que lo use sin instrucciones y mira dónde se traba. Ahí están tus bugs reales.
+</Callout>
+
+## 2. Presentación: que se vea profesional
+
+No importa qué tan bueno sea tu producto si el link se ve roto o nadie entiende qué hace. Repasa lo básico de marketing:
+
+<Checkpoint>
+✅ El **título y la descripción** de tu landing dejan claro qué haces. Prueba: ¿alguien lo entiende en 5 segundos?
+✅ Tienes **meta tags** y una **OG image** (la imagen que aparece cuando pegas tu link en WhatsApp, X o LinkedIn). Sin esto, tu link se ve pelón y nadie hace clic.
+✅ Tienes un **favicon** propio (el iconito de la pestaña del navegador).
+✅ Hay un **CTA claro**: un solo botón obvio que diga qué hacer (unirse al waitlist o registrarse).
+</Checkpoint>
+
+Los meta tags y la OG image viven en el código, pero no tienes que tocarlos a mano. Pídele a Cursor que los revise:
+
+<PromptBox label="Prompt para Cursor">
+Revisa los meta tags y la Open Graph (OG) image de mi landing page. Quiero que al compartir el link en WhatsApp y redes se vea una tarjeta con título, descripción e imagen. Dime qué falta, complétalo y explícame en palabras simples qué cambiaste y dónde.
+</PromptBox>
+
+## 3. Lanzar: comparte el link
+
+Ya está listo. Ahora sí, saca el producto al mundo. En orden:
+
+1. **Tu red directa primero.** Amigos, familia, grupos de WhatsApp. Es tu público más fácil y su feedback es oro.
+2. **Comunidades relevantes.** Grupos, Discords o foros donde esté la gente para la que hiciste esto. Aporta, no solo pegues tu link.
+3. **Product Hunt**, si aplica a tu tipo de producto (sitios web donde se descubren productos nuevos).
+4. **Avisa a tu waitlist.** Esa lista de gente que se apuntó esperando: mándales el link de una.
+
+<Callout type="danger" title="No esperes a que esté 'perfecto'">
+La versión perfecta en tu cabeza nunca sale. Lanza lo que tienes y mejóralo con feedback real de gente usándolo. Un producto imperfecto lanzado le gana a uno perfecto que nunca ve nadie. Si necesitas recordar la filosofía del proyecto, vuelve a [Qué es VibeFast](/docs/intro/que-es-vibefast).
+</Callout>
+
+## 4. Después de lanzar: mira los datos
+
+Lanzar no es el final, es el principio. Ahora decides qué mejorar con base en datos reales, no en corazonadas:
+
+- Mira quién entra, qué usa y dónde se cae la gente en [Analytics para decidir](/docs/deploy/analytics-para-decidir).
+- Cuando algo se atore (y algo se atorará), ten a mano cómo [pedir ayuda](/docs/intro/pedir-ayuda) para desatorarte rápido.
+
+<Checkpoint>
+✅ Lo técnico funciona en el sitio público (login, feature core, correos, móvil).
+✅ La presentación está lista (título claro, OG image, favicon, CTA).
+✅ Compartiste el link con tu red y avisaste a tu waitlist. ¡Lanzaste! 🎉
+✅ Estás mirando los datos para decidir el siguiente paso.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

@@ -1,0 +1,74 @@
+---
+title: Costos y capas gratis
+description: Cuánto cuesta cada servicio, qué es gratis y cómo evitar sustos de facturación.
+order: 3.5
+---
+
+<StackBadge tech={["supabase", "vercel", "openai", "resend", "posthog"]} />
+
+Antes de empezar a conectar cuentas, la duda típica es: *"¿esto me va a cobrar?"*. Respuesta corta: casi nada, y casi nunca al principio. Esta página te quita el miedo al costo y te enseña a poner un candado para que ningún bug te cobre de más.
+
+## La buena noticia
+
+Casi todo tu stack tiene **capa gratis** (free tier): un nivel que no cuesta nada hasta cierto uso. Piénsalo como el plan gratis de una app de música: suficiente para escuchar todos los días, y solo pagas si quieres extras.
+
+Esa capa gratis alcanza de sobra para **todo el curso** y para **lanzar tu primer producto**. El único servicio que cobra **pago por uso desde el arranque** es **OpenAI** (la IA), y aun así es de centavos mientras aprendes.
+
+<Callout type="success" title="Resumen en una línea">
+Puedes hacer el curso completo y publicar tu app sin sacar la tarjeta, salvo por OpenAI — que se paga por lo que uses y controlas con un tope.
+</Callout>
+
+## Servicio por servicio
+
+Aquí va el mapa de qué usas de cada uno y cómo funciona su costo. **No memorices cifras**: los planes cambian seguido, así que la columna de la derecha te dice *dónde* ver el precio real y actual.
+
+| Servicio | Qué usas | Cómo es el costo | Precio oficial |
+| --- | --- | --- | --- |
+| **Supabase** | Base de datos (donde viven tus usuarios y datos) | Gratis hasta cierto límite de uso | [supabase.com/pricing](https://supabase.com/pricing) |
+| **Vercel** | Hosting (donde vive tu app en internet) | Plan **Hobby** gratis para proyectos personales | [vercel.com/pricing](https://vercel.com/pricing) |
+| **Resend** | Envío de emails (bienvenida, avisos) | Gratis hasta cierto número de correos | [resend.com/pricing](https://resend.com/pricing) |
+| **PostHog** | Analytics (ver qué hace la gente en tu app) | Gratis hasta cierto volumen de eventos | [posthog.com/pricing](https://posthog.com/pricing) |
+| **OpenAI** | IA (respuestas, resúmenes, clasificación) | **Pago por uso desde el inicio** | [openai.com/api/pricing](https://openai.com/api/pricing) |
+
+Guías de setup de cada uno: [Supabase](/docs/setup/supabase) · [OpenAI](/docs/setup/openai) · [Resend](/docs/setup/resend) · [PostHog](/docs/setup/posthog).
+
+<Callout type="info" title="Los precios cambian seguido">
+Cualquier cifra que veas en un tutorial (incluido este) puede estar vieja. Antes de asumir un precio, **confírmalo en la web oficial** del servicio con los enlaces de la tabla. Es la única fuente de verdad.
+</Callout>
+
+## El que sí hay que vigilar: OpenAI
+
+OpenAI es el único que cobra desde el primer uso, y como es pago por uso, no hay un límite automático que te frene. La solución es fácil: **tú le pones el tope**.
+
+1. Entra a [platform.openai.com](https://platform.openai.com) y ve a la sección **Billing** (facturación).
+2. Busca la opción de **límite de gasto mensual** (usage limits / budget) y ponle una cifra baja.
+3. Revisa de vez en cuando la pestaña de **Usage** para ver cuánto llevas gastado.
+
+El paso a paso completo está en [OpenAI paso a paso](/docs/setup/openai).
+
+<Callout type="warning" title="Pon un tope bajo mientras aprendes">
+Sin límite, un bug que llame a la IA en bucle (por ejemplo, un botón que se dispara solo) puede gastar de más sin que te des cuenta. Con un tope mensual bajo, lo peor que pasa es que la IA deje de responder — nunca una factura sorpresa. Súbelo cuando ya tengas usuarios reales.
+</Callout>
+
+## Hábitos para no gastar de más
+
+Cuatro costumbres y duermes tranquilo:
+
+1. **Vive en la capa gratis.** Para el curso y tu primer lanzamiento, no necesitas pagar planes.
+2. **Pon límites donde se pueda.** OpenAI es el caso clave, pero cualquier servicio con tope de gasto: actívalo.
+3. **Chismea tu billing.** Cada servicio tiene un dashboard de facturación. Ábrelo de vez en cuando para ver que todo esté en cero (o casi).
+4. **Borra lo que no uses.** Proyectos de prueba, bases de datos viejas, recursos que dejaste a medias — elimínalos para que no consuman de tu capa gratis.
+
+## ¿Cuándo empiezas a pagar de verdad?
+
+Cuando tengas **usuarios reales** y superes los límites de la capa gratis. Y eso, aunque suene a gasto, en realidad es **la mejor señal del mundo**: significa que tu producto tiene tracción y que la gente lo está usando. 🎉
+
+Para entonces ya no eres principiante, y pagar unos dólares por servir a usuarios reales es un problema bonito de tener. Cuando llegues ahí, repasa el [Checklist de lanzamiento](/docs/deploy/checklist-lanzamiento).
+
+<Checkpoint>
+✅ Entiendes qué es gratis en tu stack y qué se paga por uso.
+✅ Pusiste un límite de gasto mensual en OpenAI.
+✅ Sabes dónde ver tu gasto (el billing de cada servicio).
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

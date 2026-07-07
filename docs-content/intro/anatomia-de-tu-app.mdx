@@ -1,0 +1,73 @@
+---
+title: Anatomía de tu app
+description: Las piezas de tu producto y cómo encajan — el mapa mental antes de construir.
+order: 2.5
+---
+
+<StackBadge tech={["next", "supabase", "vercel"]} />
+
+Antes de escribir una sola línea, ten claro **de qué está hecha** una web app moderna. No necesitas memorizar nada: solo el mapa mental. Con él, las semanas del curso van a tener sentido.
+
+## La idea grande: 3 piezas
+
+Toda app que uses (Instagram, tu banco, Spotify) tiene las mismas tres partes:
+
+- **Frontend** — lo que el usuario **ve y toca**, dentro del navegador. Botones, textos, colores.
+- **Backend** — la **lógica que corre en el servidor**. Decide qué pasa cuando alguien hace clic.
+- **Base de datos** — donde **viven los datos**. Usuarios, publicaciones, pedidos... todo guardado.
+
+<Callout type="info" title="Analogía: tu app es un restaurante 🍽️">
+El **salón** donde te sientas y pides = el **frontend**. La **cocina** que prepara tu platillo = el **backend**. La **despensa** donde están los ingredientes = la **base de datos**. Tú (el usuario) solo ves el salón; la magia pasa detrás.
+</Callout>
+
+## Qué tecnología es cada pieza en VibeFast
+
+VibeFast ya eligió una herramienta por capa, así que no comparas opciones:
+
+| Pieza | Tecnología | Qué hace |
+|---|---|---|
+| Frontend + Backend | **Next.js** | Un solo framework para el salón y la cocina. |
+| Base de datos | **Supabase** (Postgres) | La despensa donde viven tus datos. |
+| Hosting | **Vercel** | El local físico: pone tu app en internet. |
+
+¿Quieres el detalle de por qué cada una? → [Stack del curso](/docs/intro/stack).
+
+## El recorrido de una petición
+
+Cuando alguien usa tu app, pasa esto en menos de un segundo:
+
+1. El **usuario hace clic** en un botón (por ejemplo, "Ver mi perfil").
+2. El **navegador pide** esa información a tu app.
+3. **Next.js** recibe la petición y decide qué hacer.
+4. Si hacen falta datos, **consulta a Supabase** (la despensa).
+5. Supabase **devuelve** los datos a Next.js.
+6. Next.js arma la respuesta y se **pinta en pantalla**. 🎉
+
+Es un viaje de ida y vuelta: salón → cocina → despensa → cocina → salón. Cada clic dispara una vueltita como esta.
+
+## `localhost:3000` vs producción
+
+Vas a ver mucho `localhost:3000`. No te asustes:
+
+- **`localhost:3000`** — tu app corriendo **en tu propia compu**. Es tu ensayo privado: solo tú la ves. Perfecto para probar sin miedo.
+- **Producción** — tu app **publicada en Vercel**, con una URL real que cualquiera puede abrir. El estreno público.
+
+Mismo código, dos escenarios. Cuando algo funciona en `localhost` y quieres que el mundo lo vea, lo publicas. → [Deploy en Vercel](/docs/deploy/vercel).
+
+## Variables de entorno, en una frase
+
+Las **variables de entorno** (viven en un archivo `.env.local`) son las **llaves secretas** que tu app necesita para funcionar —contraseñas, tokens de servicios— pero que **no van escritas dentro del código**. 🔑
+
+Se configuran una vez y se explican paso a paso aquí → [Variables de entorno](/docs/setup/variables-de-entorno). Y como son secretas, hay una página sobre cuidarlas → [Seguridad básica](/docs/fundamentos/seguridad-basica).
+
+<Callout type="success" title="No tienes que memorizar esto">
+En serio: nadie empieza sabiéndolo todo. Vuelve a esta página cuando algo no te cuadre y de repente hará clic. ¿Una palabra rara? Búscala en el [Glosario](/docs/fundamentos/glosario).
+</Callout>
+
+<Checkpoint>
+✅ Entiendes las 3 piezas: frontend (lo que se ve), backend (la lógica), base de datos (los datos).
+✅ Sabes qué tecnología es cada una en VibeFast: Next.js, Supabase y Vercel.
+✅ Distingues `localhost:3000` (tu compu, privado) de producción (Vercel, público).
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

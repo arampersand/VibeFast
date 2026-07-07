@@ -1,0 +1,75 @@
+---
+title: Qué medir (y cómo leerlo)
+description: Después de lanzar, en qué números fijarte para decidir qué mejorar.
+order: 5
+---
+
+<StackBadge tech={["posthog"]} />
+
+Ya lanzaste. Y si seguiste el [setup de PostHog](/docs/setup/posthog) y la guía de [analítica](/docs/features/analytics), ya estás midiendo. 🎉
+
+El problema no es medir. Es mirar los números **equivocados**. Casi todos empiezan mirando "visitas totales", se emocionan con un número grande… y no tienen idea de qué hacer con él. Aquí vas a aprender a mirar los pocos números que sí te dicen **qué mejorar**.
+
+## Métricas de vanidad vs. métricas accionables
+
+Una **métrica de vanidad** es un número que se siente bien pero no cambia ninguna decisión. Una **métrica accionable** es la que, según su valor, te dice qué hacer después.
+
+Misma foto, dos lecturas:
+
+- Vanidad: "tuve **2.000 visitas** esta semana". Bien… ¿y ahora qué?
+- Accionable: "de esas 2.000 visitas, solo el **3%** dejó su correo". Ahí ya sabes que el problema está en tu landing, no en traer gente.
+
+<Callout type="info" title="La prueba de una hoja">
+Antes de anotar un número, pregúntate: "si sube o baja, ¿cambiaría algo de lo que voy a hacer?". Si la respuesta es no, es vanidad. Déjalo ir.
+</Callout>
+
+## Las pocas que importan al inicio
+
+No necesitas un tablero con 40 gráficas. Necesitas estas cuatro. Cada una te dice qué hacer si sale baja:
+
+| Métrica | Qué mide | Qué haces si está baja |
+| --- | --- | --- |
+| **Activación** | % de registrados que usan tu feature principal al menos una vez | Tu producto no engancha en el primer uso. Simplifica el primer paso o guía al usuario hacia el momento "ajá". |
+| **Embudo de registro** | De los que llegan a la landing, cuántos dejan su correo o se registran | El problema es tu landing o tu formulario. Aclara la promesa, pide menos datos, prueba otro texto. |
+| **Retención** | De los que se registran, cuántos vuelven días después | Enganchan pero no vuelven. Falta una razón para regresar (recordatorios, valor recurrente). |
+| **Dónde se caen** | En qué paso exacto abandonan | Arregla **ese** paso. Es el que más te está costando usuarios. |
+
+Si tuvieras que mirar una sola: **activación**. Traer gente que no llega a usar tu producto es llenar una cubeta con un hoyo en el fondo.
+
+## Cómo verlo en PostHog (en simple)
+
+No hace falta un tutorial largo. En PostHog vas a vivir en tres vistas:
+
+1. **Embudos (funnels)**: pones los pasos en orden (visita → registro → usa la feature) y ves en qué escalón se cae la gente.
+2. **Eventos**: la lista de acciones que tus usuarios hacen (clics, registros, etc.). Son los ladrillos de todo lo demás.
+3. **Retención**: una tabla que muestra cuántos vuelven al día 1, 7, 30.
+
+El cómo exacto de armar cada una está en la guía de [analítica](/docs/features/analytics). Aquí lo que importa es saber **qué** buscas en cada vista.
+
+## El bucle de decisión
+
+Medir sin decidir no sirve. El ciclo es siempre el mismo:
+
+1. **Mira un número.** Ej.: solo el 20% completa el registro.
+2. **Forma una hipótesis.** "Se caen porque el formulario pide demasiado."
+3. **Haz UN cambio.** Quita dos campos. Uno solo, para saber qué lo movió.
+4. **Vuelve a medir.** ¿Subió el 20%? Aprendiste algo. ¿No? Prueba otra hipótesis.
+
+<Callout type="success" title="Los números dicen 'qué', no 'por qué'">
+PostHog te dice **dónde** se caen. No te dice **por qué**. Para el porqué, habla con usuarios: un mensaje corto, una llamada de 10 minutos. "Vi que te registraste pero no volviste, ¿qué pasó?" vale oro.
+</Callout>
+
+## No te obsesiones con los datos todavía
+
+<Callout type="warning" title="Con 5 usuarios, habla, no midas">
+Al inicio tienes pocos datos y cualquier gráfica miente: un usuario que estornuda mueve el 20%. Con tus primeros 5 o 10 usuarios, **hablar con esos humanos** te enseña más que cualquier embudo. Las métricas empiezan a ser fiables cuando tienes decenas o cientos de personas, no cinco.
+</Callout>
+
+<Checkpoint>
+✅ Distingues una métrica de vanidad (visitas totales) de una accionable (% que se registra).
+✅ Conoces las 4 que importan al inicio: activación, embudo de registro, retención y dónde se caen.
+✅ Tienes claro el bucle: mirar → hipótesis → un cambio → volver a medir.
+✅ Sabes que los números dicen "qué" y que el "por qué" lo consigues hablando con usuarios.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).
