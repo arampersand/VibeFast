@@ -25,6 +25,14 @@ const nextConfig = {
         destination: "/docs/setup/prepara-tu-compu",
         permanent: true,
       },
+      // Páginas movidas a la sección Configuración
+      ...["variables-de-entorno", "google-oauth", "openai", "resend", "posthog", "stripe"].map(
+        (slug) => ({
+          source: `/docs/setup/${slug}`,
+          destination: `/docs/configuracion/${slug}`,
+          permanent: true,
+        })
+      ),
     ]
   },
 }

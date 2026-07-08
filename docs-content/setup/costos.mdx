@@ -1,7 +1,7 @@
 ---
 title: Costos y capas gratis
 description: Cuánto cuesta cada servicio, qué es gratis y cómo evitar sustos de facturación.
-order: 2
+order: 5
 ---
 
 <StackBadge tech={["supabase", "vercel", "openai", "resend", "posthog"]} />
@@ -30,7 +30,7 @@ Aquí va el mapa de qué usas de cada uno y cómo funciona su costo. **No memori
 | **PostHog** | Analytics (ver qué hace la gente en tu app) | Gratis hasta cierto volumen de eventos | [posthog.com/pricing](https://posthog.com/pricing) |
 | **OpenAI** | IA (respuestas, resúmenes, clasificación) | **Pago por uso desde el inicio** | [openai.com/api/pricing](https://openai.com/api/pricing) |
 
-Guías de setup de cada uno: [Supabase](/docs/setup/supabase) · [OpenAI](/docs/setup/openai) · [Resend](/docs/setup/resend) · [PostHog](/docs/setup/posthog).
+Guías de setup de cada uno: [Supabase](/docs/setup/supabase) · [OpenAI](/docs/configuracion/openai) · [Resend](/docs/configuracion/resend) · [PostHog](/docs/configuracion/posthog).
 
 <Callout type="info" title="Los precios cambian seguido">
 Cualquier cifra que veas en un tutorial (incluido este) puede estar vieja. Antes de asumir un precio, **confírmalo en la web oficial** del servicio con los enlaces de la tabla. Es la única fuente de verdad.
@@ -44,7 +44,7 @@ OpenAI es el único que cobra desde el primer uso, y como es pago por uso, no ha
 2. Busca la opción de **límite de gasto mensual** (usage limits / budget) y ponle una cifra baja.
 3. Revisa de vez en cuando la pestaña de **Usage** para ver cuánto llevas gastado.
 
-El paso a paso completo está en [OpenAI paso a paso](/docs/setup/openai).
+El paso a paso completo está en [OpenAI paso a paso](/docs/configuracion/openai).
 
 <Callout type="warning" title="Pon un tope bajo mientras aprendes">
 Sin límite, un bug que llame a la IA en bucle (por ejemplo, un botón que se dispara solo) puede gastar de más sin que te des cuenta. Con un tope mensual bajo, lo peor que pasa es que la IA deje de responder — nunca una factura sorpresa. Súbelo cuando ya tengas usuarios reales.

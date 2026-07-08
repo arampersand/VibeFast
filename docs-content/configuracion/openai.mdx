@@ -1,10 +1,14 @@
 ---
 title: OpenAI paso a paso (API key)
 description: Crea tu cuenta, saca tu API key y pon un límite de gasto — antes de la Semana 3.
-order: 8
+order: 2
 ---
 
 <StackBadge tech={["openai"]} />
+
+<Callout type="info" title="¿Cuándo lo necesitas?">
+En la **Semana 3**, tu primera función con IA. Es el único servicio de pago-por-uso desde el inicio, así que configúralo justo antes de esa semana (no antes).
+</Callout>
 
 La **API key** de OpenAI es la llave que deja a tu app usar los modelos de OpenAI: el "cerebro" de IA que responde, resume o clasifica dentro de tu producto. Sin esa llave, tu app no puede hablar con la IA.
 
@@ -50,7 +54,7 @@ OPENAI_API_KEY=sk-proj-...
 ```
 
 <Callout type="info" title="Confirma el nombre exacto de la variable">
-El nombre de la variable tiene que coincidir **exacto** con el que espera VibeFast. Suele ser `OPENAI_API_KEY`, pero confírmalo en [Variables de entorno](/docs/setup/variables-de-entorno) antes de darte por hecho. Un nombre mal escrito = la app no encuentra la key.
+El nombre de la variable tiene que coincidir **exacto** con el que espera VibeFast. Suele ser `OPENAI_API_KEY`, pero confírmalo en [Variables de entorno](/docs/configuracion/variables-de-entorno) antes de darte por hecho. Un nombre mal escrito = la app no encuentra la key.
 </Callout>
 
 Guarda el archivo. Si tenías el servidor corriendo, **reinícialo** para que tome el cambio: detén `yarn dev` (Ctrl+C en la terminal) y vuelve a lanzarlo.

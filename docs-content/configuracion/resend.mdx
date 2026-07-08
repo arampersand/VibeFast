@@ -1,10 +1,14 @@
 ---
 title: Resend paso a paso (emails)
 description: Crea tu cuenta, saca tu API key y manda tu primer email transaccional.
-order: 9
+order: 3
 ---
 
 <StackBadge tech={["resend"]} />
+
+<Callout type="info" title="¿Cuándo lo necesitas?">
+**Opcional.** Solo cuando quieras que tu app envíe correos (bienvenida, confirmaciones). Puedes dejarlo para cuando esa feature te haga falta.
+</Callout>
 
 **Resend** es el servicio que hace que tu app pueda **enviar correos**: el email de bienvenida cuando alguien se registra, la confirmación de una compra, un aviso de "restablece tu contraseña". Piensa en Resend como el cartero de tu app: tú le das la carta y él la entrega.
 
@@ -38,7 +42,7 @@ RESEND_API_KEY=re_tu_key_aqui
 ```
 
 <Callout type="info" title="Confirma el nombre exacto">
-La variable **tiene que llamarse exactamente** como tu app la espera. `RESEND_API_KEY` es lo más común, pero confírmalo en [Variables de entorno](/docs/setup/variables-de-entorno) para no equivocarte por una letra.
+La variable **tiene que llamarse exactamente** como tu app la espera. `RESEND_API_KEY` es lo más común, pero confírmalo en [Variables de entorno](/docs/configuracion/variables-de-entorno) para no equivocarte por una letra.
 </Callout>
 
 Guarda el archivo y **reinicia el servidor** para que tome la nueva variable: detén `yarn dev` (Ctrl+C en la terminal) y vuelve a correrlo:
