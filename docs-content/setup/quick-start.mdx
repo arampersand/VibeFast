@@ -10,7 +10,7 @@ Al final de esta página vas a tener:
 
 - ✅ Tu <Term id="repo-repositorio">repo</Term> en <Term id="github">GitHub</Term> con el código de VibeFast.
 - ✅ El proyecto corriendo en `localhost:3000`.
-- ✅ <Term id="supabase">Supabase</Term> conectado a tu app (y las tablas pre-cargadas, si haces el Paso 6).
+- ✅ <Term id="supabase">Supabase</Term> conectado a tu app, con las tablas pre-cargadas.
 - ✅ Tu landing <Term id="deploy">deployada</Term> en <Term id="vercel">Vercel</Term> con una URL pública.
 
 **Tiempo estimado: 30–60 minutos** (la primera vez puede tardar un poco más).
@@ -171,8 +171,8 @@ Tu `project-ref` está en la URL del dashboard (`https://supabase.com/dashboard/
 
 **Verifica que funcionó:** abre el **Table Editor** en el dashboard de Supabase — deberías ver las tablas (`profiles`, `waitlist`, `core_items`…). El detalle está en [Supabase paso a paso → Paso 5](/docs/setup/supabase#paso-5--sube-las-tablas-esto-se-hace-después-con-el-repo).
 
-<Callout type="info" title="¿Solo quieres ver la landing?">
-Puedes saltarte este paso por ahora: la landing corre sin base de datos. Vuelve aquí en **Sem 2** cuando agreguemos Auth + DB.
+<Callout type="warning" title="¿Se atoró supabase link o db push?">
+No te bloquees: puedes seguir al Paso 7 y volver aquí después (la landing corre sin base de datos, pero tu waitlist **no guardará emails** hasta completar este paso). Pega el error exacto en Cursor o revisa [Errores comunes](/docs/troubleshooting/errores-comunes).
 </Callout>
 
 ## Paso 7 · Personaliza tu producto
@@ -199,7 +199,7 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 <Checkpoint>
 ✅ Ves tu landing con tu título y color primario.
 ✅ El menú lleva a `/docs` y muestra estas docs.
-✅ El formulario de waitlist responde (sin guardar todavía — el guardado llega en Sem 2).
+✅ El formulario de waitlist responde — y si escribes un email, aparece como fila en la tabla `waitlist` (Supabase → **Table Editor**), gracias al Paso 6.
 
 ¿Algo no carga? → [Troubleshooting](/docs/troubleshooting/errores-comunes).
 </Checkpoint>

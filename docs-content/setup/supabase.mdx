@@ -49,18 +49,28 @@ No necesitas dominarlo hoy, pero estas 4 secciones (menú izquierdo) son las que
 
 ## Paso 4 · Saca tus 3 keys
 
-Tu app necesita **3 valores** para hablar con Supabase. Cópialos a un bloc de notas — los vas a pegar en `web/.env.local` durante el [Quick start](/docs/setup/quick-start).
+Tu app necesita **3 valores** para hablar con Supabase. Cópialos a un bloc de notas — los vas a pegar en `web/.env.local` durante el [Quick start](/docs/setup/quick-start). Uno por uno:
 
-**`NEXT_PUBLIC_SUPABASE_URL`** y **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — la forma rápida:
+**1 · `NEXT_PUBLIC_SUPABASE_URL`** (la dirección de tu proyecto):
 
-1. Abre tu proyecto en el dashboard y haz click en el **botón verde `Connect`** (arriba, junto al nombre del proyecto).
-2. Pestaña **App Frameworks** → **Next.js**: ahí ves las dos, ya con su nombre. Cópialas.
+1. Abre tu proyecto y haz click en el engrane **Project Settings** (abajo-izquierda del menú).
+2. Entra a la sección **Data API**.
+3. Copia el campo **Project URL** → será tu `NEXT_PUBLIC_SUPABASE_URL`. (También la ves en el botón verde **Connect**, arriba junto al nombre del proyecto.)
 
-*Alternativa:* engrane **Project Settings** (abajo-izquierda) → **API**. Ahí está **Project URL** (= `NEXT_PUBLIC_SUPABASE_URL`) y, en **Project API keys**, la **anon public** (= `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
+**2 · `NEXT_PUBLIC_SUPABASE_ANON_KEY`** (la key pública):
 
-**`SUPABASE_SERVICE_ROLE_KEY`** (la secreta):
+1. En el mismo **Project Settings**, entra a la sección **API Keys**.
+2. Arriba verás pestañas: cámbiate a la de **Legacy API Keys** (la de las keys clásicas).
+3. En la fila **`anon`** (dice *public*), haz click en **Copy** → será tu `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 
-- **Project Settings → API → Project API keys → `service_role`** (dice *secret*). Haz click en **Reveal** y cópiala.
+**3 · `SUPABASE_SERVICE_ROLE_KEY`** (la secreta):
+
+1. En esa misma pestaña **Legacy API Keys**, baja a la fila **`service_role`** (dice *secret*).
+2. Haz click en **Reveal** para mostrarla y cópiala → será tu `SUPABASE_SERVICE_ROLE_KEY`.
+
+<Callout type="warning" title="¿Ves keys que empiezan con sb_publishable_ o sb_secret_?">
+Estás en la pestaña de las keys **nuevas** de Supabase. Este proyecto usa las **clásicas**: cámbiate a la pestaña **Legacy API Keys** — las correctas son cadenas largas que empiezan con `eyJ...`.
+</Callout>
 
 <Callout type="info" title="¿Cómo se ve cada valor?">
 La **URL** termina en `.supabase.co` (ej. `https://abcd1234.supabase.co`). Las dos **keys** son cadenas largas que empiezan con `eyJ...`.

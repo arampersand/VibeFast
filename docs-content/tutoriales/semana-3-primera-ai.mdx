@@ -44,7 +44,16 @@ const resultado = await generateObject(schema, "Analiza este review: ...")
 
 ## Paso 1 · Consigue tu API key de OpenAI
 
-Sigue [OpenAI paso a paso (API key)](/docs/configuracion/openai): sacar la key, pegarla en `web/.env.local`, poner un límite de gasto y verificar. Cuando `yarn dev` reinicie sin errores, regresa aquí.
+El paso a paso vive en la guía dedicada. Ahí vas a:
+
+1. Entrar a tu cuenta de OpenAI (la creaste con saldo en Semana 0).
+2. Crear tu **API key** y copiarla al momento (solo se muestra una vez).
+3. Pegarla en `web/.env.local` y reiniciar `yarn dev`.
+4. Ponerle un **límite de gasto** mensual para dormir tranquilo.
+
+**→ Sigue [OpenAI paso a paso (API key)](/docs/configuracion/openai)** (~10 min; la guía incluye los errores típicos `401` / `quota` / `billing`).
+
+**Regresa aquí cuando** `yarn dev` reinicie sin errores con la key puesta.
 
 <Checkpoint>
 `web/.env.local` tiene tu `OPENAI_API_KEY` y reiniciaste `yarn dev` sin errores en la <Term id="terminal">terminal</Term>.

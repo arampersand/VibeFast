@@ -10,7 +10,7 @@ La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que 
 
 ## Qué vas a tener al final
 
-- ✅ Las tablas de tu <Term id="base-de-datos">base de datos</Term> creadas (y tu waitlist **guardando emails de verdad**).
+- ✅ Las tablas de tu <Term id="base-de-datos">base de datos</Term> verificadas y funcionando (las subiste en el Quick start).
 - ✅ Login con Google funcionando.
 - ✅ `/dashboard` protegido — solo usuarios logueados entran.
 - ✅ Tu **core feature**: el <Term id="crud">CRUD</Term> genérico (`core_items`) adaptado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros.
@@ -20,20 +20,29 @@ La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que 
 - [Semana 1](/docs/tutoriales/semana-1-landing) completada — landing deployada con URL pública.
 - Tu proyecto de <Term id="supabase">Supabase</Term> creado y las 3 <Term id="api-key">keys</Term> en `web/.env.local` ([Supabase paso a paso](/docs/setup/supabase)).
 
-## Paso 1 · Sube las tablas a Supabase
+## Paso 1 · Verifica tus tablas en Supabase
 
-Si te saltaste el Paso 6 del Quick start (como sugiere la Semana 1), este es el momento: sigue el [Paso 6 · Sube el schema a Supabase](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase) — son 3 comandos en la terminal de Cursor, y ahí dice dónde está tu `project-ref` y qué contraseña te va a pedir. Cuando termines, regresa aquí.
-
-¿Ya lo habías hecho antes? Entonces solo verifica y sigue.
+Las tablas ya las subiste en el **Paso 6 del Quick start** (Semana 1). Antes de construir encima, confirma que están:
 
 <Checkpoint>
 ✅ En el dashboard de Supabase → **Table Editor** ves las tablas: `profiles`, `waitlist`, `core_items`, `ai_conversations`, `ai_messages`, `tool_calls`, `events`.
-✅ Escribe un email en el formulario de tu landing (en `localhost:3000`) y refresca la tabla `waitlist` — **el email aparece como fila**. Tu waitlist ya guarda de verdad.
+✅ Escribe un email en el formulario de tu landing (en `localhost:3000`) y refresca la tabla `waitlist` — **el email aparece como fila**.
 </Checkpoint>
+
+¿No están las tablas? Ve al [Paso 6 · Sube el schema a Supabase](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase) — son 3 comandos en la terminal de Cursor, y ahí dice dónde está tu `project-ref` y qué contraseña te va a pedir. **Regresa aquí cuando** el Table Editor muestre las tablas.
 
 ## Paso 2 · Activa el login con Google
 
-Sigue [Login con Google (paso a paso)](/docs/configuracion/google-oauth): son clicks en Google Cloud y en Supabase, más un prompt al final. Tómate ~20 min con calma — es la parte con más pantallas nuevas de la semana.
+Todo el recorrido vive en la guía dedicada — son clicks en Google Cloud y en Supabase, más un prompt al final. Ahí vas a:
+
+1. Copiar tu **Callback URL** desde Supabase (Authentication → Providers → Google).
+2. Crear las credenciales en **Google Cloud** (consent screen + OAuth client, todo con clicks).
+3. Pegar el Client ID y el Secret en Supabase y **habilitar el provider**.
+4. Prender `features.googleAuth` en tu app con un prompt para Cursor.
+
+**→ Sigue [Login con Google (paso a paso)](/docs/configuracion/google-oauth)** (~20 min con calma — es la parte con más pantallas nuevas de la semana; la guía incluye los errores típicos como `redirect_uri_mismatch`).
+
+**Regresa aquí cuando** puedas entrar con Google en `localhost:3000/login`.
 
 <Checkpoint>
 En `localhost:3000/login` haces click en **Entrar con Google**, eliges tu cuenta y vuelves a la app con la sesión iniciada. Al entrar, `/dashboard` te deja pasar; en una ventana de incógnito (sin login), te redirige a `/login`.
