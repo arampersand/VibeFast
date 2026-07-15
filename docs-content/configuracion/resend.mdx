@@ -17,8 +17,8 @@ order: 3
 ## Paso 1 · Crea tu cuenta
 
 1. Entra a [resend.com](https://resend.com) → **Sign up**.
-2. Lo más rápido: haz clic en **Continue with GitHub** y autoriza. (Si ya tienes cuenta de GitHub del curso, con eso entras.)
-3. Verifica tu email si te lo pide. Listo, ya estás en el dashboard.
+2. Lo más rápido: haz clic en **Continue with GitHub** y autoriza. (Si ya tienes cuenta de <Term id="github">GitHub</Term> del curso, con eso entras.)
+3. Verifica tu email si te lo pide. Listo, ya estás en el <Term id="dashboard">dashboard</Term>.
 
 ## Paso 2 · Saca tu API key
 
@@ -45,7 +45,7 @@ RESEND_API_KEY=re_tu_key_aqui
 La variable **tiene que llamarse exactamente** como tu app la espera. `RESEND_API_KEY` es lo más común, pero confírmalo en [Variables de entorno](/docs/configuracion/variables-de-entorno) para no equivocarte por una letra.
 </Callout>
 
-Guarda el archivo y **reinicia el servidor** para que tome la nueva variable: detén `yarn dev` (Ctrl+C en la terminal) y vuelve a correrlo:
+Guarda el archivo y **reinicia el servidor** para que tome la nueva variable: detén `yarn dev` (Ctrl+C en la <Term id="terminal">terminal</Term>) y vuelve a correrlo:
 
 ```bash
 yarn dev
@@ -55,7 +55,7 @@ yarn dev
 
 Todo correo sale **desde una dirección** (el "de:"). Aquí tienes dos caminos:
 
-- **Modo de prueba (para empezar):** Resend te da un dominio de pruebas listo para usar. Puedes enviar desde algo como `onboarding@resend.dev` **a tu propio correo**. Cero configuración, perfecto para probar que todo funciona. Es donde empiezas en el curso.
+- **Modo de prueba (para empezar):** Resend te da un <Term id="dominio">dominio</Term> de pruebas listo para usar. Puedes enviar desde algo como `onboarding@resend.dev` **a tu propio correo**. Cero configuración, perfecto para probar que todo funciona. Es donde empiezas en el curso.
 - **Dominio propio (para producción):** cuando lances de verdad, quieres que los correos salgan desde `hola@tudominio.com`, no desde `resend.dev`. Para eso hay que **verificar tu dominio**: agregar unos registros DNS (unas líneas de configuración donde compraste tu dominio) que le prueban a Resend que el dominio es tuyo.
 
 <Callout type="info" title="No te compliques todavía">
@@ -78,7 +78,7 @@ Resend tiene un tier gratis con un límite de correos por día/mes, pero los nú
 ## Checkpoint
 
 <Checkpoint>
-✅ Tienes cuenta de Resend y una API key creada.
+✅ Tienes cuenta de Resend y una <Term id="api-key">API key</Term> creada.
 ✅ Tu key está guardada en `.env.local` (nunca en el chat ni en git) y reiniciaste `yarn dev`.
 ✅ Entiendes la diferencia entre el **modo de prueba** (empiezas aquí) y **verificar tu dominio** (al lanzar).
 ✅ Te llegó un correo de prueba a tu buzón.

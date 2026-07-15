@@ -10,7 +10,7 @@ Cada página de estas docs sigue convenciones simples. Conocerlas te ahorra tiem
 
 ### Prompts para Cursor
 
-Los bloques azulados son prompts listos para copiar y pegar en Cursor:
+Los bloques azulados son <Term id="prompt">prompts</Term> listos para copiar y pegar en <Term id="cursor">Cursor</Term>:
 
 <PromptBox>
 Crea un componente Button con variantes primary, secondary y ghost. Usa DaisyUI.
@@ -18,7 +18,7 @@ Crea un componente Button con variantes primary, secondary y ghost. Usa DaisyUI.
 
 ### Cajas de comandos (para copiar y pegar en la terminal)
 
-Los bloques grises con fondo oscuro son **comandos de terminal**. Tienen un botón de copiar en la esquina — úsalo en vez de seleccionar el texto a mano, así evitas copiar espacios de más.
+Los bloques grises con fondo oscuro son <Term id="comando">comandos</Term> de <Term id="terminal">terminal</Term>. Tienen un botón de copiar en la esquina — úsalo en vez de seleccionar el texto a mano, así evitas copiar espacios de más.
 
 ```bash
 yarn install
@@ -29,13 +29,13 @@ Cada uno de estos comandos hace algo específico: instala paquetes, sube tu base
 <Callout type="danger" title="Ojo: algunos comandos traen partes que DEBES cambiar">
 No todos los comandos son "copiar, pegar, enter". Algunos incluyen un **placeholder** — un pedazo de texto que representa algo tuyo (tu usuario, tu proyecto, tu key) y que **no funciona tal cual está escrito**.
 
-Ejemplo clásico, al clonar tu repo:
+Ejemplo clásico, al clonar tu <Term id="repo-repositorio">repo</Term>:
 
 ```bash
 git clone https://github.com/TU-USUARIO/VibeFast.git
 ```
 
-Aquí `TU-USUARIO` **no es el usuario real** — es un ejemplo. Tienes que cambiarlo por tu usuario de GitHub antes de correr el comando. Si lo pegas tal cual, va a fallar porque esa carpeta no existe.
+Aquí `TU-USUARIO` **no es el usuario real** — es un ejemplo. Tienes que cambiarlo por tu usuario de <Term id="github">GitHub</Term> antes de correr el comando. Si lo pegas tal cual, va a fallar porque esa carpeta no existe.
 
 **Cómo reconocerlos:** siempre que veas texto en MAYÚSCULAS, entre `<` y `>`, entre llaves `{así}` (en los prompts para Cursor, ej. *\{describe tu producto en 1 frase}*), o una palabra como `tu-proyecto` / `tu-usuario` / `tu-key`, es una señal de que **ese pedazo es tuyo, no un valor real**. Cuando el comando lo requiera, vas a ver una nota justo arriba o abajo del bloque, tipo *"aquí tienes que cambiarlo por tu usuario de GitHub"*, que te dice exactamente qué reemplazar y de dónde sacarlo.
 </Callout>

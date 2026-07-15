@@ -6,23 +6,23 @@ order: 3
 
 <StackBadge tech={["next", "openai"]} />
 
-Esta semana tu producto deja de ser una página bonita y empieza a **hacer algo inteligente**: una función real que usa IA y muestra el resultado en tu app. La construye Cursor — tú decides *qué* hace y verificas que funcione.
+Esta semana tu producto deja de ser una página bonita y empieza a **hacer algo inteligente**: una función real que usa IA y muestra el resultado en tu app. La construye <Term id="cursor">Cursor</Term> — tú decides *qué* hace y verificas que funcione.
 
 ## Qué vas a tener al final
 
-- ✅ Tu API key de OpenAI configurada y funcionando.
+- ✅ Tu <Term id="api-key">API key</Term> de OpenAI configurada y funcionando.
 - ✅ Una función de tu producto que llama a OpenAI y devuelve **datos estructurados** (no texto suelto).
 - ✅ Ese resultado renderizado en tu app, usable por tu ICP.
 - ✅ Noción de cuánto cuesta cada llamada (spoiler: centavos).
 
 ## Lo que debes tener antes
 
-- [Semana 2](/docs/tutoriales/semana-2-mvp) completa: login funcionando y base de datos con las tablas subidas (`supabase db push`).
+- [Semana 2](/docs/tutoriales/semana-2-mvp) completa: login funcionando y <Term id="base-de-datos">base de datos</Term> con las tablas subidas (`supabase db push`).
 - Cuenta de OpenAI **con saldo cargado** ($5–10) — lo hiciste en [Semana 0](/docs/tutoriales/semana-0-arranque); si no, hazlo ahora en [Setup → Cuentas](/docs/setup/cuentas).
 
 ## Concepto: structured outputs (2 min)
 
-En vez de pedirle al modelo "responde en formato JSON" (y cruzar los dedos), se le da un **molde** que describe exactamente qué campos debe traer la respuesta, y la API **garantiza** que lo cumple. El modelo deja de ser una caja negra que devuelve texto: se vuelve una función confiable de tu producto.
+En vez de pedirle al modelo "responde en formato JSON" (y cruzar los dedos), se le da un **molde** que describe exactamente qué campos debe traer la respuesta, y la <Term id="api">API</Term> **garantiza** que lo cumple. El modelo deja de ser una caja negra que devuelve texto: se vuelve una función confiable de tu producto.
 
 Así se ve por dentro — **no lo escribes tú, lo escribe Cursor** — pero conviene que lo reconozcas:
 
@@ -47,7 +47,7 @@ const resultado = await generateObject(schema, "Analiza este review: ...")
 Sigue [OpenAI paso a paso (API key)](/docs/configuracion/openai): sacar la key, pegarla en `web/.env.local`, poner un límite de gasto y verificar. Cuando `yarn dev` reinicie sin errores, regresa aquí.
 
 <Checkpoint>
-`web/.env.local` tiene tu `OPENAI_API_KEY` y reiniciaste `yarn dev` sin errores en la terminal.
+`web/.env.local` tiene tu `OPENAI_API_KEY` y reiniciaste `yarn dev` sin errores en la <Term id="terminal">terminal</Term>.
 </Checkpoint>
 
 ## Paso 2 · Decide qué hará tu primera función IA
@@ -67,7 +67,7 @@ Proponme 3 funciones con IA que pueda construir esta semana, donde la IA reciba 
 
 ## Paso 3 · Deja que Cursor la construya
 
-Con la función elegida, este es el prompt. Rellena las llaves:
+Con la función elegida, este es el <Term id="prompt">prompt</Term>. Rellena las llaves:
 
 <PromptBox label="Prompt para Cursor — construir la función">
 Construye mi primera feature con IA en este proyecto VibeFast (Next.js, la app vive en web/):

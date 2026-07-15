@@ -7,7 +7,7 @@ order: 2
 <StackBadge tech={["openai"]} />
 
 <Callout type="info" title="¿Cuándo lo necesitas?">
-La **cuenta y el saldo** ($5–10 USD) los dejaste listos en la Semana 0 ([Cuentas que necesitas](/docs/setup/cuentas)). La **API key** la sacas y configuras aquí, en la **Semana 3**, para tu primera función con IA.
+La **cuenta y el saldo** ($5–10 USD) los dejaste listos en la Semana 0 ([Cuentas que necesitas](/docs/setup/cuentas)). La <Term id="api-key">API key</Term> la sacas y configuras aquí, en la **Semana 3**, para tu primera función con IA.
 </Callout>
 
 La **API key** de OpenAI es la llave que deja a tu app usar los modelos de OpenAI: el "cerebro" de IA que responde, resume o clasifica dentro de tu producto. Sin esa llave, tu app no puede hablar con la IA.
@@ -42,7 +42,7 @@ sk-proj-AbC123...
 ```
 
 <Callout type="danger" title="Solo se muestra una vez">
-OpenAI te enseña la key **una única vez**. Si cierras esa ventana sin copiarla, no la vuelves a ver — pero no pasa nada: borras esa y creas otra nueva. Y ojo: es un **secreto**. No la compartas, no la pegues en un chat público y **nunca la subas a GitHub**. Aprende a protegerla en [Seguridad básica](/docs/fundamentos/seguridad-basica).
+OpenAI te enseña la key **una única vez**. Si cierras esa ventana sin copiarla, no la vuelves a ver — pero no pasa nada: borras esa y creas otra nueva. Y ojo: es un **secreto**. No la compartas, no la pegues en un chat público y **nunca la subas a <Term id="github">GitHub</Term>**. Aprende a protegerla en [Seguridad básica](/docs/fundamentos/seguridad-basica).
 </Callout>
 
 ## Paso 3 · Ponla en tu `.env.local`
@@ -57,7 +57,7 @@ OPENAI_API_KEY=sk-proj-...
 El nombre de la variable tiene que coincidir **exacto** con el que espera VibeFast. Suele ser `OPENAI_API_KEY`, pero confírmalo en [Variables de entorno](/docs/configuracion/variables-de-entorno) antes de darte por hecho. Un nombre mal escrito = la app no encuentra la key.
 </Callout>
 
-Guarda el archivo. Si tenías el servidor corriendo, **reinícialo** para que tome el cambio: detén `yarn dev` (Ctrl+C en la terminal) y vuelve a lanzarlo.
+Guarda el archivo. Si tenías el servidor corriendo, **reinícialo** para que tome el cambio: detén `yarn dev` (Ctrl+C en la <Term id="terminal">terminal</Term>) y vuelve a lanzarlo.
 
 ```bash
 yarn dev

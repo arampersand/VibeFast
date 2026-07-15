@@ -6,21 +6,21 @@ order: 2
 
 <StackBadge tech={["supabase"]} />
 
-**Supabase** es donde vive tu base de datos y el login de tus usuarios, en la nube. Antes de correr el proyecto necesitas tener esto listo — y todo se hace con clicks en su página, sin código.
+**Supabase** es donde vive tu <Term id="base-de-datos">base de datos</Term> y el login de tus usuarios, en la nube. Antes de correr el proyecto necesitas tener esto listo — y todo se hace con clicks en su página, sin código.
 
 Al final de esta página vas a tener:
 
 - ✅ Tu cuenta de Supabase creada.
 - ✅ Un proyecto creado y encendido (tu base de datos viva en la nube).
-- ✅ Tus **3 keys** copiadas y a la mano.
-- ✅ Ubicación básica en el dashboard (qué es cada sección).
+- ✅ Tus **3 <Term id="api-key">keys</Term>** copiadas y a la mano.
+- ✅ Ubicación básica en el <Term id="dashboard">dashboard</Term> (qué es cada sección).
 
 **Tiempo estimado: 10 minutos.**
 
 ## Paso 1 · Crea tu cuenta
 
 1. Entra a [supabase.com](https://supabase.com) → **Start your project**.
-2. Haz click en **Continue with GitHub** (usa la misma cuenta de GitHub del curso — así no acumulas contraseñas).
+2. Haz click en **Continue with GitHub** (usa la misma cuenta de <Term id="github">GitHub</Term> del curso — así no acumulas contraseñas).
 3. Autoriza el acceso y listo.
 
 ## Paso 2 · Crea tu proyecto
@@ -28,12 +28,12 @@ Al final de esta página vas a tener:
 1. En el dashboard ([supabase.com/dashboard](https://supabase.com/dashboard)) → **New project**.
 2. Si te pide una **Organization**, crea una con cualquier nombre (es solo una carpeta para tus proyectos).
 3. **Project name**: el nombre de tu producto.
-4. **Database Password**: Supabase te pide definir una contraseña para tu base de datos. Usa el botón **Generate a password** y **guárdala en un lugar seguro** (un gestor de contraseñas o una nota) — la terminal te la puede pedir más adelante y no se puede ver después, solo resetear.
+4. **Database Password**: Supabase te pide definir una contraseña para tu base de datos. Usa el botón **Generate a password** y **guárdala en un lugar seguro** (un gestor de contraseñas o una nota) — la <Term id="terminal">terminal</Term> te la puede pedir más adelante y no se puede ver después, solo resetear.
 5. **Region**: elige la más cercana a tus usuarios (`South America (São Paulo)` o `US East`).
 6. **Create new project**. Tarda 1–2 minutos en quedar listo (a esto le llaman *provisionar*) — la pantalla te avisa.
 
 <Callout type="warning" title="La contraseña de la base de datos NO es tu contraseña de Supabase">
-Son dos cosas distintas: con GitHub entras al dashboard; la **Database Password** es la llave de la base de datos en sí, y te la pedirá el comando `supabase link` cuando conectes el proyecto desde tu compu. Si la pierdes: **Project Settings → Database → Reset database password**.
+Son dos cosas distintas: con GitHub entras al dashboard; la **Database Password** es la llave de la base de datos en sí, y te la pedirá el <Term id="comando">comando</Term> `supabase link` cuando conectes el proyecto desde tu compu. Si la pierdes: **Project Settings → Database → Reset database password**.
 </Callout>
 
 ## Paso 3 · Ubícate en el dashboard
@@ -72,7 +72,7 @@ Es la llave maestra de tu base de datos. Nunca la subas a git, nunca la pegues e
 
 ## Paso 5 · Sube las tablas (esto se hace después, con el repo)
 
-El schema (las tablas pre-armadas del boilerplate) se sube desde tu computadora **cuando ya clonaste el repo** — es el [Paso 6 del Quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase). Los comandos son:
+El schema (las tablas pre-armadas del boilerplate) se sube desde tu computadora **cuando ya clonaste el <Term id="repo-repositorio">repo</Term>** — es el [Paso 6 del Quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase). Los comandos son:
 
 ```bash
 supabase login

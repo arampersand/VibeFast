@@ -8,10 +8,10 @@ order: 3
 
 Al final de esta página vas a tener:
 
-- ✅ Tu repo en GitHub con el código de VibeFast.
+- ✅ Tu <Term id="repo-repositorio">repo</Term> en <Term id="github">GitHub</Term> con el código de VibeFast.
 - ✅ El proyecto corriendo en `localhost:3000`.
-- ✅ Supabase conectado a tu app (y las tablas pre-cargadas, si haces el Paso 6).
-- ✅ Tu landing deployada en Vercel con una URL pública.
+- ✅ <Term id="supabase">Supabase</Term> conectado a tu app (y las tablas pre-cargadas, si haces el Paso 6).
+- ✅ Tu landing <Term id="deploy">deployada</Term> en <Term id="vercel">Vercel</Term> con una URL pública.
 
 **Tiempo estimado: 30–60 minutos** (la primera vez puede tardar un poco más).
 
@@ -41,7 +41,7 @@ Antes que nada, crea **tu propia copia** del repo en GitHub. No trabajas sobre e
 3. Listo: ahora tienes tu copia en `github.com/TU-USUARIO/VibeFast`. **Sobre esa** vas a trabajar de aquí en adelante.
 
 <Callout type="info" title="Fork vs. Use this template">
-El **Fork** es lo más simple (un clic) y queda ligado al original para traer mejoras después — por eso lo recomendamos. Si prefieres un repo totalmente limpio, sin el historial de VibeFast, usa **"Use this template" → Create a new repository** en el mismo repo.
+El <Term id="fork">Fork</Term> es lo más simple (un clic) y queda ligado al original para traer mejoras después — por eso lo recomendamos. Si prefieres un repo totalmente limpio, sin el historial de VibeFast, usa **"Use this template" → Create a new repository** en el mismo repo.
 </Callout>
 
 ## Paso 2 · Clónalo en tu computadora
@@ -150,7 +150,7 @@ NEXT_PUBLIC_POSTHOG_KEY=
 Por ahora solo necesitas las 4 primeras. El detalle de cada una (y de dónde sale) está en [Variables de entorno](/docs/configuracion/variables-de-entorno).
 
 <Callout type="info" title="Al cambiar el .env.local, reinicia">
-Las variables de entorno **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.
+Las <Term id="variable-de-entorno">variables de entorno</Term> **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.
 </Callout>
 
 <Callout type="warning" title="Nunca subas .env.local a git">
@@ -208,7 +208,7 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 
 1. Entra a [vercel.com/new](https://vercel.com/new) (haz **login con GitHub**).
 2. En la lista de repos, busca **tu fork** y haz click en **Import**. (Si no aparece, click en *Adjust GitHub App Permissions* y dale acceso.)
-3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un monorepo y la app vive en `web/`.
+3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un <Term id="monorepo">monorepo</Term> y la app vive en `web/`.
 4. **Framework Preset**: Next.js (se autodetecta, no lo toques).
 5. Expande **Environment Variables** y agrega **cada** variable de tu `web/.env.local` (nombre y valor, una por una). Mínimo estas **4**: las 3 de Supabase + `NEXT_PUBLIC_APP_URL`.
 6. Click **Deploy**.

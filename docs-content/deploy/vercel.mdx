@@ -8,22 +8,22 @@ order: 1
 
 ## Setup inicial
 
-1. [vercel.com/new](https://vercel.com/new) → Import tu repo de GitHub.
-2. **Root Directory**: `web` (obligatorio porque es monorepo).
+1. [vercel.com/new](https://vercel.com/new) → Import tu <Term id="repo-repositorio">repo</Term> de <Term id="github">GitHub</Term>.
+2. **Root Directory**: `web` (obligatorio porque es <Term id="monorepo">monorepo</Term>).
 3. Framework: Next.js (autodetectado).
 4. Build command: `yarn build` (autodetectado).
-5. Install command: `yarn install` desde la raíz del monorepo — Vercel lo autodetecta, no hay que tocarlo.
+5. Install command: `yarn install` desde la raíz del monorepo — <Term id="vercel">Vercel</Term> lo autodetecta, no hay que tocarlo.
 
 ## Variables de entorno
 
-Settings → Environment Variables. Agrega todas las de tu `web/.env.local` — mínimo estas **4**: las 3 de Supabase + `NEXT_PUBLIC_APP_URL`. (Agregarlas durante el import, como en el [Quick start · Paso 9](/docs/setup/quick-start), o después en Settings → Environment Variables da igual: es el mismo lugar.) Marca scope:
+Settings → Environment Variables. Agrega todas las de tu `web/.env.local` — mínimo estas **4**: las 3 de <Term id="supabase">Supabase</Term> + `NEXT_PUBLIC_APP_URL`. (Agregarlas durante el import, como en el [Quick start · Paso 9](/docs/setup/quick-start), o después en Settings → Environment Variables da igual: es el mismo lugar.) Marca scope:
 
 - `Production` — para tu URL principal.
 - `Preview` — para PRs.
 - `Development` — para `vercel dev` local.
 
 <Callout type="warning" title="NEXT_PUBLIC_APP_URL NO es localhost">
-En Vercel, `NEXT_PUBLIC_APP_URL` debe ser la **URL de tu deploy** (ej. `https://tu-producto.vercel.app` o tu dominio), no `http://localhost:3000`. Si no la sabías al importar, actualízala después del primer deploy y redeploya.
+En Vercel, `NEXT_PUBLIC_APP_URL` debe ser la **URL de tu <Term id="deploy">deploy</Term>** (ej. `https://tu-producto.vercel.app` o tu dominio), no `http://localhost:3000`. Si no la sabías al importar, actualízala después del primer deploy y redeploya.
 </Callout>
 
 ## Deploys automáticos

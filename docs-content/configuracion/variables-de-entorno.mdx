@@ -4,7 +4,7 @@ description: Las keys que viven en .env.local y de dónde sacarlas.
 order: 0
 ---
 
-Todas las keys del proyecto viven en `web/.env.local` (que **nunca** sube a git). El archivo `web/.env.example` te muestra qué variables necesitas.
+Todas las <Term id="api-key">keys</Term> del proyecto viven en `web/.env.local` (que **nunca** sube a git). El archivo `web/.env.example` te muestra qué variables necesitas.
 
 Esta página es tu **mapa**: qué servicio pide qué key, **cuándo** la necesitas y el link a su guía. No configures todo el día 1 — cada servicio se conecta cuando llegas a la feature que lo usa.
 
@@ -20,7 +20,7 @@ Esta página es tu **mapa**: qué servicio pide qué key, **cuándo** la necesit
 | **Google (Gmail)** | `GOOGLE_OAUTH_CLIENT_ID` · `_SECRET` | Solo receta agente Gmail · **opcional** | [Login con Google](/docs/configuracion/google-oauth) |
 
 <Callout type="info" title="Ojo: el login con Google NO usa variables de entorno">
-El login con Google **de tu app** se configura en el **dashboard de Supabase**, no en `.env.local`. Las variables `GOOGLE_OAUTH_*` de la tabla son **solo** para la receta del agente de Gmail. La guía del login está en [Login con Google](/docs/configuracion/google-oauth).
+El login con Google **de tu app** se configura en el **<Term id="dashboard">dashboard</Term> de <Term id="supabase">Supabase</Term>**, no en `.env.local`. Las variables `GOOGLE_OAUTH_*` de la tabla son **solo** para la receta del agente de Gmail. La guía del login está en [Login con Google](/docs/configuracion/google-oauth).
 </Callout>
 
 <Callout type="info" title="Guárdalas al momento">
