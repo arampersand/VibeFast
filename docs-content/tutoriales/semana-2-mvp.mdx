@@ -22,19 +22,9 @@ La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que 
 
 ## Paso 1 · Sube las tablas a Supabase
 
-Si te saltaste el [Paso 6 del quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase), este es el momento. En la terminal de Cursor:
+Si te saltaste el Paso 6 del Quick start (como sugiere la Semana 1), este es el momento: sigue el [Paso 6 · Sube el schema a Supabase](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase) — son 3 comandos en la terminal de Cursor, y ahí dice dónde está tu `project-ref` y qué contraseña te va a pedir. Cuando termines, regresa aquí.
 
-```bash
-supabase login
-supabase link --project-ref <tu-project-ref>
-supabase db push
-```
-
-<Callout type="danger" title="Aquí tienes que cambiar <tu-project-ref>">
-Está en la URL de tu dashboard de Supabase (`https://supabase.com/dashboard/project/TU-REF` — esa parte final). Si `link` te pide contraseña, es la **Database Password** que guardaste al crear el proyecto.
-</Callout>
-
-Ya lo habías hecho antes? Entonces solo verifica y sigue.
+¿Ya lo habías hecho antes? Entonces solo verifica y sigue.
 
 <Checkpoint>
 ✅ En el dashboard de Supabase → **Table Editor** ves las tablas: `profiles`, `waitlist`, `core_items`, `ai_conversations`, `ai_messages`, `tool_calls`, `events`.
@@ -87,7 +77,7 @@ Recorre el flujo completo, de afuera hacia adentro, como lo haría tu ICP:
 
 Haz commit y push de tus cambios (pídele a Cursor: *"haz commit y push de todo lo de esta semana con un mensaje descriptivo"*) — Vercel redeploya solo. Dos ajustes para que el login funcione en tu URL pública:
 
-1. En Supabase → **Authentication → URL Configuration**: pon tu URL de Vercel en **Site URL** y agrégala a **Redirect URLs** (detalle en [Supabase en producción](/docs/deploy/supabase-produccion)).
+1. En Supabase → **Authentication → URL Configuration**: pon tu URL de Vercel en **Site URL**, y en **Redirect URLs** agrega esa misma URL **con `/auth/callback` al final** (ej. `https://tu-producto.vercel.app/auth/callback`) — detalle en [Supabase en producción](/docs/deploy/supabase-produccion).
 2. Verifica que en Vercel estén todas tus variables de entorno (las 3 de Supabase + `NEXT_PUBLIC_APP_URL` con tu URL real).
 
 <Checkpoint>

@@ -12,12 +12,13 @@ Página en construcción — los pasos finales se publican antes de que la neces
 
 ## Aplicar migrations
 
+Es el mismo flujo del [Paso 6 del Quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase). Si tu proyecto ya está conectado (`supabase link` ya corrido), basta con:
+
 ```bash
-supabase link --project-ref <tu-project-ref>
 supabase db push
 ```
 
-Aquí `<tu-project-ref>` es el identificador de tu proyecto: está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**.
+Si es la primera vez en esta compu, antes corre `supabase login` y `supabase link --project-ref <tu-project-ref>` — el `<tu-project-ref>` está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**.
 
 ## Configurar redirect URLs
 

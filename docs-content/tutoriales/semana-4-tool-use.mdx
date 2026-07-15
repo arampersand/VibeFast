@@ -27,8 +27,8 @@ VibeFast usa un **registry**: un catálogo central donde defines la tool una vez
 
 ## Pasos (preview)
 
-1. Crear una tool en `lib/tools/examples/`.
-2. Registrarla con `registerTool({ name, description, parameters, execute })`.
+1. Crear una tool en `web/lib/tools/examples/` — un objeto con `name`, `description`, `parameters` y `execute`.
+2. Registrarla pasándola a `registerTool` (el patrón exacto está en [Features → Tool use](/docs/features/tool-use)).
 3. Probar desde `/chat` — la pantalla de chat de tu app, que se activa con `features.aiChat` en `web/config.js`.
 4. Armar un flujo LangGraph que use 2+ tools.
 

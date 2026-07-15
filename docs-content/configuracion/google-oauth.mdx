@@ -99,6 +99,6 @@ Corre `yarn dev`, abre `http://localhost:3000/login` y haz click en **Entrar con
 
 El login va a funcionar en `localhost`, pero para que funcione en tu URL pública tienes que decírselo a Supabase:
 
-- **Authentication** → **URL Configuration** → en **Site URL** pon la URL de tu deploy (la de Vercel o tu dominio propio) y agrégala también en **Redirect URLs**.
+- **Authentication** → **URL Configuration** → en **Site URL** pon la URL de tu deploy (la de Vercel o tu dominio propio), y en **Redirect URLs** agrega esa misma URL **con `/auth/callback` al final** (ej. `https://tu-producto.vercel.app/auth/callback`).
 
 El detalle de esto está en [Supabase en producción](/docs/deploy/supabase-produccion).

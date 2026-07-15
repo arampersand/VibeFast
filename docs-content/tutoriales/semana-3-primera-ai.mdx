@@ -40,21 +40,11 @@ const resultado = await generateObject(schema, "Analiza este review: ...")
 // resultado.sentimiento === "positivo"  ← garantizado, siempre viene
 ```
 
-(Zod es la librería que define el molde; `generateObject` es un helper que ya viene en el boilerplate, en `web/lib/openai/`.)
+(Zod es la librería que define el molde; `generateObject` es un helper que ya viene en el boilerplate, en `web/lib/openai/`. Cómo funciona por dentro: [Features → IA con OpenAI](/docs/features/ai-openai).)
 
 ## Paso 1 · Consigue tu API key de OpenAI
 
-1. Entra a [platform.openai.com](https://platform.openai.com) con tu cuenta.
-2. Verifica tu saldo en **Settings → Billing** — debe haber crédito. Si está en $0, carga $5–10 ahí mismo.
-3. Menú → **API keys** → **+ Create new secret key**. Ponle nombre (ej. "vibefast-curso") → **Create**.
-4. **Cópiala en ese momento** (empieza con `sk-...`) — solo se muestra una vez. Si la pierdes, borras esa y creas otra.
-5. Pégala en `web/.env.local`:
-
-```bash
-OPENAI_API_KEY=sk-...
-```
-
-6. Reinicia el servidor: `Ctrl+C` en la terminal y de nuevo `yarn dev` (las variables de entorno no se recargan solas).
+Sigue [OpenAI paso a paso (API key)](/docs/configuracion/openai): sacar la key, pegarla en `web/.env.local`, poner un límite de gasto y verificar. Cuando `yarn dev` reinicie sin errores, regresa aquí.
 
 <Checkpoint>
 `web/.env.local` tiene tu `OPENAI_API_KEY` y reiniciaste `yarn dev` sin errores en la terminal.

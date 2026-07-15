@@ -14,37 +14,21 @@ En [Git en 5 minutos](/docs/fundamentos/git-basico) haces todo con **clics** den
 
 ## Parte 1 · Configura Git
 
-Esto se hace **una sola vez**. Antes de tu primer commit, Git necesita saber **quién eres** para firmar cada guardado con tu nombre. Corre estos dos comandos **cambiando** el nombre y el correo por los tuyos:
-
-```bash
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu-correo@ejemplo.com"
-```
-
-<Callout type="warning" title="Usa el MISMO correo que en GitHub">
-Si el correo no coincide con el de tu cuenta de GitHub, tus commits no se te acreditan (no aparecen con tu foto en el historial). Usa el correo con el que entras a GitHub.
-</Callout>
-
-Deja también `main` como nombre de rama por defecto (es el estándar hoy):
-
-```bash
-git config --global init.defaultBranch main
-```
-
-**Verifica** que quedó bien. Debe mostrar tu nombre y correo:
+Tu nombre y correo de Git ya los configuraste al preparar tu compu — el paso a paso vive en [Prepara tu compu → Configura tu identidad de Git](/docs/setup/prepara-tu-compu#-configura-tu-identidad-de-git-mac-y-windows). Verifica que sigue en su lugar (debe mostrar tu nombre y correo, el mismo de GitHub):
 
 ```bash
 git config --global --list
 ```
 
-<Callout type="info" title="Falta un paso: conectar con GitHub">
-Configurar tu nombre **no** te conecta con GitHub — eso es aparte. Para que Cursor pueda subir tu código sin pedirte token cada vez, configura tu llave **SSH**: [Conectar GitHub con SSH](/docs/setup/github-ssh).
-</Callout>
+Un ajuste extra que sí es de esta página — deja `main` como nombre de rama por defecto (es el estándar hoy):
+
+```bash
+git config --global init.defaultBranch main
+```
 
 <Checkpoint>
 ✅ `git config --global --list` muestra tu nombre y tu correo.
 ✅ El correo es el mismo de tu cuenta de GitHub.
-✅ Ya configuraste tu llave SSH (o sabes que es el siguiente paso).
 </Checkpoint>
 
 ## Parte 2 · Los comandos
@@ -55,7 +39,7 @@ No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado den
 
 | Comando | Qué hace |
 |---------|----------|
-| `git clone <url>` | Baja un repo de GitHub a tu compu (crea la carpeta). Usa la URL **SSH** (`git@github.com:...`). |
+| `git clone <url>` | Baja un repo de GitHub a tu compu (crea la carpeta). Usa la URL **HTTPS** (botón verde `Code` → HTTPS). |
 | `cd VibeFast` | Entra a la carpeta del proyecto para poder correr los demás comandos. |
 | `cursor .` | Abre la carpeta actual en Cursor. |
 
@@ -125,7 +109,7 @@ Significa que tocaste los mismos archivos que cambiaron en el original. No te as
 La primera vez, agrega el repo original como un segundo remoto llamado **`upstream`** (solo se hace **una vez**):
 
 ```bash
-git remote add upstream git@github.com:arampersand/VibeFast.git
+git remote add upstream https://github.com/arampersand/VibeFast.git
 ```
 
 De ahí en adelante, cada vez que quieras traer las mejoras del original:
