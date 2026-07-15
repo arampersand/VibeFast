@@ -3,7 +3,7 @@
 
 /* ============================================================
    Tema de marca VibeFast (Flat Design)
-   Paleta: violeta (primary) + naranja (accent/CTA) + slate (neutral).
+   Paleta: azul cielo (primary/accent/CTA) + slate (neutral).
    El primary real lo inyecta config.brand.primary desde layout.js
    como --color-primary inline (config = fuente de verdad).
    ============================================================ */
@@ -12,11 +12,11 @@
   default: true;
   prefersdark: false;
   color-scheme: light;
-  --color-primary: #7c3aed;
+  --color-primary: #0ea5e9;
   --color-primary-content: #ffffff;
-  --color-secondary: #6d28d9;
+  --color-secondary: #0284c7;
   --color-secondary-content: #ffffff;
-  --color-accent: #f97316;
+  --color-accent: #0ea5e9;
   --color-accent-content: #ffffff;
   --color-neutral: #1e293b;
   --color-neutral-content: #f8fafc;
@@ -38,12 +38,12 @@
   default: false;
   prefersdark: true;
   color-scheme: dark;
-  --color-primary: #a78bfa;
-  --color-primary-content: #ffffff;
-  --color-secondary: #8b5cf6;
-  --color-secondary-content: #1e1b2e;
-  --color-accent: #fb923c;
-  --color-accent-content: #1e1b2e;
+  --color-primary: #38bdf8;
+  --color-primary-content: #0f172a;
+  --color-secondary: #0ea5e9;
+  --color-secondary-content: #0f172a;
+  --color-accent: #38bdf8;
+  --color-accent-content: #0f172a;
   --color-neutral: #e2e8f0;
   --color-neutral-content: #0f172a;
   --color-base-100: #0f172a;

@@ -36,7 +36,7 @@ const config = {
   // -----------------------------------------------------------
   brand: {
     // Color primario en HEX. DaisyUI lo aplica como --color-primary via theme.
-    primary: "#7c3aed", // violet-600
+    primary: "#0ea5e9", // sky-500 (azul cielo)
     // Logo: puede ser texto o ruta a /public/logo.svg
     logoText: "VibeFast",
     logoSrc: null,
