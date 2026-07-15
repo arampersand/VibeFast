@@ -7,7 +7,7 @@ order: 1
 <StackBadge tech={["supabase", "auth"]} />
 
 <Callout type="info">
-Esta feature se activa en la **Semana 2** del curso. Aquí abajo está el resumen; el paso a paso completo del login con Google está en [Login con Google (paso a paso)](/docs/setup/google-oauth).
+Esta feature se activa en la **Semana 2** del curso. Aquí abajo está el resumen; el paso a paso completo del login con Google está en [Login con Google (paso a paso)](/docs/configuracion/google-oauth).
 </Callout>
 
 ## Resumen
@@ -24,4 +24,4 @@ Activación: `features.googleAuth: true` en `web/config.js`.
 
 ## Cómo configurar Google OAuth en Supabase
 
-El click-por-click completo (crear las credenciales en Google Cloud, pegarlas en Supabase y probar el login) está en [Login con Google (paso a paso)](/docs/setup/google-oauth). En resumen: creas credenciales OAuth en Google Cloud Console, las pegas en Supabase → Authentication → Providers → Google, y agregas la URL de callback de Supabase en Google. Esa URL tiene la forma `https://<tu-proyecto>.supabase.co/auth/v1/callback` — pero no la escribas a mano: cópiala del dashboard de Supabase (Authentication → Providers → Google), que te la muestra lista para copiar.
+El click-por-click completo (crear las credenciales en Google Cloud, pegarlas en Supabase y probar el login) está en [Login con Google (paso a paso)](/docs/configuracion/google-oauth). En resumen: creas credenciales OAuth en Google Cloud Console, las pegas en Supabase → Authentication → Providers → Google, y agregas la URL de callback de Supabase en Google. Esa URL tiene la forma `https://<tu-proyecto>.supabase.co/auth/v1/callback` — pero no la escribas a mano: cópiala del dashboard de Supabase (Authentication → Providers → Google), que te la muestra lista para copiar.

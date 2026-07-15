@@ -16,8 +16,8 @@ export default function Sidebar({ tree, onNavigate }) {
     <nav className="space-y-6 text-sm">
       {tree.map((section) => (
         <div key={section.slug}>
-          <p className="mb-2 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-base-content/50">
-            <SectionIcon name={section.icon} className="size-3.5 text-primary/70" />
+          <p className="mb-2 flex items-center gap-2 px-2 text-xs font-bold uppercase tracking-wider text-primary/80">
+            <SectionIcon name={section.icon} className="size-3.5 text-primary" />
             {section.label}
           </p>
           <ul className="space-y-0.5">
@@ -30,10 +30,10 @@ export default function Sidebar({ tree, onNavigate }) {
                     onClick={onNavigate}
                     aria-current={isActive ? "page" : undefined}
                     className={
-                      "block rounded-md px-2 py-1.5 transition " +
+                      "block rounded-md border-l-2 px-2 py-1.5 transition hover:translate-x-0.5 " +
                       (isActive
-                        ? "bg-primary/10 font-medium text-primary"
-                        : "text-base-content/70 hover:bg-base-200 hover:text-base-content")
+                        ? "border-primary bg-primary/10 font-semibold text-primary"
+                        : "border-transparent text-base-content/80 hover:border-primary/30 hover:bg-base-200 hover:text-base-content")
                     }
                   >
                     {page.label}

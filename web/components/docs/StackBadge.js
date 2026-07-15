@@ -55,9 +55,9 @@ export default function StackBadge({ tech = [] }) {
       {tech.map((t) => (
         <span
           key={t}
-          className="inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-200 px-2 py-0.5 text-xs font-medium text-base-content/70"
+          className="inline-flex items-center gap-1.5 rounded-md border border-primary/20 bg-primary/5 px-2 py-0.5 text-xs font-semibold text-base-content/80"
         >
-          <TechIcon name={TECH_ICONS[t] || "Box"} className="size-3.5 text-primary/70" />
+          <TechIcon name={TECH_ICONS[t] || "Box"} className="size-3.5 text-primary" />
           {TECH_LABELS[t] || t}
         </span>
       ))}

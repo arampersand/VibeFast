@@ -1,7 +1,7 @@
 ---
 title: Quick start (30 min)
 description: De cero a deploy en Vercel en una sentada.
-order: 2
+order: 1
 ---
 
 <StackBadge tech={["github", "yarn", "supabase", "vercel"]} />
@@ -23,10 +23,10 @@ Esto es lo primero de lo primero. Hazlo antes de tocar el código:
 - [GitHub](https://github.com), [Vercel](https://vercel.com), [Supabase](https://supabase.com).
 - [OpenAI](https://platform.openai.com) es distinta: requiere cuenta propia y cargar saldo ($5–10 USD) — detalles en [Cuentas que necesitas](/docs/setup/cuentas). [Resend](https://resend.com) es para más adelante (opcional al inicio).
 
-**2 · Instala las herramientas** en tu compu. La guía paso a paso por sistema operativo está en [Prepara tu compu (Mac / Windows)](/docs/fundamentos/prepara-tu-compu). En resumen necesitas:
+**2 · Instala las herramientas** en tu compu. La guía paso a paso por sistema operativo está en [Prepara tu compu (Mac / Windows)](/docs/setup/prepara-tu-compu). En resumen necesitas:
 - **Node 20 o 22 LTS** ([nodejs.org](https://nodejs.org)) — usa una versión **par** (LTS).
 - **yarn**: `npm install -g yarn`
-- **Git** (para clonar tu repo en el Paso 2) — cómo instalarlo está en [Prepara tu compu](/docs/fundamentos/prepara-tu-compu).
+- **Git** (para clonar tu repo en el Paso 2) — cómo instalarlo está en [Prepara tu compu](/docs/setup/prepara-tu-compu).
 - **Supabase CLI** (para subir la base de datos):
 
 ```bash
@@ -75,6 +75,10 @@ Cada quien tiene su propio link. Consíguelo así:
 3. Pestaña **HTTPS** → copia el link (termina en `.git`).
 
 Ese link copiado es el que va después de `git clone`.
+</Callout>
+
+<Callout type="info" title="¿Cansado de que GitHub te pida token en cada push?">
+Clonar por **HTTPS** funciona, pero GitHub te pedirá un token al publicar. Para que Cursor suba tu código **sin pedirte nada**, configura una llave **SSH** una sola vez: [Conectar GitHub con SSH](/docs/setup/github-ssh). Es opcional, pero se agradece.
 </Callout>
 
 Con tu link copiado, clónalo y ábrelo en Cursor (aquí `TU-USUARIO` es solo ejemplo — usa tu link real):
@@ -148,7 +152,7 @@ RESEND_API_KEY=
 NEXT_PUBLIC_POSTHOG_KEY=
 ```
 
-Por ahora solo necesitas las 4 primeras. El detalle de cada una (y de dónde sale) está en [Variables de entorno](/docs/setup/variables-de-entorno).
+Por ahora solo necesitas las 4 primeras. El detalle de cada una (y de dónde sale) está en [Variables de entorno](/docs/configuracion/variables-de-entorno).
 
 <Callout type="info" title="Al cambiar el .env.local, reinicia">
 Las variables de entorno **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.

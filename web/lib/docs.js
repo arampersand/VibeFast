@@ -10,7 +10,8 @@ const DOCS_DIR = path.join(process.cwd(), "..", "docs-content")
 const SECTION_LABELS = {
   intro: "Introducción",
   fundamentos: "Fundamentos",
-  setup: "Setup",
+  setup: "Empieza aquí",
+  configuracion: "Configuración",
   tutoriales: "Tutoriales por semana",
   features: "Features",
   componentes: "Componentes",
@@ -24,6 +25,7 @@ const SECTION_ICONS = {
   intro: "BookOpen",
   fundamentos: "GraduationCap",
   setup: "Rocket",
+  configuracion: "Settings",
   tutoriales: "CalendarDays",
   features: "Boxes",
   componentes: "Component",
@@ -37,6 +39,7 @@ const SECTION_DESC = {
   intro: "Qué es VibeFast y cómo usar estas docs.",
   fundamentos: "Lo básico para arrancar sin experiencia.",
   setup: "De cero a tu proyecto corriendo.",
+  configuracion: "Conecta cada servicio cuando lo necesites — tus keys y variables.",
   tutoriales: "Qué construir cada semana del curso.",
   features: "Cómo funciona cada pieza del stack.",
   componentes: "Componentes y design system.",
@@ -114,8 +117,9 @@ function getSectionOrder(slug) {
   // Orden canónico de las secciones top-level
   const ORDER = [
     "intro",
-    "fundamentos",
     "setup",
+    "fundamentos",
+    "configuracion",
     "tutoriales",
     "features",
     "componentes",

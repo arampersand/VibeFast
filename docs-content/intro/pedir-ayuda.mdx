@@ -1,0 +1,78 @@
+---
+title: Cómo pedir ayuda (sin frustrarte)
+description: Cuando te atoras, cómo desatorarte rápido — solo, con la IA o con un humano.
+order: 4
+---
+
+<StackBadge tech={["cursor", "github"]} />
+
+Atorarte es parte del proceso. Hasta los devs con años de experiencia se atoran **todos los días**. La diferencia no es no atorarse: es saber **desatorarte rápido**.
+
+## Regla de oro
+
+Atorarte es normal. Quedarte atorado **en silencio** no lo es.
+
+La gran mayoría de los bloqueos se resuelven en minutos si preguntas bien. El error más común de quien empieza es quedarse una hora peleando solo, en vez de pedir ayuda a los 10 minutos. No es "hacer trampa": es como usa un profesional.
+
+<Callout type="info" title="La señal de los 15 minutos">
+Si llevas ~15 minutos atascado en lo mismo sin avanzar, deja de intentar variaciones al azar y sube un peldaño en la escalera de ayuda de abajo. Insistir más no lo arregla.
+</Callout>
+
+## La escalera de ayuda
+
+Súbela en orden. Cada peldaño resuelve la mayoría de los casos; solo pasa al siguiente si el anterior no funcionó.
+
+1. **Leé el error con calma.** Casi siempre el mensaje te dice qué pasó. No lo cierres de golpe. → [Leer errores sin pánico](/docs/troubleshooting/leer-errores)
+2. **Buscá si ya está resuelto.** Revisa [Errores comunes](/docs/troubleshooting/errores-comunes) y, si hay una palabra que no entiendes, búscala en el [Glosario](/docs/fundamentos/glosario).
+3. **Pregúntale a Cursor.** Pégale el error con contexto y deja que te explique y proponga el arreglo. → [Cómo hablarle a la IA](/docs/fundamentos/hablarle-a-la-ia)
+4. **Pregúntale a un humano.** Tu mentor o tus compañeros del curso. Cuando llegues aquí, ya traes contexto (los pasos 1-3), así que la respuesta llega mucho más rápido.
+
+## Cómo pegarle un error a Cursor para que sirva
+
+Un error suelto ("no funciona") no le sirve a nadie, ni a la IA. Dale el panorama completo: qué hacías, qué esperabas, qué pasó y el error tal cual. Usa esta plantilla.
+
+<PromptBox label="Prompt para Cursor">
+Estoy haciendo X (describe qué intentabas). Esperaba que pasara Y, pero en cambio pasó Z. Este es el error completo: [pega aquí el mensaje tal cual, sin recortar]. Estoy en [Mac / Windows]. ¿Qué significa este error y cómo lo arreglo paso a paso?
+</PromptBox>
+
+Cuanto más específico seas, mejor será la respuesta. Pega el error **completo**, no un pedacito.
+
+## Cómo pedirle ayuda a un humano (sin que te digan "faltan datos")
+
+Cuando le escribes a tu mentor, incluye estos 5 datos. Con ellos, cualquiera puede ayudarte sin tener que interrogarte primero:
+
+| Dato | Ejemplo |
+| --- | --- |
+| Qué intentaba | "Correr la app con `yarn dev`" |
+| Qué esperaba | "Que abriera en el navegador" |
+| Qué pasó | "La terminal se cerró y salió texto rojo" |
+| Qué error salió | "Pego el mensaje completo tal cual" |
+| Qué ya probé | "Reinicié la terminal y volví a instalar" |
+
+La fórmula es simple: **qué intentabas / qué esperabas / qué pasó / qué error salió / qué ya probaste**. Ese último punto es oro: le ahorra a quien ayuda proponerte cosas que ya descartaste.
+
+<Callout type="warning" title="Nunca pegues tus secretos al pedir ayuda en público">
+Tus **keys**, contraseñas y tu archivo `.env` son privados. Antes de pegar cualquier cosa en un chat de grupo, foro o issue público, reemplaza los valores sensibles por `XXX`. Una key filtrada puede costarte dinero o comprometer tu app. → [Seguridad básica](/docs/fundamentos/seguridad-basica)
+</Callout>
+
+## ¿Encontraste un bug del propio VibeFast?
+
+Si el problema no es tu código sino la plantilla misma (algo que ya venía y no funciona), repórtalo como un **Issue** en GitHub para que se pueda arreglar para todos.
+
+Al abrir el issue, incluye lo mismo que le dirías a un humano:
+
+1. Qué intentabas hacer y en qué página o paso ibas.
+2. Qué esperabas y qué pasó en realidad.
+3. El error completo (recuerda tapar tus secretos con `XXX`).
+4. Tu sistema: **Mac** 🍎 o **Windows** 🪟.
+5. Si puedes, los pasos exactos para reproducirlo.
+
+Un buen issue es medio arreglo. Entre más claro, más rápido lo resuelven.
+
+<Checkpoint>
+✅ Conoces la escalera de ayuda: leer el error → buscar → preguntar a Cursor → preguntar a un humano.
+✅ Tienes la plantilla para pegarle un error a Cursor con contexto útil.
+✅ Sabes que jamás pegas tus keys ni tu `.env` en público: los reemplazas por `XXX`.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

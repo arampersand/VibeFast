@@ -57,3 +57,10 @@ firmware/**/build/
 firmware/**/sdkconfig.old
 firmware/**/managed_components/
 firmware/**/dependencies.lock
+
+# Artefactos de automatización de navegador (screenshots de revisión)
+.playwright-mcp/
+
+# Config local de editores / asistentes de IA
+.claude/
+.cursor/

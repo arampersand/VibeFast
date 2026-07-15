@@ -29,7 +29,7 @@ export default function TableOfContents({ headings }) {
 
   return (
     <nav className="text-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-base-content/50">
+      <p className="mb-3 text-xs font-bold uppercase tracking-wider text-primary/80">
         En esta página
       </p>
       <ul className="space-y-1 border-l border-base-200">
@@ -40,8 +40,8 @@ export default function TableOfContents({ headings }) {
               className={
                 "-ml-px block border-l-2 py-1 pl-3 transition " +
                 (activeId === h.id
-                  ? "border-primary font-medium text-primary"
-                  : "border-transparent text-base-content/60 hover:text-base-content")
+                  ? "border-primary font-semibold text-primary"
+                  : "border-transparent text-base-content/70 hover:border-primary/30 hover:text-base-content")
               }
             >
               {h.text}

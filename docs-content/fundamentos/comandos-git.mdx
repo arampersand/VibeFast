@@ -1,0 +1,152 @@
+---
+title: Comandos de Git y GitHub
+description: Configura Git en tu terminal la primera vez, y ten a mano los comandos que de verdad vas a usar.
+order: 5
+---
+
+<StackBadge tech={["git", "github", "cursor"]} />
+
+En [Git en 5 minutos](/docs/fundamentos/git-basico) haces todo con **clics** dentro de Cursor. Esta página es la versión **desde la terminal**: primero dejas Git configurado (una sola vez) y luego tienes la **lista de comandos** que vas a repetir todo el curso.
+
+<Callout type="info" title="Haz todo esto en la terminal de Cursor">
+Ábrela con **Terminal → New Terminal** o el atajo `` Ctrl+` `` (en Mac también `` Cmd+` ``). ¿Nunca la abriste? → [La terminal sin miedo](/docs/fundamentos/terminal).
+</Callout>
+
+## Parte 1 · Configura Git
+
+Esto se hace **una sola vez**. Antes de tu primer commit, Git necesita saber **quién eres** para firmar cada guardado con tu nombre. Corre estos dos comandos **cambiando** el nombre y el correo por los tuyos:
+
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu-correo@ejemplo.com"
+```
+
+<Callout type="warning" title="Usa el MISMO correo que en GitHub">
+Si el correo no coincide con el de tu cuenta de GitHub, tus commits no se te acreditan (no aparecen con tu foto en el historial). Usa el correo con el que entras a GitHub.
+</Callout>
+
+Deja también `main` como nombre de rama por defecto (es el estándar hoy):
+
+```bash
+git config --global init.defaultBranch main
+```
+
+**Verifica** que quedó bien. Debe mostrar tu nombre y correo:
+
+```bash
+git config --global --list
+```
+
+<Callout type="info" title="Falta un paso: conectar con GitHub">
+Configurar tu nombre **no** te conecta con GitHub — eso es aparte. Para que Cursor pueda subir tu código sin pedirte token cada vez, configura tu llave **SSH**: [Conectar GitHub con SSH](/docs/setup/github-ssh).
+</Callout>
+
+<Checkpoint>
+✅ `git config --global --list` muestra tu nombre y tu correo.
+✅ El correo es el mismo de tu cuenta de GitHub.
+✅ Ya configuraste tu llave SSH (o sabes que es el siguiente paso).
+</Checkpoint>
+
+## Parte 2 · Los comandos
+
+No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado dentro de la carpeta de tu proyecto** (usa `cd VibeFast` para entrar).
+
+### Empezar un proyecto
+
+| Comando | Qué hace |
+|---------|----------|
+| `git clone <url>` | Baja un repo de GitHub a tu compu (crea la carpeta). Usa la URL **SSH** (`git@github.com:...`). |
+| `cd VibeFast` | Entra a la carpeta del proyecto para poder correr los demás comandos. |
+| `cursor .` | Abre la carpeta actual en Cursor. |
+
+### Ver qué está pasando
+
+| Comando | Qué hace |
+|---------|----------|
+| `git status` | Muestra qué archivos cambiaste y cuáles están listos para guardar. **El que más vas a usar.** |
+| `git log --oneline` | Lista tus commits (puntos de guardado), uno por línea. Sal con `q`. |
+| `git diff` | Muestra línea por línea lo que cambiaste desde el último commit. |
+| `git remote -v` | Muestra a qué repo de GitHub está conectado tu proyecto. |
+
+### Guardar tu trabajo (commit)
+
+| Comando | Qué hace |
+|---------|----------|
+| `git add .` | Prepara **todos** tus cambios para el próximo commit. |
+| `git add <archivo>` | Prepara **solo** ese archivo. |
+| `git commit -m "mensaje"` | Crea el punto de guardado con un mensaje claro (ej. `landing: nueva sección de precios`). |
+
+### Publicar y traer cambios
+
+| Comando | Qué hace |
+|---------|----------|
+| `git push` | Sube tus commits a GitHub. Esto también **publica** tu sitio si usas Vercel. |
+| `git pull` | Trae a tu compu los cambios que estén en GitHub. Hazlo antes de empezar a trabajar. |
+
+### Ramas
+
+| Comando | Qué hace |
+|---------|----------|
+| `git branch` | Lista tus ramas y marca en cuál estás. |
+| `git switch -c nombre` | Crea una rama nueva y te cambia a ella (ej. `git switch -c prueba-precios`). |
+| `git switch main` | Regresa a la rama principal. |
+
+<Callout type="danger" title="Comandos que borran trabajo — úsalos con cuidado">
+`git restore <archivo>` **descarta** los cambios no guardados de ese archivo (no hay deshacer). `git reset --hard` borra cambios de golpe. Si dudas, **no los corras**: pega tu situación en Cursor y pregunta antes.
+</Callout>
+
+<Callout type="info" title="El flujo del día a día (el 90% del tiempo)">
+`git pull` (traer lo último) → trabajas en Cursor → `git add .` → `git commit -m "..."` → `git push`. Eso es todo.
+</Callout>
+
+<Checkpoint>
+✅ Sabes que `git status` te dice en qué punto estás.
+✅ Puedes guardar con `git add .` + `git commit -m "..."` y publicar con `git push`.
+✅ Sabes que `pull → add → commit → push` es la rutina.
+</Checkpoint>
+
+## Parte 3 · Sync de tu fork
+
+Tú trabajas sobre **tu fork** (tu copia). El repo original de VibeFast sigue mejorando, y de vez en cuando querrás **traer esas mejoras** a tu copia. Hay dos formas.
+
+### La fácil: botón de GitHub
+
+1. Entra a **tu fork** en GitHub (`github.com/TU-USUARIO/VibeFast`).
+2. Arriba, junto a la rama, verás **Sync fork** → haz clic.
+3. Botón **Update branch**. Listo: tu fork en GitHub queda al día.
+4. En tu compu, baja esos cambios: `git pull`.
+
+<Callout type="warning" title="Si sale 'This branch has conflicts that must be resolved'">
+Significa que tocaste los mismos archivos que cambiaron en el original. No te asustes: pega ese mensaje en Cursor y pídele que te guíe a resolver el conflicto paso a paso.
+</Callout>
+
+### La de terminal: remoto `upstream`
+
+La primera vez, agrega el repo original como un segundo remoto llamado **`upstream`** (solo se hace **una vez**):
+
+```bash
+git remote add upstream git@github.com:arampersand/VibeFast.git
+```
+
+De ahí en adelante, cada vez que quieras traer las mejoras del original:
+
+```bash
+git fetch upstream
+git switch main
+git merge upstream/main
+git push
+```
+
+Eso baja lo nuevo del original (`fetch`), lo une a tu rama `main` (`merge`) y sube el resultado a tu fork (`push`). Verifica que quedó con `git remote -v`: debes ver **`origin`** (tu fork) y **`upstream`** (el original).
+
+<Callout type="info" title="origin vs. upstream">
+**`origin`** es **tu** fork (a donde subes con `push`). **`upstream`** es el repo **original** (de donde jalas mejoras, pero nunca subes). Así tu trabajo va a tu copia y solo traes lo bueno del original.
+</Callout>
+
+<Checkpoint>
+✅ Agregaste `upstream` apuntando al repo original (o usas el botón **Sync fork**).
+✅ Puedes traer mejoras con `fetch` → `merge upstream/main` → `push`.
+✅ Tienes claro que `origin` = tu fork y `upstream` = el original.
+</Checkpoint>
+
+¿Un comando tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

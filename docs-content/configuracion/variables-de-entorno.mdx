@@ -1,20 +1,27 @@
 ---
 title: Variables de entorno
 description: Las keys que viven en .env.local y de dónde sacarlas.
-order: 4
+order: 0
 ---
 
 Todas las keys del proyecto viven en `web/.env.local` (que **nunca** sube a git). El archivo `web/.env.example` te muestra qué variables necesitas.
 
-## De dónde sacar cada key
+Esta página es tu **mapa**: qué servicio pide qué key, **cuándo** la necesitas y el link a su guía. No configures todo el día 1 — cada servicio se conecta cuando llegas a la feature que lo usa.
 
-| Servicio | Dónde | Paso |
-|----------|-------|------|
-| **Supabase** (URL + anon + service_role) | [dashboard](https://supabase.com/dashboard) | Botón verde **Connect → Next.js**, o **Settings → API**. Detalle en [Supabase paso a paso](/docs/setup/supabase#paso-4--saca-tus-3-keys). |
-| **OpenAI** (`OPENAI_API_KEY`) | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | **Create new secret key** → cópiala (empieza con `sk-`). Solo se muestra una vez. |
-| **Resend** (`RESEND_API_KEY`) | [resend.com/api-keys](https://resend.com/api-keys) | **Create API Key** → cópiala (empieza con `re_`). |
-| **PostHog** (`NEXT_PUBLIC_POSTHOG_KEY`) | [posthog.com](https://posthog.com) | Project Settings → Project API Key (`phc_...`). Opcional. |
-| **Stripe** (`STRIPE_SECRET_KEY` + publishable) | [stripe.com](https://stripe.com) | Developers → API keys. Solo receta SaaS — detalle en [Stripe paso a paso](/docs/setup/stripe). |
+## Mapa de keys por servicio
+
+| Servicio | Variables | ¿Cuándo la necesitas? | Guía paso a paso |
+|----------|-----------|-----------------------|------------------|
+| **Supabase** | `NEXT_PUBLIC_SUPABASE_URL` · `_ANON_KEY` · `SUPABASE_SERVICE_ROLE_KEY` | **Semana 1 — crítica** (sin esto la app no corre) | [Supabase paso a paso](/docs/setup/supabase#paso-4--saca-tus-3-keys) |
+| **OpenAI** | `OPENAI_API_KEY` | **Semana 3** — funciones de IA | [OpenAI](/docs/configuracion/openai) |
+| **Resend** | `RESEND_API_KEY` | Cuando envíes emails · **opcional** | [Resend](/docs/configuracion/resend) |
+| **PostHog** | `NEXT_PUBLIC_POSTHOG_KEY` · `_HOST` | Analítica · **opcional** | [PostHog](/docs/configuracion/posthog) |
+| **Stripe** | `STRIPE_SECRET_KEY` · `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` · `STRIPE_WEBHOOK_SECRET` | Solo si cobras (receta SaaS) · **opcional** | [Stripe](/docs/configuracion/stripe) |
+| **Google (Gmail)** | `GOOGLE_OAUTH_CLIENT_ID` · `_SECRET` | Solo receta agente Gmail · **opcional** | [Login con Google](/docs/configuracion/google-oauth) |
+
+<Callout type="info" title="Ojo: el login con Google NO usa variables de entorno">
+El login con Google **de tu app** se configura en el **dashboard de Supabase**, no en `.env.local`. Las variables `GOOGLE_OAUTH_*` de la tabla son **solo** para la receta del agente de Gmail. La guía del login está en [Login con Google](/docs/configuracion/google-oauth).
+</Callout>
 
 <Callout type="info" title="Guárdalas al momento">
 OpenAI y Resend muestran la key **una sola vez**. Cópiala a tu `.env.local` en ese momento; si la pierdes, genera una nueva.

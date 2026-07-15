@@ -1,0 +1,92 @@
+---
+title: OpenAI paso a paso (API key)
+description: Crea tu cuenta, saca tu API key y pon un límite de gasto — antes de la Semana 3.
+order: 2
+---
+
+<StackBadge tech={["openai"]} />
+
+<Callout type="info" title="¿Cuándo lo necesitas?">
+En la **Semana 3**, tu primera función con IA. Es el único servicio de pago-por-uso desde el inicio, así que configúralo justo antes de esa semana (no antes).
+</Callout>
+
+La **API key** de OpenAI es la llave que deja a tu app usar los modelos de OpenAI: el "cerebro" de IA que responde, resume o clasifica dentro de tu producto. Sin esa llave, tu app no puede hablar con la IA.
+
+**Cuándo lo necesitas:** es requisito para la **Semana 3**, cuando construyes tu primera función con IA. Sácala con calma antes de llegar ahí. Si quieres el detalle de cómo se usa dentro de la app, mira [Feature de IA con OpenAI](/docs/features/ai-openai).
+
+Al final vas a tener:
+
+- ✅ Cuenta en la plataforma de desarrolladores de OpenAI.
+- ✅ Tu API key copiada y puesta en `.env.local`.
+- ✅ Un límite de gasto configurado para dormir tranquilo.
+
+## Paso 1 · Crea tu cuenta
+
+1. Entra a [platform.openai.com](https://platform.openai.com) y regístrate con tu email (o con tu cuenta de Google).
+
+<Callout type="warning" title="Esto NO es ChatGPT">
+`platform.openai.com` es la **plataforma para desarrolladores** — el lugar donde vive tu API key y tu facturación. Es distinta de ChatGPT (la app de chat). Aunque uses el mismo login, son sitios diferentes: para el curso siempre trabajas en la plataforma.
+</Callout>
+
+## Paso 2 · Saca tu API key
+
+1. Ve a [platform.openai.com/api-keys](https://platform.openai.com/api-keys).
+2. Haz click en **Create new secret key**.
+3. Ponle un nombre para reconocerla (ej. `vibefast`) y confirma.
+4. **Cópiala ahora mismo** con el botón de copiar.
+
+Se ve así (más larga):
+
+```text
+sk-proj-AbC123...
+```
+
+<Callout type="danger" title="Solo se muestra una vez">
+OpenAI te enseña la key **una única vez**. Si cierras esa ventana sin copiarla, no la vuelves a ver — pero no pasa nada: borras esa y creas otra nueva. Y ojo: es un **secreto**. No la compartas, no la pegues en un chat público y **nunca la subas a GitHub**. Aprende a protegerla en [Seguridad básica](/docs/fundamentos/seguridad-basica).
+</Callout>
+
+## Paso 3 · Ponla en tu `.env.local`
+
+Abre el archivo `.env.local` de tu proyecto y agrega tu key:
+
+```bash
+OPENAI_API_KEY=sk-proj-...
+```
+
+<Callout type="info" title="Confirma el nombre exacto de la variable">
+El nombre de la variable tiene que coincidir **exacto** con el que espera VibeFast. Suele ser `OPENAI_API_KEY`, pero confírmalo en [Variables de entorno](/docs/configuracion/variables-de-entorno) antes de darte por hecho. Un nombre mal escrito = la app no encuentra la key.
+</Callout>
+
+Guarda el archivo. Si tenías el servidor corriendo, **reinícialo** para que tome el cambio: detén `yarn dev` (Ctrl+C en la terminal) y vuelve a lanzarlo.
+
+```bash
+yarn dev
+```
+
+## Paso 4 · Billing y límite de gasto (lo más importante)
+
+OpenAI es de **pago por uso**: cada vez que tu app llama a la IA, se descuenta un poquito de saldo. Para que funcione tienes que cargar saldo o una tarjeta en la sección **Billing** de la plataforma.
+
+<Callout type="danger" title="Pon un límite antes de gastar de más">
+Mientras aprendes vas a probar tu función de IA muchas veces. Para no llevarte un susto en la factura, entra a **Billing → Limits** (o "Usage limits") y pon un **límite mensual bajo** — unos pocos dólares es más que suficiente para el curso. Así, si algo se dispara, OpenAI corta y no sigue cobrando.
+</Callout>
+
+No te fíes de cifras de memoria: los precios y los topes cambian. Revisa los **precios y límites actuales** en la [página oficial de precios de OpenAI](https://openai.com/api/pricing/) y decide un límite con el que estés cómodo. Para entender el panorama completo de cuánto te puede costar todo el stack, mira [Costos](/docs/setup/costos).
+
+## Paso 5 · Verifica que quedó bien
+
+No hay un botón mágico de "probar" aquí: la prueba real es cuando corras la **feature de IA** en la Semana 3. Si al usarla:
+
+- **Responde con normalidad** → todo bien, tu key está funcionando. 🎉
+- **Sale error `401`** → la key está mal puesta (mal copiada o con el nombre de variable equivocado). Vuelve al Paso 2 y 3.
+- **Sale error de `quota` o `billing`** → falta cargar saldo o subir el límite de gasto. Vuelve al Paso 4.
+
+## Checkpoint
+
+<Checkpoint>
+✅ Tienes cuenta en la plataforma de desarrolladores de OpenAI.
+✅ Tu API key está copiada y puesta en `.env.local`.
+✅ Cargaste saldo y pusiste un límite de gasto mensual bajo.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).

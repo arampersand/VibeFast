@@ -1,0 +1,89 @@
+---
+title: Cursor a fondo
+description: Cómo manejar Cursor de verdad — chat, agente, editar inline, @archivos y deshacer.
+order: 3
+---
+
+<StackBadge tech={["cursor"]} />
+
+**Cursor** es un editor de código con IA integrada: tú describes lo que quieres, la IA escribe el código y tú revisas. Es tu herramienta principal en este curso, así que vale la pena conocerla bien.
+
+<Callout type="info" title="La idea en una frase">
+Tú eres el director; la IA es quien teclea. Tu trabajo no es escribir código, es **pedir bien** y **revisar** lo que la IA propone.
+</Callout>
+
+## Las 3 formas de hablarle a la IA
+
+Cursor te deja pedirle cosas a la IA de tres maneras distintas. Cada una sirve para un momento diferente.
+
+- **Chat / panel lateral**: se abre con el ícono de chat o con un atajo tipo `Cmd/Ctrl+L`. Es una conversación al lado de tu código. Le pides cosas, preguntas dudas o planeas. También puede editar tus archivos.
+- **Editar inline**: seleccionas un pedazo de código y presionas `Cmd/Ctrl+K`. Sirve para cambiar justo ese trozo donde tienes el cursor, sin abrir todo el chat.
+- **Modo Agente**: la IA trabaja sola en varios archivos y hasta corre comandos por ti. Ideal para tareas grandes tipo "agrega una sección de precios a la landing". Tú apruebas cada paso.
+
+| Modo | Cuándo usarlo |
+| --- | --- |
+| Chat / panel lateral | Preguntar, planear, o pedir un cambio explicando el contexto |
+| Editar inline (`Cmd/Ctrl+K`) | Ajustar un pedazo específico que ya tienes seleccionado |
+| Modo Agente | Tareas grandes que tocan varios archivos o necesitan correr comandos |
+
+<Callout type="info" title="Los nombres exactos pueden variar">
+Cursor cambia con cada versión, así que un menú o atajo podría llamarse un poco distinto en tu pantalla. Fíjate en la **función** (chat, editar, agente) más que en el nombre exacto.
+</Callout>
+
+## Usa `@` para dar contexto
+
+La IA da mejores respuestas cuando sabe **dónde mirar**. Para eso existe el `@`.
+
+1. En el chat, escribe `@` y empieza a teclear el nombre de un archivo o carpeta.
+2. Elige el que quieras de la lista (ej. `@config.js`).
+3. Ahora la IA leerá ese archivo antes de responder.
+
+Es de lo más importante que vas a aprender: en vez de decir "arregla el login", di "arregla el login en `@auth.js`". La diferencia en la calidad de la respuesta es enorme. 🔑
+
+## Aceptar o rechazar cambios
+
+La IA no cambia tu código a escondidas: te propone un **diff** (una vista de qué cambia).
+
+- **Verde** = líneas que agrega.
+- **Rojo** = líneas que quita.
+
+Tú decides: **aceptar** o **rechazar**. Léelo siempre antes de aceptar.
+
+<Callout type="warning" title="Nunca aceptes a ciegas">
+Aunque no entiendas cada línea, mira **qué** está cambiando. Si borra algo que no debía o toca un archivo que no pediste, rechaza y vuelve a pedirlo mejor.
+</Callout>
+
+## Si algo sale mal: deshacer y puntos seguros
+
+La IA se equivoca. Ten siempre a dónde volver:
+
+1. **Deshacer**: `Cmd/Ctrl+Z` revierte el último cambio, igual que en cualquier editor de texto.
+2. **Volver a un commit de git**: si ya guardaste tu trabajo con git, puedes regresar a una versión anterior que funcionaba.
+
+Por eso conviene hacer **commits seguido**: cada commit es un punto de guardado al que puedes regresar. Aprende a hacerlos en [Git básico](/docs/fundamentos/git-basico), tu red de seguridad.
+
+## La terminal integrada
+
+Cursor trae una **terminal** adentro (una ventanita donde escribes comandos). Ahí corres cosas como instalar dependencias o arrancar tu app. No necesitas abrir otro programa. Si nunca has usado una, empieza por [La terminal sin miedo](/docs/fundamentos/terminal).
+
+## Un buen prompt de ejemplo
+
+Junta todo: pide claro y da contexto con `@`.
+
+<PromptBox label="Prompt para Cursor">
+En `@landing/page.tsx` agrega una sección de "Preguntas frecuentes" debajo de la sección de precios. Usa 4 preguntas de ejemplo con respuestas cortas. Mantén el mismo estilo visual que el resto de la página. Explícame qué archivos vas a tocar antes de hacerlo.
+</PromptBox>
+
+Para dominar el arte de pedir bien, pasa por [Hablarle a la IA](/docs/fundamentos/hablarle-a-la-ia). Y para los comandos que correrás en la terminal, tienes [Comandos de git](/docs/fundamentos/comandos-git).
+
+<Callout type="warning" title="La IA se equivoca y a veces inventa">
+A veces la IA "alucina": inventa funciones o archivos que no existen y lo dice con total seguridad. Nunca des un cambio por bueno sin probarlo: abre `localhost:3000` en tu navegador y confirma que de verdad funciona.
+</Callout>
+
+<Checkpoint>
+✅ Conoces los 3 modos (chat, editar inline, agente) y cuándo usar cada uno.
+✅ Sabes usar `@archivo` para darle contexto a la IA.
+✅ Sabes revisar un diff (verde/rojo) y deshacer con `Cmd/Ctrl+Z` si algo truena.
+</Checkpoint>
+
+¿Algo tronó? → [Leer errores sin pánico](/docs/troubleshooting/leer-errores).
