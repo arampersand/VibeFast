@@ -15,9 +15,15 @@ const nextConfig = {
         destination: "/docs/setup/prepara-tu-compu",
         permanent: true,
       },
+      // github-ssh se eliminó: el flujo con HTTPS + Cursor no necesita SSH
       {
         source: "/docs/fundamentos/github-ssh",
-        destination: "/docs/setup/github-ssh",
+        destination: "/docs/setup/quick-start",
+        permanent: true,
+      },
+      {
+        source: "/docs/setup/github-ssh",
+        destination: "/docs/setup/quick-start",
         permanent: true,
       },
       {

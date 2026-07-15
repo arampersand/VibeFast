@@ -18,11 +18,11 @@ Al final vas a tener:
 
 - ✅ Cuenta de Stripe en **modo test** (cobras con tarjetas de prueba, sin dinero real).
 - ✅ Tu producto y su precio creados, con el `price ID` copiado.
-- ✅ Tus keys en `web/.env.local`.
-- ✅ El prompt para que tu IA construya el checkout.
+- ✅ Tus <Term id="api-key">keys</Term> en `web/.env.local`.
+- ✅ El <Term id="prompt">prompt</Term> para que tu IA construya el <Term id="checkout">checkout</Term>.
 
 <Callout type="warning" title="El código de cobro lo construye tu IA">
-El boilerplate trae el toggle `features.payments` y el lugar para el `stripePriceId` en `web/config.js`, pero **el módulo de cobro (checkout + webhook) no viene pre-armado** — lo construye Cursor con el prompt del final de esta página. Esta guía cubre la parte que la IA no puede hacer por ti: los clicks en el dashboard de Stripe.
+El boilerplate trae el toggle `features.payments` y el lugar para el `stripePriceId` en `web/config.js`, pero **el módulo de cobro (checkout + <Term id="webhook">webhook</Term>) no viene pre-armado** — lo construye Cursor con el prompt del final de esta página. Esta guía cubre la parte que la IA no puede hacer por ti: los clicks en el <Term id="dashboard">dashboard</Term> de Stripe.
 </Callout>
 
 ## Paso 1 · Crea tu cuenta
@@ -92,7 +92,7 @@ Usa la versión más reciente del SDK de Stripe. Explícame qué archivos creast
 
 ## Paso 7 · El webhook (cuando ya tengas deploy)
 
-El **webhook** es la URL de tu app que Stripe llama automáticamente cuando pasa algo (ej. un pago exitoso). Para que Stripe pueda llamarla, tu app necesita estar **deployada** (una URL pública — la de Vercel sirve):
+El **webhook** es la URL de tu app que Stripe llama automáticamente cuando pasa algo (ej. un pago exitoso). Para que Stripe pueda llamarla, tu app necesita estar <Term id="deploy">deployada</Term> (una URL pública — la de <Term id="vercel">Vercel</Term> sirve):
 
 1. En Stripe: **Developers** → **Webhooks** → **+ Add endpoint**.
 2. **Endpoint URL**: `https://TU-URL/api/webhooks/stripe` — aquí tienes que cambiar `TU-URL` por la URL de tu deploy (ej. `tu-producto.vercel.app` o tu dominio propio).

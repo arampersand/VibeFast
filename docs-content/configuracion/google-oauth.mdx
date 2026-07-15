@@ -12,13 +12,13 @@ En la **Semana 2**, cuando agregas login a tu app para que la gente entre con su
 
 Al final de esta página vas a tener:
 
-- ✅ Credenciales OAuth creadas en Google Cloud.
-- ✅ El provider de Google activado en Supabase.
+- ✅ Credenciales <Term id="oauth">OAuth</Term> creadas en Google Cloud.
+- ✅ El <Term id="provider-de-login">provider</Term> de Google activado en <Term id="supabase">Supabase</Term>.
 - ✅ El botón **"Entrar con Google"** funcionando en tu app.
 
 **Cuándo lo necesitas:** Semana 2 (cuando tu MVP agrega usuarios). No hace falta antes.
 
-Todo esto se hace **con clicks en dos dashboards** (Google Cloud y Supabase) — no vas a tocar código, salvo un prompt al final.
+Todo esto se hace **con clicks en dos <Term id="dashboard">dashboards</Term>** (Google Cloud y Supabase) — no vas a tocar código, salvo un <Term id="prompt">prompt</Term> al final.
 
 ## Antes de empezar
 
@@ -36,7 +36,7 @@ Google necesita saber a qué dirección devolver al usuario después del login. 
 1. Abre tu proyecto en [supabase.com/dashboard](https://supabase.com/dashboard).
 2. Menú izquierdo → **Authentication** → **Providers** (a veces se llama *Sign In / Providers*).
 3. Haz click en **Google** para expandirlo.
-4. Ahí aparece el campo **Callback URL (for OAuth)**. Haz click en el botón de copiar.
+4. Ahí aparece el campo **<Term id="callback-url">Callback URL</Term> (for OAuth)**. Haz click en el botón de copiar.
 
 Se ve así:
 
@@ -99,6 +99,6 @@ Corre `yarn dev`, abre `http://localhost:3000/login` y haz click en **Entrar con
 
 El login va a funcionar en `localhost`, pero para que funcione en tu URL pública tienes que decírselo a Supabase:
 
-- **Authentication** → **URL Configuration** → en **Site URL** pon la URL de tu deploy (la de Vercel o tu dominio propio) y agrégala también en **Redirect URLs**.
+- **Authentication** → **URL Configuration** → en **Site URL** pon la URL de tu <Term id="deploy">deploy</Term> (la de Vercel o tu dominio propio), y en **Redirect URLs** agrega esa misma URL **con `/auth/callback` al final** (ej. `https://tu-producto.vercel.app/auth/callback`).
 
 El detalle de esto está en [Supabase en producción](/docs/deploy/supabase-produccion).

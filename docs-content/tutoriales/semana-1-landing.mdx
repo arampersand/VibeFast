@@ -12,8 +12,8 @@ Esta es la semana del hito grande: **al terminarla, tu producto tiene una págin
 
 - ✅ La plantilla VibeFast clonada y corriendo en tu compu.
 - ✅ Landing con tu copy, tus colores y un solo CTA claro.
-- ✅ Waitlist funcionando en tu landing (guardar los emails en la base de datos llega en Sem 2).
-- ✅ Todo deployado en Vercel con una **URL pública**.
+- ✅ Waitlist funcionando en tu landing, guardando emails en tu <Term id="base-de-datos">base de datos</Term>.
+- ✅ Todo <Term id="deploy">deployado</Term> en <Term id="vercel">Vercel</Term> con una **URL pública**.
 
 ## Lo que debes tener antes
 
@@ -22,17 +22,27 @@ Esta es la semana del hito grande: **al terminarla, tu producto tiene una págin
 
 ## Paso 1 · Setup de entorno
 
-Sigue [Setup → Quick start](/docs/setup/quick-start) completo hasta el Paso 8 (`yarn dev`). Incluye crear tu proyecto de Supabase ([Supabase paso a paso](/docs/setup/supabase)) si no lo adelantaste en Semana 0. Tope: 45 min.
+Este paso completo vive en el Quick start. Ahí vas a:
+
+1. Hacer tu **fork** del repo y clonarlo en tu compu.
+2. Instalar dependencias y crear tu `web/.env.local` con las 3 keys de <Term id="supabase">Supabase</Term>.
+3. Subir el <Term id="schema">schema</Term> a Supabase (Paso 6 — con esto tu waitlist ya guarda de verdad).
+4. Correr el proyecto con `yarn dev`.
+
+**→ Sigue [Empieza aquí → Quick start](/docs/setup/quick-start) hasta el Paso 8** (30–60 min). Si no adelantaste tu proyecto de Supabase en Semana 0, el propio Quick start te manda a crearlo antes del Paso 1.
+
+**Regresa aquí cuando** veas la landing por default de VibeFast en `localhost:3000`.
 
 <Checkpoint>
-Ves la landing por default de VibeFast en `localhost:3000`.
+✅ Ves la landing por default de VibeFast en `localhost:3000`.
+✅ En Supabase → **Table Editor** ves las tablas del boilerplate (Paso 6 hecho).
 
 ¿Atorado en algún paso? → [Errores comunes](/docs/troubleshooting/errores-comunes). No te quedes solo: pregunta en el canal del curso.
 </Checkpoint>
 
 ## Paso 2 · Personaliza tu producto en `web/config.js`
 
-`web/config.js` es **el único archivo** que hay que cambiar para que la landing sea tuya — y lo cambia Cursor por ti. Copia este prompt y rellena las llaves con los datos de tu ficha de Semana 0:
+`web/config.js` es **el único archivo** que hay que cambiar para que la landing sea tuya — y lo cambia <Term id="cursor">Cursor</Term> por ti. Copia este prompt y rellena las llaves con los datos de tu ficha de Semana 0:
 
 <PromptBox label="Prompt para Cursor — copy del producto">
 Soy founder de un producto que \{describe tu producto en 1 frase}.
@@ -68,12 +78,24 @@ Guarda `web/config.js` y refresca `localhost:3000`.
 Escribe un email en el formulario de la landing y envíalo.
 
 <Checkpoint>
-El formulario **responde** con su mensaje de confirmación. Hoy **todavía no guarda** el email en la base de datos — eso llega en [Semana 2](/docs/tutoriales/semana-2-mvp), cuando conectemos Supabase. Si el formulario da error (no confirmación), revisa [Errores comunes](/docs/troubleshooting/errores-comunes).
+✅ El formulario **responde** con su mensaje de confirmación.
+✅ En Supabase → **Table Editor** → tabla `waitlist`, el email aparece como una fila nueva. Tu waitlist guarda de verdad.
+
+¿El formulario da error o la fila no aparece? Casi siempre es que faltó el **Paso 6 del Quick start** (subir el schema) o una key mal pegada en `web/.env.local` — revisa [Errores comunes](/docs/troubleshooting/errores-comunes).
 </Checkpoint>
 
 ## Paso 5 · Deploy a Vercel
 
-Sigue el [Paso 9 del quick start](/docs/setup/quick-start#paso-9--deploy-a-vercel): importar tu fork, **Root Directory = `web`**, pegar tus variables de entorno y deploy.
+El paso a paso vive en el Quick start. Ahí vas a:
+
+1. Importar tu <Term id="fork">fork</Term> en Vercel (login con GitHub).
+2. Poner **Root Directory = `web`** (crítico — es monorepo).
+3. Pegar tus <Term id="variable-de-entorno">variables de entorno</Term> (las 4 mínimas).
+4. Deployar, y luego actualizar `NEXT_PUBLIC_APP_URL` con la URL real + redeploy.
+
+**→ Sigue el [Paso 9 del Quick start](/docs/setup/quick-start#paso-9--deploy-a-vercel)** (~10 min).
+
+**Regresa aquí cuando** tengas tu URL pública abriendo en el navegador.
 
 <Checkpoint>
 ✅ Tienes una URL pública tipo `tu-producto.vercel.app`.

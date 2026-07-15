@@ -6,44 +6,43 @@ order: 2
 
 <StackBadge tech={["next", "supabase", "auth", "cursor"]} />
 
-La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que entran con Google, un dashboard solo para ellos, y tu primera feature guardando datos de verdad en la base.
+La Semana 1 te dio una página; esta semana te da un **producto**: usuarios que entran con Google, un <Term id="dashboard">dashboard</Term> solo para ellos, y tu primera feature guardando datos de verdad en la base.
 
 ## Qué vas a tener al final
 
-- ✅ Las tablas de tu base de datos creadas (y tu waitlist **guardando emails de verdad**).
+- ✅ Las tablas de tu <Term id="base-de-datos">base de datos</Term> verificadas y funcionando (las subiste en el Quick start).
 - ✅ Login con Google funcionando.
 - ✅ `/dashboard` protegido — solo usuarios logueados entran.
-- ✅ Tu **core feature**: el CRUD genérico (`core_items`) adaptado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros (más en el [glosario](/docs/fundamentos/glosario)).
+- ✅ Tu **core feature**: el <Term id="crud">CRUD</Term> genérico (`core_items`) adaptado a tu dominio (ej. "leads", "recetas", "proyectos"). CRUD = crear, leer, editar y borrar registros.
 
 ## Lo que debes tener antes
 
 - [Semana 1](/docs/tutoriales/semana-1-landing) completada — landing deployada con URL pública.
-- Tu proyecto de Supabase creado y las 3 keys en `web/.env.local` ([Supabase paso a paso](/docs/setup/supabase)).
+- Tu proyecto de <Term id="supabase">Supabase</Term> creado y las 3 <Term id="api-key">keys</Term> en `web/.env.local` ([Supabase paso a paso](/docs/setup/supabase)).
 
-## Paso 1 · Sube las tablas a Supabase
+## Paso 1 · Verifica tus tablas en Supabase
 
-Si te saltaste el [Paso 6 del quick start](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase), este es el momento. En la terminal de Cursor:
-
-```bash
-supabase login
-supabase link --project-ref <tu-project-ref>
-supabase db push
-```
-
-<Callout type="danger" title="Aquí tienes que cambiar <tu-project-ref>">
-Está en la URL de tu dashboard de Supabase (`https://supabase.com/dashboard/project/TU-REF` — esa parte final). Si `link` te pide contraseña, es la **Database Password** que guardaste al crear el proyecto.
-</Callout>
-
-Ya lo habías hecho antes? Entonces solo verifica y sigue.
+Las tablas ya las subiste en el **Paso 6 del Quick start** (Semana 1). Antes de construir encima, confirma que están:
 
 <Checkpoint>
 ✅ En el dashboard de Supabase → **Table Editor** ves las tablas: `profiles`, `waitlist`, `core_items`, `ai_conversations`, `ai_messages`, `tool_calls`, `events`.
-✅ Escribe un email en el formulario de tu landing (en `localhost:3000`) y refresca la tabla `waitlist` — **el email aparece como fila**. Tu waitlist ya guarda de verdad.
+✅ Escribe un email en el formulario de tu landing (en `localhost:3000`) y refresca la tabla `waitlist` — **el email aparece como fila**.
 </Checkpoint>
+
+¿No están las tablas? Ve al [Paso 6 · Sube el schema a Supabase](/docs/setup/quick-start#paso-6--sube-el-schema-a-supabase) — son 3 comandos en la terminal de Cursor, y ahí dice dónde está tu `project-ref` y qué contraseña te va a pedir. **Regresa aquí cuando** el Table Editor muestre las tablas.
 
 ## Paso 2 · Activa el login con Google
 
-Sigue [Login con Google (paso a paso)](/docs/configuracion/google-oauth): son clicks en Google Cloud y en Supabase, más un prompt al final. Tómate ~20 min con calma — es la parte con más pantallas nuevas de la semana.
+Todo el recorrido vive en la guía dedicada — son clicks en Google Cloud y en Supabase, más un prompt al final. Ahí vas a:
+
+1. Copiar tu **Callback URL** desde Supabase (Authentication → Providers → Google).
+2. Crear las credenciales en **Google Cloud** (consent screen + OAuth client, todo con clicks).
+3. Pegar el Client ID y el Secret en Supabase y **habilitar el provider**.
+4. Prender `features.googleAuth` en tu app con un prompt para Cursor.
+
+**→ Sigue [Login con Google (paso a paso)](/docs/configuracion/google-oauth)** (~20 min con calma — es la parte con más pantallas nuevas de la semana; la guía incluye los errores típicos como `redirect_uri_mismatch`).
+
+**Regresa aquí cuando** puedas entrar con Google en `localhost:3000/login`.
 
 <Checkpoint>
 En `localhost:3000/login` haces click en **Entrar con Google**, eliges tu cuenta y vuelves a la app con la sesión iniciada. Al entrar, `/dashboard` te deja pasar; en una ventana de incógnito (sin login), te redirige a `/login`.
@@ -69,7 +68,7 @@ Al final dime qué archivos cambiaste y en qué URL pruebo mi feature.
 </PromptBox>
 
 <Callout type="info" title="Si Cursor te pidió correr un comando">
-Probablemente es `supabase db push` (para aplicar la migración nueva). Córrelo en la terminal y verifica en el **Table Editor** que el cambio se vea. Si algo truena, pégale el error exacto a Cursor.
+Probablemente es `supabase db push` (para aplicar la <Term id="migración-de-base-de-datos">migración</Term> nueva). Córrelo en la terminal y verifica en el **Table Editor** que el cambio se vea. Si algo truena, pégale el error exacto a Cursor.
 </Callout>
 
 ## Paso 4 · Pruébalo como si fueras tu cliente
@@ -85,9 +84,9 @@ Recorre el flujo completo, de afuera hacia adentro, como lo haría tu ICP:
 
 ## Paso 5 · Deploya la nueva versión
 
-Haz commit y push de tus cambios (pídele a Cursor: *"haz commit y push de todo lo de esta semana con un mensaje descriptivo"*) — Vercel redeploya solo. Dos ajustes para que el login funcione en tu URL pública:
+Haz <Term id="commit">commit</Term> y <Term id="push">push</Term> de tus cambios (pídele a Cursor: *"haz commit y push de todo lo de esta semana con un mensaje descriptivo"*) — Vercel redeploya solo. Dos ajustes para que el login funcione en tu URL pública:
 
-1. En Supabase → **Authentication → URL Configuration**: pon tu URL de Vercel en **Site URL** y agrégala a **Redirect URLs** (detalle en [Supabase en producción](/docs/deploy/supabase-produccion)).
+1. En Supabase → **Authentication → URL Configuration**: pon tu URL de Vercel en **Site URL**, y en **Redirect URLs** agrega esa misma URL **con `/auth/callback` al final** (ej. `https://tu-producto.vercel.app/auth/callback`) — detalle en [Supabase en producción](/docs/deploy/supabase-produccion).
 2. Verifica que en Vercel estén todas tus variables de entorno (las 3 de Supabase + `NEXT_PUBLIC_APP_URL` con tu URL real).
 
 <Checkpoint>
