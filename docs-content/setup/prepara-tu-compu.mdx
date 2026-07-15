@@ -9,16 +9,16 @@ order: 0
 Antes de clonar VibeFast necesitas 5 programas en tu compu. Los pasos cambian entre **Mac** y **Windows** — ve directo a tu sección. Al final los dos caminos se juntan.
 
 <Callout type="info" title="Los 5 programas (en ambos)">
-1. **Node** (motor que corre el proyecto) · 2. **yarn** (baja las dependencias) · 3. **Git** (guarda y publica) · 4. **Supabase CLI** (sube tu base de datos) · 5. **Cursor** (el editor con IA). El navegador **Chrome** también ayuda.
+1. **Node** (motor que corre el proyecto) · 2. **yarn** (baja las <Term id="paquete-dependencia">dependencias</Term>) · 3. **Git** (guarda y publica) · 4. **Supabase <Term id="cli">CLI</Term>** (sube tu <Term id="base-de-datos">base de datos</Term>) · 5. **Cursor** (el editor con IA). El navegador **Chrome** también ayuda.
 </Callout>
 
 ## 🍎 En Mac
 
 ### 1. La terminal (ya la tienes)
-Búscala con `Cmd + Espacio`, escribe **Terminal** y Enter. Es la app negra de comandos.
+Búscala con `Cmd + Espacio`, escribe **Terminal** y Enter. Es la app negra de <Term id="comando">comandos</Term>.
 
 ### 2. Homebrew (el gestor de paquetes de Mac)
-Homebrew instala programas desde la terminal con un solo comando. Pega esto y sigue las instrucciones (te va a pedir tu contraseña de Mac):
+Homebrew instala programas desde la <Term id="terminal">terminal</Term> con un solo comando. Pega esto y sigue las instrucciones (te va a pedir tu contraseña de Mac):
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -63,7 +63,7 @@ npm install -g supabase
 (Alternativa con Homebrew: `brew install supabase/tap/supabase`.) Verifica con `supabase --version`.
 
 ### 7. Cursor
-Descarga desde [cursor.com](https://cursor.com), abre el `.dmg` y arrastra Cursor a **Aplicaciones**.
+Descarga desde [cursor.com](https://cursor.com), abre el `.dmg` y arrastra <Term id="cursor">Cursor</Term> a **Aplicaciones**.
 
 ## 🪟 En Windows
 
@@ -106,6 +106,29 @@ Verifica con `supabase --version` (recuerda: cierra y reabre la terminal si no l
 ### 6. Cursor
 Descarga el `.exe` desde [cursor.com](https://cursor.com) y ejecútalo. Sigue el instalador.
 
+## 🪪 Configura tu identidad de Git (Mac y Windows)
+
+Ya con Git instalado, dile **quién eres** — cada guardado (commit) queda firmado con tu nombre y correo, y sin esto el primer <Term id="commit">commit</Term> falla. Se hace **una sola vez**. Corre estos dos comandos **cambiando** el nombre y el correo por los tuyos:
+
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu-correo@ejemplo.com"
+```
+
+<Callout type="warning" title="Usa el MISMO correo que en GitHub">
+Si el correo no coincide con el de tu cuenta de <Term id="github">GitHub</Term>, tus commits no se te acreditan (no aparecen con tu foto en el historial). Usa el correo con el que entras a GitHub.
+</Callout>
+
+Verifica que quedó — debe mostrar tu nombre y correo:
+
+```bash
+git config --global --list
+```
+
+<Callout type="info" title="¿Y las llaves SSH? No las necesitas">
+Quizá leíste por ahí que hay que configurar SSH para GitHub. Para este curso **no hace falta**: clonas por HTTPS y Cursor te pedirá iniciar sesión con GitHub una sola vez al publicar. Con tu nombre y correo configurados, ya estás.
+</Callout>
+
 ## ✅ Verifica (Mac y Windows)
 
 Cierra y abre la terminal, y corre estos cuatro. Deberías ver un número de versión en cada uno:
@@ -124,7 +147,8 @@ Significa que ese programa no quedó instalado o la terminal no lo ve. En **Wind
 <Checkpoint>
 ✅ Tienes Node, yarn, Git, Supabase CLI y Cursor instalados.
 ✅ Los cuatro `--version` responden con un número.
+✅ `git config --global --list` muestra tu nombre y tu correo (el mismo de GitHub).
 ✅ Sabes abrir tu terminal (Terminal en Mac, Terminal/PowerShell en Windows).
 </Checkpoint>
 
-Ya con tu compu lista, crea tus [cuentas](/docs/setup/cuentas) y arranca el proyecto con el [Quick start](/docs/setup/quick-start).
+Ya con tu compu lista, sigue en orden: crea tus [cuentas](/docs/setup/cuentas) → deja tu proyecto de [Supabase listo](/docs/setup/supabase) → y arranca el proyecto con el [Quick start](/docs/setup/quick-start).

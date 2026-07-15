@@ -12,12 +12,12 @@ La idea es simple: pasar de "funciona en mi compu" a "lanzado de verdad".
 
 ## 1. Técnico: que todo funcione en el sitio público
 
-"En producción" significa la versión real que ve la gente, no la que corres en tu compu. Revisa esto en tu sitio público (tu dominio o la URL de Vercel):
+"En producción" significa la versión real que ve la gente, no la que corres en tu compu. Revisa esto en tu sitio público (tu <Term id="dominio">dominio</Term> o la URL de <Term id="vercel">Vercel</Term>):
 
 <Checkpoint>
-✅ Tus **variables de entorno** (las llaves y claves de tu app) están puestas en producción, no solo en tu compu. Repasa [Variables de entorno](/docs/configuracion/variables-de-entorno) y cómo cargarlas en [Deploy en Vercel](/docs/deploy/vercel).
+✅ Tus <Term id="variable-de-entorno">variables de entorno</Term> (las llaves y claves de tu app) están puestas en producción, no solo en tu compu. Repasa [Variables de entorno](/docs/configuracion/variables-de-entorno) y cómo cargarlas en [Deploy en Vercel](/docs/deploy/vercel).
 ✅ Tu **dominio propio** está conectado (se ve como `tuproducto.com`, no como un link raro). Guía: [Conectar tu dominio](/docs/deploy/dominio).
-✅ Tu **base de datos de producción** está lista y con **RLS activo** (la regla que impide que un usuario vea datos de otro). Míralo en [Supabase en producción](/docs/deploy/supabase-produccion).
+✅ Tu **<Term id="base-de-datos">base de datos</Term> de producción** está lista y con **RLS activo** (la regla que impide que un usuario vea datos de otro). Míralo en [Supabase en producción](/docs/deploy/supabase-produccion).
 </Checkpoint>
 
 Ahora pruébalo tú mismo, como si fueras un usuario nuevo, en el sitio público:
@@ -44,7 +44,7 @@ No importa qué tan bueno sea tu producto si el link se ve roto o nadie entiende
 ✅ Hay un **CTA claro**: un solo botón obvio que diga qué hacer (unirse al waitlist o registrarse).
 </Checkpoint>
 
-Los meta tags y la OG image viven en el código, pero no tienes que tocarlos a mano. Pídele a Cursor que los revise:
+Los meta tags y la OG image viven en el código, pero no tienes que tocarlos a mano. Pídele a <Term id="cursor">Cursor</Term> que los revise:
 
 <PromptBox label="Prompt para Cursor">
 Revisa los meta tags y la Open Graph (OG) image de mi landing page. Quiero que al compartir el link en WhatsApp y redes se vea una tarjeta con título, descripción e imagen. Dime qué falta, complétalo y explícame en palabras simples qué cambiaste y dónde.

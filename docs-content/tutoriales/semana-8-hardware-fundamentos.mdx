@@ -8,28 +8,35 @@ order: 8
 
 **24 – 26 ago 2026 · Técnico**
 
-<Callout type="info">
-Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 8 — por ahora es un adelanto de lo que vas a construir.
+<Callout type="warning" title="Los pasos completos llegan con el firmware">
+Los ejemplos de firmware (`firmware/examples/`) todavía **no están publicados en el repo** — llegan antes de la Semana 8, junto con los pasos y prompts de esta página. Lo que SÍ puedes hacer desde hoy está en "Prepárate desde ahora".
 </Callout>
 
 ## Qué vas a tener al final
 
 - ✅ Kit ESP-Claw configurado y conectado por WiFi.
 - ✅ Un comportamiento básico definido por lenguaje natural ("chat para crear").
-- ✅ El ESP32 conectado a tu web app vía MCP — tu agente puede dispararlo.
+- ✅ El ESP32 conectado a tu web app vía <Term id="mcp">MCP</Term> — tu agente puede dispararlo.
 
 ## Concepto: ESP-Claw
 
-ESP-Claw es un framework de **chat para crear**: un agente de IA que corre dentro del propio ESP32 (el chip, no la nube). Le describes en lenguaje natural cómo quieres que se comporte; al principio la IA decide cada vez, y cuando una regla ya funciona, queda grabada como un mini-programa local en el chip — así responde siempre igual, al instante y hasta sin internet.
+ESP-Claw es un <Term id="framework">framework</Term> de **chat para crear**: un agente de IA que corre dentro del propio ESP32 (el chip, no la nube). Le describes en lenguaje natural cómo quieres que se comporte; al principio la IA decide cada vez, y cuando una regla ya funciona, queda grabada como un mini-programa local en el chip — así responde siempre igual, al instante y hasta sin internet.
 
 Funciona como server y client MCP — enlaza directo con lo que hiciste en [Semana 5](/docs/tutoriales/semana-5-agentes-mcp).
 
-## Pasos (preview)
+## Prepárate desde ahora (esto sí puedes hacerlo hoy)
+
+1. **Ten tu kit a la mano**: consigue el kit ESP-Claw (ESP32) con la lista que comparte el equipo docente en el canal del curso. Pídelo con tiempo — el envío suele ser lo que más tarda.
+2. **Cable correcto**: asegúrate de tener un cable USB de **datos** (no solo de carga) que entre en tu compu; es el tropiezo #1 al flashear.
+3. **Repasa las Semanas 4 y 5**: el ESP-Claw se conecta a tu app vía MCP, así que necesitas tu registry de tools funcionando y la idea de agente fresca.
+4. **Piensa el comportamiento**: escribe en 2-3 frases qué quieres que haga tu dispositivo ("cuando pase X, haz Y"). En la semana en vivo se lo dirás en lenguaje natural, tal cual.
+
+## Pasos de la semana (se publican con el firmware)
 
 1. Flashear ESP-Claw al ESP32.
-2. Configurar WiFi del dispositivo.
+2. Configurar el WiFi del dispositivo.
 3. Definir un comportamiento simple por chat.
-4. Conectarlo a tu `/api/mcp` desde el ejemplo `firmware/examples/02-mcp-bridge/` (los ejemplos de firmware se publican en el repo antes de la Semana 8).
+4. Conectarlo a tu `/api/mcp` desde el ejemplo `firmware/examples/02-mcp-bridge/` del <Term id="repo-repositorio">repo</Term>.
 
 ## Entregable
 

@@ -44,7 +44,7 @@ NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 Los nombres de las variables deben coincidir **letra por letra** con los que usa tu plantilla. Revísalos en [Variables de entorno](/docs/configuracion/variables-de-entorno) antes de dar por hecho que están bien.
 </Callout>
 
-Un detalle: las variables que empiezan con `NEXT_PUBLIC_` **sí llegan al navegador** (a diferencia de una API key privada, que se queda escondida en el servidor). Aquí está bien, porque la Project API Key de PostHog está pensada para eso. Aun así, se manejan como variables de entorno, ordenaditas en su `.env.local`.
+Un detalle: las variables que empiezan con `NEXT_PUBLIC_` **sí llegan al navegador** (a diferencia de una <Term id="api-key">API key</Term> privada, que se queda escondida en el servidor). Aquí está bien, porque la Project API Key de PostHog está pensada para eso. Aun así, se manejan como <Term id="variable-de-entorno">variables de entorno</Term>, ordenaditas en su `.env.local`.
 
 Guarda el archivo y **reinicia** tu servidor para que tome los cambios:
 
@@ -59,7 +59,7 @@ VibeFast trae la analítica lista con un **toggle** (un interruptor de encender/
 ## 5. Verifica que funciona ✅
 
 1. Abre tu app en `http://localhost:3000` y **navega un poco**: entra, cambia de página, haz clic aquí y allá.
-2. Vuelve al **dashboard de PostHog** y entra a la sección **Activity** (o **Events**).
+2. Vuelve al **<Term id="dashboard">dashboard</Term> de PostHog** y entra a la sección **Activity** (o **Events**).
 3. En un ratito deberías ver **tus propios eventos** aparecer en la lista. 🎉
 
 Si aparecen, ¡ya estás midiendo! Esos son tus primeros datos reales.

@@ -9,7 +9,7 @@ order: 4
 **27 – 29 jul 2026 · Técnico**
 
 <Callout type="info">
-Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 4 — por ahora es un adelanto de lo que vas a construir.
+Los pasos de esta semana ya son ejecutables — el registry de tools y la pantalla de chat vienen en el boilerplate. Los prompts se irán afinando antes de la semana en vivo.
 </Callout>
 
 ## Qué vas a tener al final
@@ -23,15 +23,48 @@ Esta página tendrá los pasos y prompts completos antes de que llegue la Semana
 
 Tool use es darle al modelo una lista de **funciones que puede invocar**. El modelo decide cuándo llamarlas y con qué argumentos; tú ejecutas la función y le devuelves el resultado. El loop sigue hasta que el modelo da una respuesta final.
 
-VibeFast usa un **registry**: un catálogo central donde defines la tool una vez y queda disponible tanto para tool use (OpenAI) como para MCP (Sem 5). Más detalle en [Features → Tool use](/docs/features/tool-use).
+VibeFast usa un **registry**: un catálogo central donde defines la tool una vez y queda disponible tanto para tool use (OpenAI) como para <Term id="mcp">MCP</Term> (Sem 5). Más detalle en [Features → Tool use](/docs/features/tool-use).
 
-## Pasos (preview)
+## Paso 1 · Conoce las tools que ya trae tu proyecto
 
-1. Crear una tool en `lib/tools/examples/`.
-2. Registrarla con `registerTool({ name, description, parameters, execute })`.
-3. Probar desde `/chat` — la pantalla de chat de tu app, que se activa con `features.aiChat` en `web/config.js`.
-4. Armar un flujo LangGraph que use 2+ tools.
+El boilerplate incluye 3 tools de ejemplo en `web/lib/tools/examples/`: `crearItem`, `buscarItems` y `enviarEmail`. Ábrelas en Cursor y fíjate en la forma: cada una es un objeto con `name`, `description`, `parameters` y `execute`. Esa es la plantilla de la tuya.
+
+## Paso 2 · Prueba el chat con tools
+
+1. Verifica que `features.aiChat` esté en `true` en `web/config.js` (viene activado).
+2. Abre `localhost:3000/chat` y pídele algo que dispare una tool, por ejemplo: *"créame un item que se llame Prueba"*.
+
+<Checkpoint>
+✅ El chat responde y la acción se ejecuta (el item aparece en tu dashboard).
+✅ En Supabase → **Table Editor** → tabla `tool_calls` quedó registrada la llamada — esa es tu auditoría.
+</Checkpoint>
+
+## Paso 3 · Crea TU tool
+
+Piensa en UNA acción de tu producto que la IA debería poder ejecutar (ej. "cambiar el estatus de un lead", "agendar una cita"). Luego:
+
+<PromptBox label="Prompt para Cursor — tu primera tool">
+Crea una tool nueva en este proyecto VibeFast siguiendo el patrón de web/lib/tools/examples/ (mira crearItem.js).
+
+La tool: \{qué hace, ej. "cambia el estatus de un lead"}.
+Recibe: \{argumentos, ej. id del lead y nuevo estatus (nuevo/contactado/cerrado)}.
+Hace: \{qué toca, ej. actualiza la fila en la tabla core_items}.
+
+Regístrala igual que los ejemplos para que quede disponible en /chat, y dime cómo probarla con una frase en el chat.
+</PromptBox>
+
+## Paso 4 · Pruébala como usuario
+
+<Checkpoint>
+✅ Se lo pides en `/chat` con lenguaje natural y el modelo llama TU tool con los argumentos correctos.
+✅ El cambio se ve en tu dashboard y la llamada queda en `tool_calls`.
+✅ Le pides algo fuera de alcance y el modelo NO inventa una tool que no existe.
+</Checkpoint>
+
+## Paso 5 · (Avanzado) Encadena pasos con LangGraph
+
+El boilerplate trae un flujo `recuperar → decidir → actuar` de ejemplo (`web/lib/agents/examples/recoverDecideAct.js` + endpoint `/api/ai/agent`). El concepto está en [Features → Agentes con LangGraph](/docs/features/agentes-langgraph); en la semana en vivo lo convertimos en un flujo de TU producto con 2+ tools.
 
 ## Entregable
 
-Un flujo / acción de IA que ejecuta funciones reales de tu producto.
+Un flujo / acción de IA que ejecuta funciones reales de tu producto: video corto mostrando la frase en `/chat`, la tool ejecutándose y la fila en `tool_calls`.

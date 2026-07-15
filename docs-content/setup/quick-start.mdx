@@ -1,41 +1,36 @@
 ---
-title: Quick start (30 min)
+title: Quick start
 description: De cero a deploy en Vercel en una sentada.
-order: 1
+order: 3
 ---
 
 <StackBadge tech={["github", "yarn", "supabase", "vercel"]} />
 
 Al final de esta página vas a tener:
 
-- ✅ Tu repo en GitHub con el código de VibeFast.
+- ✅ Tu <Term id="repo-repositorio">repo</Term> en <Term id="github">GitHub</Term> con el código de VibeFast.
 - ✅ El proyecto corriendo en `localhost:3000`.
-- ✅ Supabase conectado a tu app (y las tablas pre-cargadas, si haces el Paso 6).
-- ✅ Tu landing deployada en Vercel con una URL pública.
+- ✅ <Term id="supabase">Supabase</Term> conectado a tu app, con las tablas pre-cargadas.
+- ✅ Tu landing <Term id="deploy">deployada</Term> en <Term id="vercel">Vercel</Term> con una URL pública.
 
 **Tiempo estimado: 30–60 minutos** (la primera vez puede tardar un poco más).
 
-## Antes de empezar (haz esto primero)
+## Antes de empezar (revisa esto primero)
 
-Esto es lo primero de lo primero. Hazlo antes de tocar el código:
+Esta página **asume que ya hiciste las 3 anteriores** de "Empieza aquí". Si te falta alguna, ve, hazla y **regresa aquí** — cada una te lo recuerda al final:
 
-**1 · Crea tus cuentas** (casi todas gratis, y en casi todas puedes hacer login con GitHub):
-- [GitHub](https://github.com), [Vercel](https://vercel.com), [Supabase](https://supabase.com).
-- [OpenAI](https://platform.openai.com) es distinta: requiere cuenta propia y cargar saldo ($5–10 USD) — detalles en [Cuentas que necesitas](/docs/setup/cuentas). [Resend](https://resend.com) es para más adelante (opcional al inicio).
+**1 · Tu compu preparada** → [Prepara tu compu (Mac / Windows)](/docs/setup/prepara-tu-compu). Ahí instalas Node, yarn, Git, Supabase CLI y Cursor, y configuras tu nombre y correo de Git. Si `node --version`, `yarn --version`, `git --version` y `supabase --version` te responden con un número, ya estás.
 
-**2 · Instala las herramientas** en tu compu. La guía paso a paso por sistema operativo está en [Prepara tu compu (Mac / Windows)](/docs/setup/prepara-tu-compu). En resumen necesitas:
-- **Node 20 o 22 LTS** ([nodejs.org](https://nodejs.org)) — usa una versión **par** (LTS).
-- **yarn**: `npm install -g yarn`
-- **Git** (para clonar tu repo en el Paso 2) — cómo instalarlo está en [Prepara tu compu](/docs/setup/prepara-tu-compu).
-- **Supabase CLI** (para subir la base de datos):
+**2 · Tus cuentas creadas** → [Cuentas que necesitas](/docs/setup/cuentas). Para hoy bastan **GitHub, Vercel y Supabase** (en casi todas entras con tu cuenta de GitHub).
 
-```bash
-npm install -g supabase
-```
-(En Mac también puedes: `brew install supabase/tap/supabase`.) Verifica con `supabase --version`.
-- **Cursor** ([cursor.com](https://cursor.com)).
+**3 · Tu proyecto de Supabase listo, con las 3 keys a la mano** → [Supabase paso a paso](/docs/setup/supabase). Crear cuenta, crear proyecto, guardar la contraseña de la base y copiar tus 3 keys (~10 min, todo con clicks). **Vuelve aquí con tus keys copiadas.**
 
-**3 · Ten tu proyecto de Supabase listo** — si todavía no lo tienes, sigue [Supabase paso a paso](/docs/setup/supabase) (crear cuenta, crear proyecto, guardar la contraseña de la base y copiar tus 3 keys — ~10 min, todo con clicks). Vuelve aquí con tus keys a la mano.
+<Checkpoint>
+No avances al Paso 1 sin esto:
+✅ Los cuatro comandos `--version` responden (compu lista).
+✅ Cuentas de GitHub, Vercel y Supabase creadas.
+✅ Tus 3 keys de Supabase copiadas en un bloc de notas.
+</Checkpoint>
 
 ## Paso 1 · Haz tu fork (primero esto)
 
@@ -46,7 +41,7 @@ Antes que nada, crea **tu propia copia** del repo en GitHub. No trabajas sobre e
 3. Listo: ahora tienes tu copia en `github.com/TU-USUARIO/VibeFast`. **Sobre esa** vas a trabajar de aquí en adelante.
 
 <Callout type="info" title="Fork vs. Use this template">
-El **Fork** es lo más simple (un clic) y queda ligado al original para traer mejoras después — por eso lo recomendamos. Si prefieres un repo totalmente limpio, sin el historial de VibeFast, usa **"Use this template" → Create a new repository** en el mismo repo.
+El <Term id="fork">Fork</Term> es lo más simple (un clic) y queda ligado al original para traer mejoras después — por eso lo recomendamos. Si prefieres un repo totalmente limpio, sin el historial de VibeFast, usa **"Use this template" → Create a new repository** en el mismo repo.
 </Callout>
 
 ## Paso 2 · Clónalo en tu computadora
@@ -77,8 +72,8 @@ Cada quien tiene su propio link. Consíguelo así:
 Ese link copiado es el que va después de `git clone`.
 </Callout>
 
-<Callout type="info" title="¿Cansado de que GitHub te pida token en cada push?">
-Clonar por **HTTPS** funciona, pero GitHub te pedirá un token al publicar. Para que Cursor suba tu código **sin pedirte nada**, configura una llave **SSH** una sola vez: [Conectar GitHub con SSH](/docs/setup/github-ssh). Es opcional, pero se agradece.
+<Callout type="info" title="¿GitHub te pide usuario o token al hacer push?">
+Con HTTPS, la primera vez que publiques, Cursor te mostrará un botón para **iniciar sesión con GitHub** — acéptalo y no te lo vuelve a pedir. Si prefieres la alternativa avanzada con llaves **SSH** (opcional, no la necesitas para el curso), la guía oficial está en [docs.github.com](https://docs.github.com/es/authentication/connecting-to-github-with-ssh).
 </Callout>
 
 Con tu link copiado, clónalo y ábrelo en Cursor (aquí `TU-USUARIO` es solo ejemplo — usa tu link real):
@@ -155,7 +150,7 @@ NEXT_PUBLIC_POSTHOG_KEY=
 Por ahora solo necesitas las 4 primeras. El detalle de cada una (y de dónde sale) está en [Variables de entorno](/docs/configuracion/variables-de-entorno).
 
 <Callout type="info" title="Al cambiar el .env.local, reinicia">
-Las variables de entorno **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.
+Las <Term id="variable-de-entorno">variables de entorno</Term> **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.
 </Callout>
 
 <Callout type="warning" title="Nunca subas .env.local a git">
@@ -176,25 +171,22 @@ Tu `project-ref` está en la URL del dashboard (`https://supabase.com/dashboard/
 
 **Verifica que funcionó:** abre el **Table Editor** en el dashboard de Supabase — deberías ver las tablas (`profiles`, `waitlist`, `core_items`…). El detalle está en [Supabase paso a paso → Paso 5](/docs/setup/supabase#paso-5--sube-las-tablas-esto-se-hace-después-con-el-repo).
 
-<Callout type="info" title="¿Solo quieres ver la landing?">
-Puedes saltarte este paso por ahora: la landing corre sin base de datos. Vuelve aquí en **Sem 2** cuando agreguemos Auth + DB.
+<Callout type="warning" title="¿Se atoró supabase link o db push?">
+No te bloquees: puedes seguir al Paso 7 y volver aquí después (la landing corre sin base de datos, pero tu waitlist **no guardará emails** hasta completar este paso). Pega el error exacto en Cursor o revisa [Errores comunes](/docs/troubleshooting/errores-comunes).
 </Callout>
 
 ## Paso 7 · Personaliza tu producto
 
-Abre `web/config.js`. Cambia:
+Abre `web/config.js` y cambia solo estos 4 valores para confirmar que todo funciona:
 
 - `app.name` — el nombre de tu producto.
 - `app.description` — qué hace tu producto en una frase.
 - `landing.hero.title` — el titular de tu landing.
 - `brand.primary` — tu color (hex).
 
-<PromptBox label="Prompt para Cursor (ayuda con el copy)">
-Estoy editando web/config.js para mi producto que es \{describe tu producto en 1 frase}.
-Mi audiencia es \{describe tu ICP en 1 frase}.
-Sugiéreme valores para landing.hero (eyebrow, title, subtitle, cta.label) y landing.features.items[] (3 items con icon de lucide, title y body de 1 frase).
-Devuelve solo el código del objeto, no expliques.
-</PromptBox>
+<Callout type="info" title="El copy completo lo harás en Semana 1">
+Aquí solo comprueba que al cambiar `config.js` cambia tu landing. La personalización a fondo (hero completo, features, FAQ) tiene su propio prompt en [Semana 1 · Paso 2](/docs/tutoriales/semana-1-landing).
+</Callout>
 
 ## Paso 8 · Corre en local
 
@@ -207,7 +199,7 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 <Checkpoint>
 ✅ Ves tu landing con tu título y color primario.
 ✅ El menú lleva a `/docs` y muestra estas docs.
-✅ El formulario de waitlist responde (sin guardar todavía — el guardado llega en Sem 2).
+✅ El formulario de waitlist responde — y si escribes un email, aparece como fila en la tabla `waitlist` (Supabase → **Table Editor**), gracias al Paso 6.
 
 ¿Algo no carga? → [Troubleshooting](/docs/troubleshooting/errores-comunes).
 </Checkpoint>
@@ -216,7 +208,7 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 
 1. Entra a [vercel.com/new](https://vercel.com/new) (haz **login con GitHub**).
 2. En la lista de repos, busca **tu fork** y haz click en **Import**. (Si no aparece, click en *Adjust GitHub App Permissions* y dale acceso.)
-3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un monorepo y la app vive en `web/`.
+3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un <Term id="monorepo">monorepo</Term> y la app vive en `web/`.
 4. **Framework Preset**: Next.js (se autodetecta, no lo toques).
 5. Expande **Environment Variables** y agrega **cada** variable de tu `web/.env.local` (nombre y valor, una por una). Mínimo estas **4**: las 3 de Supabase + `NEXT_PUBLIC_APP_URL`.
 6. Click **Deploy**.

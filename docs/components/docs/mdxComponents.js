@@ -5,6 +5,7 @@ import Checkpoint from "./Checkpoint"
 import StackBadge from "./StackBadge"
 import VideoLoom from "./VideoLoom"
 import CodeBlock from "./CodeBlock"
+import Term from "./Term"
 
 // Componentes disponibles dentro de cualquier .mdx en docs-content/
 export const mdxComponents = {
@@ -13,6 +14,7 @@ export const mdxComponents = {
   Checkpoint,
   StackBadge,
   VideoLoom,
+  Term,
   // Bloques de código con barra (lenguaje + copiar)
   pre: CodeBlock,
   // Links internos pasan por <Link> de Next para no recargar

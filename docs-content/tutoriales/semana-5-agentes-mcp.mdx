@@ -8,8 +8,8 @@ order: 5
 
 **3 – 5 ago 2026 · Técnico**
 
-<Callout type="info">
-Esta página tendrá los pasos y prompts completos antes de que llegue la Semana 5 — por ahora es un adelanto de lo que vas a construir.
+<Callout type="warning" title="Los pasos completos llegan con la feature">
+El servidor MCP (`/api/mcp`) todavía **no está en el boilerplate** — se publica antes de la Semana 5, junto con los pasos y prompts de esta página. Lo que SÍ puedes hacer desde hoy está en "Prepárate desde ahora".
 </Callout>
 
 ## Qué vas a tener al final
@@ -26,13 +26,20 @@ MCP (Model Context Protocol) es un **estándar abierto** para conectar IA con he
 - Tu app **expone** sus tools vía MCP (`/api/mcp`) — Claude Desktop, otros clientes pueden usar tu producto como tool.
 - Tu app **consume** MCPs externos — Gmail, Notion, ESP-Claw del [módulo de hardware (Semanas 8–9)](/docs/tutoriales/semana-8-hardware-fundamentos).
 
-## Pasos (preview)
+## Prepárate desde ahora (esto sí puedes hacerlo hoy)
 
-1. Definir el grafo del agente (`lib/agents/graph.js`).
-2. Conectar tools del registry como nodos.
-3. Levantar el servidor MCP.
-4. Probar con un cliente MCP externo (Claude Desktop o curl).
-5. Correr evals con escenarios fijos.
+1. **Termina la Semana 4**: necesitas al menos UNA tool propia funcionando en `/chat` — el agente y el MCP se construyen encima de ese registry.
+2. **Prueba el agente de ejemplo**: el boilerplate ya trae un flujo `recuperar → decidir → actuar` (`web/lib/agents/examples/recoverDecideAct.js` + endpoint `/api/ai/agent`). Pídele a Cursor: *"muéstrame cómo probar el endpoint /api/ai/agent con un ejemplo y explícame el grafo paso a paso como si fuera nuevo en esto"*.
+3. **Aterriza tu caso**: escribe en tu ficha qué tarea de varios pasos haría un agente en TU producto (ej. "recibe un lead → lo clasifica → responde → agenda"). Esa es la que construirás en vivo.
+4. Si quieres adelantar el concepto MCP con las manos: instala **Claude Desktop** y conéctale un MCP público cualquiera, para sentir qué es un cliente MCP.
+
+## Pasos de la semana (se publican con la feature)
+
+1. Definir el grafo del agente sobre tu caso.
+2. Conectar tus tools del registry como nodos.
+3. Levantar el servidor MCP (`/api/mcp`) y exponer tus tools.
+4. Probarlo desde un cliente MCP externo (Claude Desktop).
+5. Correr evals con escenarios fijos para que no se rompa al iterar.
 
 ## Entregable
 
