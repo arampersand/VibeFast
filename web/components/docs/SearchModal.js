@@ -13,9 +13,17 @@ export default function SearchModal() {
   const [index, setIndex] = useState([])
   const [query, setQuery] = useState("")
   const [activeIdx, setActiveIdx] = useState(0)
+  // Arranca en false para que el render del servidor coincida con el primero
+  // del cliente; en Mac se corrige al montar.
+  const [isMac, setIsMac] = useState(false)
   const inputRef = useRef(null)
 
   useEffect(() => setMounted(true), [])
+
+  useEffect(() => {
+    const platform = navigator.userAgentData?.platform || navigator.platform || ""
+    setIsMac(/mac|iphone|ipad|ipod/i.test(platform))
+  }, [])
 
   const results = searchDocs(index, query)
 
@@ -83,7 +91,7 @@ export default function SearchModal() {
       >
         <Search className="size-4" />
         <span className="flex-1 text-left">Buscar…</span>
-        <kbd className="kbd kbd-sm">⌘K</kbd>
+        <kbd className="kbd kbd-sm">{isMac ? "⌘K" : "Ctrl+K"}</kbd>
       </button>
 
       {open &&
