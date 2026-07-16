@@ -264,7 +264,7 @@ const config = {
           title: "Comunidad",
           links: [
             { label: "GitHub", href: "https://github.com/arampersand/VibeFast", external: true },
-            { label: "Remotto", href: "https://remotto.com", external: true },
+            { label: "Remotto", href: "https://remotto.ai", external: true },
           ],
         },
       ],
