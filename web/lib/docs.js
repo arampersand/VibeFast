@@ -196,7 +196,10 @@ export function getHeadings(content) {
   const headings = []
   let inFence = false
 
-  for (const line of content.split("\n")) {
+  // Split con \r?\n: en Windows (core.autocrlf) el .mdx llega con CRLF, y el
+  // \r sobrante rompía el match de los headings — la tabla de contenidos
+  // quedaba vacía en local aunque en producción (Linux, LF) se viera bien.
+  for (const line of content.split(/\r?\n/)) {
     if (/^\s*```/.test(line)) {
       inFence = !inFence
       continue

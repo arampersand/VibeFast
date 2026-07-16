@@ -4,6 +4,7 @@ import rehypeSlug from "rehype-slug"
 import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 import { mdxComponents } from "@/components/docs/mdxComponents"
+import MarkOnScroll from "@/components/docs/MarkOnScroll"
 import PrevNext from "@/components/docs/PrevNext"
 import TableOfContents from "@/components/docs/TableOfContents"
 import { getDocBySlug, getAllDocSlugs, getHeadings } from "@/lib/docs"
@@ -68,6 +69,7 @@ export default async function DocPage({ params }) {
           )}
         </header>
         <MDXRemote source={doc.content} components={mdxComponents} options={mdxOptions} />
+        <MarkOnScroll href={`/docs/${slug[0]}/${slug[1]}`} />
         <PrevNext prev={doc.prev} next={doc.next} />
       </article>
 
