@@ -46,7 +46,7 @@ Abre `http://localhost:3000/docs` — verás la documentación completa, mapeada
 ```
 vibefast/
 ├── web/             ← Next.js app (donde construyes tu producto)
-├── firmware/        ← Código de referencia ESP-Claw (Sem 8–9, ignóralo hasta entonces)
+├── firmware/        ← ESP32 / asistente de voz (módulo hardware; ignóralo hasta Sem 8–9)
 ├── docs-content/    ← Fuente MDX de la documentación
 └── supabase/        ← Migrations y schema
 ```

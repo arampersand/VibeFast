@@ -1,43 +1,85 @@
 ---
-title: Semana 8 · ESP-Claw (fundamentos)
-description: Agente de IA corriendo en el propio ESP32, conectado vía MCP.
+title: Semana 1–2 · ESP32 (fundamentos y armado)
+description: Teoría del ESP32, Cursor, PlatformIO, LED de prueba y protoboard.
 order: 8
 ---
 
-<StackBadge tech={["esp", "mcp", "openai"]} />
+<StackBadge tech={["esp"]} />
 
-**24 – 26 ago 2026 · Técnico**
+**Módulo Hardware con IA · Remotto × Startup Chihuahua**
 
-<Callout type="warning" title="Los pasos completos llegan con el firmware">
-Los ejemplos de firmware (`firmware/examples/`) todavía **no están publicados en el repo** — llegan antes de la Semana 8, junto con los pasos y prompts de esta página. Lo que SÍ puedes hacer desde hoy está en "Prepárate desde ahora".
+<Callout type="info" title="Material de referencia">
+Los ejemplos en `firmware/examples/` se publican con el kit. Esta página es el mapa de las **semanas 1 y 2**: conceptos, herramientas y armado. El asistente de voz es la [semana 3](/docs/tutoriales/semana-9-hardware-caso-uso).
 </Callout>
 
-## Qué vas a tener al final
+## Qué vas a tener al final de estas dos semanas
 
-- ✅ Kit ESP-Claw configurado y conectado por WiFi.
-- ✅ Un comportamiento básico definido por lenguaje natural ("chat para crear").
-- ✅ El ESP32 conectado a tu web app vía <Term id="mcp">MCP</Term> — tu agente puede dispararlo.
+- ✅ Entender qué es un ESP32 y por qué lo usamos (vs Arduino / Raspberry).
+- ✅ Cursor + PlatformIO listos para cargar un programa a la placita.
+- ✅ LED de prueba encendido (cable, puerto y placita verificados).
+- ✅ Kit conectado en protoboard: sabes qué pin va con qué, sin soldar.
 
-## Concepto: ESP-Claw
+## Semana 1 — Introducción y teoría
 
-ESP-Claw es un <Term id="framework">framework</Term> de **chat para crear**: un agente de IA que corre dentro del propio ESP32 (el chip, no la nube). Le describes en lenguaje natural cómo quieres que se comporte; al principio la IA decide cada vez, y cuando una regla ya funciona, queda grabada como un mini-programa local en el chip — así responde siempre igual, al instante y hasta sin internet.
+### Expectativa del curso
 
-Funciona como server y client MCP — enlaza directo con lo que hiciste en [Semana 5](/docs/tutoriales/semana-5-agentes-mcp).
+Vas a salir con un **asistente de voz personal**: hablas → una IA responde → oyes la respuesta en el kit. No necesitas experiencia previa en electrónica. Sí necesitas haberte sentido cómodo pidiéndole código a una IA (Cursor / Claude) y usando una laptop con Windows 10+, macOS o Linux.
 
-## Prepárate desde ahora (esto sí puedes hacerlo hoy)
+### Conceptos (en orden)
 
-1. **Ten tu kit a la mano**: consigue el kit ESP-Claw (ESP32) con la lista que comparte el equipo docente en el canal del curso. Pídelo con tiempo — el envío suele ser lo que más tarda.
-2. **Cable correcto**: asegúrate de tener un cable USB de **datos** (no solo de carga) que entre en tu compu; es el tropiezo #1 al flashear.
-3. **Repasa las Semanas 4 y 5**: el ESP-Claw se conecta a tu app vía MCP, así que necesitas tu registry de tools funcionando y la idea de agente fresca.
-4. **Piensa el comportamiento**: escribe en 2-3 frases qué quieres que haga tu dispositivo ("cuando pase X, haz Y"). En la semana en vivo se lo dirás en lenguaje natural, tal cual.
+1. **Microprocesador** — el “cerebro” chiquito de la placita; ejecuta el programa que le cargas.
+2. **ESP32** — placita con WiFi/Bluetooth; punto intermedio entre Arduino (muy básico) y Raspberry (casi una PC). Detalle en [Hardware · ESP-Claw](/docs/features/hardware-esp-claw).
+3. **Puertos / pines** — entradas y salidas: aquí enchufas LED, micrófono, bocina, etc.
+4. **Protoboard** — tablilla donde los cables hacen contacto sin soldar.
+5. **Cursor + IA** — tú describes el kit y el objetivo; la IA propone pines y código; tú pruebas y ajustas.
+6. **PlatformIO** — desde el editor carga el programa al ESP32 con configuraciones que ya existen (menos pelea que el flujo clásico de Arduino a mano).
 
-## Pasos de la semana (se publican con el firmware)
+### Primer logro de la semana 1: el LED
 
-1. Flashear ESP-Claw al ESP32.
-2. Configurar el WiFi del dispositivo.
-3. Definir un comportamiento simple por chat.
-4. Conectarlo a tu `/api/mcp` desde el ejemplo `firmware/examples/02-mcp-bridge/` del <Term id="repo-repositorio">repo</Term>.
+Antes de armar todo el kit:
 
-## Entregable
+1. Conecta el ESP32 a la laptop con un **cable USB de datos** (no solo de carga).
+2. Identifica el **puerto** que aparece en la compu (Device Manager / System Information).
+3. Con PlatformIO + Cursor, carga el ejemplo “hello LED” (`firmware/examples/01-hello-led/` cuando esté publicado).
+4. Si el LED parpadea: cable, driver y placita están bien. Si no: copia el error tal cual a la IA.
 
-ESP-Claw configurado + comportamiento básico definido por lenguaje natural.
+De poquito a poquito: primero placita sola, después un módulo, después el resto.
+
+## Semana 2 — Armado en protoboard
+
+### Qué hace el equipo docente vs qué haces tú
+
+| Equipo docente | Tú |
+|---|---|
+| Entrega el ESP32 con pines listos (sin que tengas que soldar) | Conectas cables en la protoboard |
+| Kit y lista de componentes | Sigues el mapa de pines (o se lo pides a la IA) |
+| Soporte en vivo | Iteras si algo no prende |
+
+### Pasos
+
+1. **PlatformIO configurado** — preset del ESP32 del curso; puerto USB correcto.
+2. **Verificar puerto** otra vez con el kit ya en tu mesa.
+3. **Armar en protoboard** — micrófono / bocina / LED según la lista del kit. Un módulo a la vez si se traban.
+4. **Prompt útil para la IA** (cópialo y completa):
+
+```
+Tengo un ESP32 y protoboard.
+Componentes: [pega la lista del kit].
+Quiero conectar [LED / micrófono / bocina] para probar.
+Devuélveme: (1) tabla pin → cable → componente, (2) código PlatformIO mínimo para probarlo, (3) cómo sé en la laptop que el puerto es el correcto.
+```
+
+5. **Probar** cada conexión antes de pasar a la semana del asistente de voz.
+
+## Prepárate desde ahora
+
+1. Laptop con SO que conozcas (Windows 10/11, macOS o Linux) y cable USB de **datos**.
+2. Cuenta de Cursor (o Claude) ya usada para un proyecto real — el filtro del curso apunta a eso.
+3. Si vienes de vibecoding: trae fresco cómo leer un error y pegárselo a la IA.
+4. No hace falta comprar herramientas de soldadura.
+
+## Entregable (fin semana 2)
+
+ESP32 respondiendo al hello LED + kit armado en protoboard según la guía del docente (foto o checklist en Classroom / Suma Impacto, según indique el equipo).
+
+Siguiente: [Semana 3 · Asistente de voz](/docs/tutoriales/semana-9-hardware-caso-uso).
