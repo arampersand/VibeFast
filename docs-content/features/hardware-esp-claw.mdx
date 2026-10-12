@@ -1,15 +1,62 @@
 ---
 title: Hardware · ESP-Claw
-description: Conexión MCP entre tu web app y un ESP32 con agente local.
+description: Asistente de voz personal con ESP32, Cursor y una IA en la nube.
 order: 10
 ---
 
-<StackBadge tech={["esp", "mcp"]} />
+<StackBadge tech={["esp"]} />
 
 <Callout type="info">
-Esta feature se activa en las **Semanas 8–9** del curso.
+Material de referencia del **módulo de Hardware con IA** (3 semanas). El kit lo entrega el equipo docente; aquí está el mapa, los conceptos y a dónde ir cada semana.
 </Callout>
 
-Activación: `features.hardware: true` en `web/config.js`. Los ejemplos de firmware se publicarán en la carpeta `firmware/` antes de la Semana 8 (hoy la carpeta está vacía, en construcción).
+## ¿Qué es un ESP32?
 
-Tu web app no necesitará cambios: cuando el servidor MCP del boilerplate esté listo (vivirá en `/api/mcp` — ver [MCP](/docs/features/mcp)), el ESP32 se conectará a él como cualquier otro cliente MCP.
+Un **ESP32** es una placita del tamaño de un dedo con un microprocesador barato, WiFi y Bluetooth. Se conecta a tu laptop por USB para cargarle un programa; después puede funcionar con batería o fuente propia, sin quedar cableada a la compu.
+
+| Si quieres… | Suele convenir… |
+|---|---|
+| Aprender electrónica muy básica | Arduino (o similar) |
+| Un mini-servidor / PC chiquita | Raspberry Pi |
+| IoT + WiFi + IA en la nube, sin soldar un lab | **ESP32** (este curso) |
+
+En este módulo no vas a soldar. El equipo prepara los pines; tú conectas cables en una **protoboard** (tablilla de pruebas) y cargas el programa con ayuda de Cursor / Claude.
+
+## ¿Qué van a construir?
+
+Un **asistente de voz personal** (tipo mini Alexa):
+
+1. Hablas al micrófono.
+2. El audio viaja a una IA (ChatGPT, Claude u otra API).
+3. La respuesta vuelve en audio al ESP32 (bocina / salida de audio).
+
+El valor del proyecto está en el **software y la IA**, no en armar circuitos complejos. La placita es el cuerpo; el cerebro vive en la nube y en lo que programas con IA.
+
+## Herramientas del módulo
+
+| Herramienta | Para qué |
+|---|---|
+| **Cursor** (o Claude Code) | Pedirle a la IA el código, los pines y el debug |
+| **PlatformIO** | Cargar el programa al ESP32 desde el editor, con presets que ya funcionan (evita pelearte a mano con configs de Arduino) |
+| **Cable USB de datos** | El tropiezo #1: muchos cables solo cargan y no “hablan” con la placita |
+| **Protoboard + cables** | Conectar micrófono, bocina/LED y lo que indique el kit, sin soldar |
+
+Activación en la plantilla web (cuando enlaces el dispositivo a tu app): `features.hardware: true` en `web/config.js`. Eso es opcional y viene después del asistente en el kit.
+
+## Mapa de las 3 semanas
+
+| Semana | Enfoque | Guía |
+|---|---|---|
+| 1 | Teoría + LED de prueba (cable, puerto, placita) | [Semanas 1–2 · Fundamentos y armado](/docs/tutoriales/semana-8-hardware-fundamentos) |
+| 2 | PlatformIO + protoboard (qué pin va con qué) | Misma guía, bloque “Semana 2” |
+| 3 | Asistente de voz: audio → IA → audio | [Semana 3 · Asistente de voz](/docs/tutoriales/semana-9-hardware-caso-uso) |
+
+Código de ejemplo (cuando se publique): carpeta `firmware/` del repo.
+
+## Cómo pedirle ayuda a la IA (patrón del curso)
+
+Cuando armes o debuggees, describe el kit, no solo el síntoma:
+
+> Tengo un ESP32, protoboard, estos componentes: [lista]. Pines libres: [foto o lista]. Quiero [LED / micrófono / bocina]. Devuélveme qué cable va a qué pin y el código PlatformIO para probarlo.
+
+Eso es el mismo músculo de vibecoding: iterar con la IA hasta que jale.

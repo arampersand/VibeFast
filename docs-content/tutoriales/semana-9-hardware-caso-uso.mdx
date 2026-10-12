@@ -1,35 +1,56 @@
 ---
-title: Semana 9 · ESP-Claw (caso de uso)
-description: De comando en lenguaje natural a acción física.
+title: Semana 3 · Asistente de voz (caso de uso)
+description: Audio al micrófono, petición a la IA y respuesta en voz en el ESP32.
 order: 9
 ---
 
-<StackBadge tech={["esp", "mcp"]} />
+<StackBadge tech={["esp", "openai"]} />
 
-**31 ago – 2 sep 2026 · Técnico + caso de uso**
+**Módulo Hardware con IA · Remotto × Startup Chihuahua**
 
-<Callout type="warning" title="Los pasos completos llegan con el caso de uso">
-El caso de uso (`firmware/examples/03-use-case/`) lo prepara el equipo docente y **se publica antes de la Semana 9**, junto con los pasos de esta página. Lo que SÍ puedes hacer desde hoy está en "Prepárate desde ahora".
+<Callout type="info" title="Material de referencia">
+El caso de uso (`firmware/examples/03-voice-assistant/`) lo publica el equipo docente con esta semana. Necesitas [semanas 1–2](/docs/tutoriales/semana-8-hardware-fundamentos) hechas: LED ok y protoboard armada.
 </Callout>
 
 ## Qué vas a tener al final
 
-- ✅ Caso de uso preparado por el equipo docente corriendo en tu kit.
-- ✅ Comprensión de la arquitectura por eventos + memoria local.
-- ✅ Ángulo "hardware como wedge defendible" integrado a tu pitch deck.
+- ✅ Flujo completo: voz → IA en la nube → voz (tu “mini Alexa” personal).
+- ✅ Entender dónde vive cada parte: placita, red, API de la IA, respuesta.
+- ✅ Demo lista para mostrar (y, si aplica, ángulo hardware en tu pitch).
 
-## Prepárate desde ahora (esto sí puedes hacerlo hoy)
+## Concepto: el cerebro no está en la placita
 
-1. **Semana 8 completa**: tu ESP-Claw flasheado, con WiFi y un comportamiento básico respondiendo.
-2. **Conecta hardware con TU producto**: escribe 2-3 ideas de qué acción física le daría valor a tu ICP (una alerta, un botón físico, un sensor que dispara tu agente). No importa si aún no sabes cómo — eso es lo que se resuelve en la semana.
-3. **Prepara el ángulo de pitch**: en tu deck de la [Semana 7](/docs/tutoriales/semana-7-pitch), identifica dónde entraría "hardware como wedge defendible" — llegar a la semana con esa diapositiva esbozada te ahorra la mitad del trabajo.
+El ESP32 **captura y reproduce** audio (y habla por WiFi). La **inferencia** — entender lo que dijiste y generar la respuesta — la hace un modelo en la nube (ChatGPT, Claude, etc.) vía una petición (API / endpoint).
 
-## Pasos de la semana (se publican con el caso de uso)
+```
+Micrófono → (audio) → puente/API → modelo de IA
+                              ↓
+Bocina    ← (audio) ← respuesta del modelo
+```
 
-1. Cargar el caso de uso preparado (`firmware/examples/03-use-case/`) en tu kit.
-2. Entender la arquitectura por eventos + memoria local (qué decide la IA y qué queda grabado en el chip).
-3. Integrar el ángulo hardware a tu pitch deck.
+No necesitas “entrenar” el modelo en clase. Usas un modelo ya entrenado: le mandas el audio (o el texto transcrito) y recibes la respuesta. Iterar prompts y el código del puente **sí** es parte del trabajo (vibecoding).
+
+## Prepárate desde ahora
+
+1. **Semanas 1–2 listas**: placita flasheable, LED ok, cables del kit en su sitio.
+2. **Cuenta de API** según indique el docente (OpenAI u otra) — key solo en variables de entorno / secretos, nunca en un chat público.
+3. **Una frase de producto**: “Mi asistente sirve para ___ cuando yo digo ___.” Eso acota el demo.
+
+## Pasos de la semana (con el ejemplo publicado)
+
+1. Cargar `firmware/examples/03-voice-assistant/` (o el repo que pase el equipo).
+2. Configurar WiFi + clave de API como indique la guía (no hardcodear en capturas ni en Classroom).
+3. Probar ida y vuelta: una frase corta al mic → respuesta audible.
+4. Ajustar con Cursor: errores de red, de permisos de API, de volumen / pines de audio — siempre pegando el error completo.
+5. (Opcional, track vibecoding) Enlazar el dispositivo a tu web app más adelante; ver [Hardware · ESP-Claw](/docs/features/hardware-esp-claw) y MCP cuando el bridge esté activo en el boilerplate.
 
 ## Entregable
 
-Demo del caso de uso + ángulo hardware integrado al pitch.
+Demo del asistente de voz funcionando de punta a punta + (si el programa lo pide) nota de 3–5 líneas: qué hace, qué API usa, qué limitación viste.
+
+## Si algo no jala (orden de chequeo)
+
+1. ¿El LED de la semana 1 sigue respondiendo? Si no, es cable/puerto, no la IA.
+2. ¿La placita tiene WiFi al router del salón / hotspot de prueba?
+3. ¿La API key es válida y tiene crédito?
+4. Recién entonces: logs del puente y prompt a la IA con el error completo.

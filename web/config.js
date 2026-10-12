@@ -60,7 +60,7 @@ const config = {
     resend: true, // Email — Sem 1+
     pricing: true, // Muestra la sección de precios en la landing (vitrina; el cobro real es `payments`)
     payments: false, // Stripe — opcional, fuera del temario
-    hardware: false, // ESP-Claw bridge — Sem 8
+    hardware: false, // ESP32 / asistente de voz — módulo hardware (Sem 8–9 docs)
   },
 
   // -----------------------------------------------------------
@@ -170,7 +170,7 @@ const config = {
         {
           icon: "Cpu",
           title: "Hardware-ready",
-          body: "Conexión MCP al ESP-Claw para el caso de hardware con IA del Módulo 3.",
+          body: "Módulo ESP32: de la protoboard a un asistente de voz con IA (Hardware con IA).",
         },
       ],
     },
