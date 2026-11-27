@@ -51,6 +51,8 @@ vibefast/
 └── supabase/        ← Migrations y schema
 ```
 
+Cuando un PR modifica las migraciones de Supabase, [RattleCheck](.github/workflows/rattlecheck.yml) compara los permisos con los de la rama base. Si detecta un problema nuevo de severidad alta o crítica, señala la línea de SQL que conviene revisar. No necesita credenciales de Supabase.
+
 ## Stack
 
 - **Next.js 15** (App Router, JavaScript) + **Tailwind 4** + **DaisyUI**
